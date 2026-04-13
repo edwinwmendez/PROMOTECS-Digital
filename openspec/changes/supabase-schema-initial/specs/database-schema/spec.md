@@ -84,9 +84,9 @@ created: 2026-04-13
 #### Acceptance Criteria
 
 - **AC-6.1**: La tabla `programas` tiene las siguientes columnas NOT NULL sin default: `titulo` (TEXT), `tipo_programa`, `area_tematica`, `modalidad`, `horas_pedagogicas` (INTEGER). Insertar sin cualquiera de estas columnas retorna error.
-- **AC-6.2**: La tabla `participantes` tiene las columnas NOT NULL: `nombres` (TEXT), `apellidos` (TEXT), `email` (TEXT con constraint UNIQUE). Insertar sin estas columnas retorna error.
-- **AC-6.3**: La tabla `instructores` tiene las columnas NOT NULL: `nombres` (TEXT), `apellidos` (TEXT), `especialidad` (TEXT). Insertar sin estas columnas retorna error.
-- **AC-6.4**: La tabla `inscripciones` tiene las columnas NOT NULL: `participante_id`, `programa_id`, `estado` (TEXT, CHECK: `pendiente`, `activa`, `completada`, `cancelada`). Insertar sin estas columnas retorna error.
+- **AC-6.2**: La tabla `participantes` tiene las columnas NOT NULL: `nombre` (TEXT), `email` (TEXT). Insertar sin estas columnas retorna error.
+- **AC-6.3**: La tabla `instructores` tiene las columnas NOT NULL: `nombre` (TEXT). Insertar sin esta columna retorna error.
+- **AC-6.4**: La tabla `inscripciones` tiene las columnas NOT NULL: `participante_id`, `programa_id`, `estado` (TEXT, CHECK: `pendiente`, `confirmada`, `completada`, `cancelada`). Insertar sin estas columnas retorna error.
 - **AC-6.5**: La tabla `certificados` tiene las columnas NOT NULL: `inscripcion_id`, `codigo_validacion`, `fecha_emision` (DATE). Insertar sin estas columnas retorna error.
 
 ---
