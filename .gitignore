@@ -89,6 +89,8 @@ temp/
 # ============================================
 coverage/
 .nyc_output/
+playwright-report/
+test-results/
 
 # ============================================
 # Archivos personales / scratch
