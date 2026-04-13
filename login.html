@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PROMOTECS — Ingresar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./css/components/form.css" />
+    <link rel="stylesheet" href="./css/components/alert.css" />
+    <link rel="stylesheet" href="./css/pages/login.css" />
+  </head>
+  <body>
+    <!-- Cabecera principal con logo y sesión de usuario -->
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a href="./index.html" class="site-header__logo">
+          <img src="./assets/images/Logotipo.png" alt="IIC PROMOTECS E.I.R.L." width="140" />
+        </a>
+        <div id="session-ui"></div>
+      </div>
+    </header>
+
+    <!-- Contenedor principal de autenticación -->
+    <main class="auth-container">
+      <div class="auth-card">
+        <!-- Logo centrado -->
+        <div class="auth-card__logo">
+          <img src="./assets/images/Logotipo.png" alt="IIC PROMOTECS E.I.R.L." width="180" />
+        </div>
+
+        <h1 class="auth-card__title">Bienvenido a PROMOTECS</h1>
+
+        <!-- Pestañas de navegación entre login y registro -->
+        <div class="auth-tabs" role="tablist" aria-label="Autenticación">
+          <button
+            role="tab"
+            data-tab="login"
+            id="tab-login"
+            aria-selected="true"
+            aria-controls="panel-login"
+            tabindex="0"
+            class="auth-tab auth-tab--active"
+          >
+            Ingresar
+          </button>
+          <button
+            role="tab"
+            data-tab="register"
+            id="tab-register"
+            aria-selected="false"
+            aria-controls="panel-register"
+            tabindex="-1"
+            class="auth-tab"
+          >
+            Registrarse
+          </button>
+        </div>
+
+        <!-- Panel: Ingresar -->
+        <div role="tabpanel" id="panel-login" aria-labelledby="tab-login">
+          <form id="form-login" class="form" novalidate>
+            <!-- Alerta de error de login -->
+            <div
+              class="alert alert--danger"
+              id="login-alert"
+              role="alert"
+              aria-live="assertive"
+              hidden
+            ></div>
+
+            <!-- Correo electrónico -->
+            <div class="form__group">
+              <label class="form__label" for="login-email">Correo electrónico</label>
+              <input
+                class="form__input"
+                type="email"
+                id="login-email"
+                name="email"
+                autocomplete="email"
+                required
+                aria-describedby="login-email-error"
+              />
+              <span class="form__error" id="login-email-error" aria-live="polite"></span>
+            </div>
+
+            <!-- Contraseña -->
+            <div class="form__group">
+              <label class="form__label" for="login-password">Contraseña</label>
+              <input
+                class="form__input"
+                type="password"
+                id="login-password"
+                name="password"
+                autocomplete="current-password"
+                minlength="8"
+                required
+                aria-describedby="login-password-error"
+              />
+              <span class="form__error" id="login-password-error" aria-live="polite"></span>
+            </div>
+
+            <!-- Botón de envío -->
+            <button type="submit" class="btn btn--primary btn--full">Ingresar</button>
+          </form>
+        </div>
+
+        <!-- Panel: Registrarse (oculto por defecto) -->
+        <div role="tabpanel" id="panel-register" aria-labelledby="tab-register" hidden>
+          <form id="form-register" class="form" novalidate>
+            <!-- Alerta de error de registro -->
+            <div
+              class="alert alert--danger"
+              id="register-alert"
+              role="alert"
+              aria-live="assertive"
+              hidden
+            ></div>
+            <!-- Alerta de éxito de registro -->
+            <div
+              class="alert alert--success"
+              id="register-success"
+              role="status"
+              aria-live="polite"
+              hidden
+            ></div>
+
+            <!-- Nombre completo -->
+            <div class="form__group">
+              <label class="form__label" for="register-nombre">Nombre completo</label>
+              <input
+                class="form__input"
+                type="text"
+                id="register-nombre"
+                name="nombre"
+                autocomplete="name"
+                maxlength="100"
+                required
+                aria-describedby="register-nombre-error"
+              />
+              <span class="form__error" id="register-nombre-error" aria-live="polite"></span>
+            </div>
+
+            <!-- Correo electrónico -->
+            <div class="form__group">
+              <label class="form__label" for="register-email">Correo electrónico</label>
+              <input
+                class="form__input"
+                type="email"
+                id="register-email"
+                name="email"
+                autocomplete="email"
+                required
+                aria-describedby="register-email-error"
+              />
+              <span class="form__error" id="register-email-error" aria-live="polite"></span>
+            </div>
+
+            <!-- Contraseña -->
+            <div class="form__group">
+              <label class="form__label" for="register-password">Contraseña</label>
+              <input
+                class="form__input"
+                type="password"
+                id="register-password"
+                name="password"
+                autocomplete="new-password"
+                minlength="8"
+                required
+                aria-describedby="register-password-error"
+              />
+              <span class="form__hint">Mínimo 8 caracteres, al menos 1 letra y 1 número</span>
+              <span class="form__error" id="register-password-error" aria-live="polite"></span>
+            </div>
+
+            <!-- Perfil profesional -->
+            <div class="form__group">
+              <label class="form__label" for="register-perfil">Perfil profesional</label>
+              <select
+                class="form__select"
+                id="register-perfil"
+                name="perfil_profesional"
+                required
+                aria-describedby="register-perfil-error"
+              >
+                <option value="" disabled selected>Selecciona tu perfil</option>
+                <option value="docente">Docente</option>
+                <option value="profesional_salud">Profesional de salud</option>
+                <option value="abogado">Abogado/a</option>
+                <option value="farmaceutico">Farmacéutico/a</option>
+                <option value="psicologo">Psicólogo/a</option>
+                <option value="nutricionista">Nutricionista</option>
+                <option value="obstetra">Obstetra</option>
+                <option value="tecnologo_laboratorio">Tecnólogo de laboratorio</option>
+                <option value="administrador_publico">Administrador/a público/a</option>
+                <option value="contador">Contador/a</option>
+                <option value="ingeniero">Ingeniero/a</option>
+                <option value="enfermero">Enfermero/a</option>
+                <option value="tecnico">Técnico/a</option>
+                <option value="otro">Otro</option>
+              </select>
+              <span class="form__error" id="register-perfil-error" aria-live="polite"></span>
+            </div>
+
+            <!-- Botón de envío -->
+            <button type="submit" class="btn btn--primary btn--full">Registrarse</button>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <!-- Módulo de autenticación y sesión -->
+    <script type="module" src="./js/modules/login.js"></script>
+    <script type="module" src="./js/modules/session-ui.js"></script>
+  </body>
+</html>

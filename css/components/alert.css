@@ -1,0 +1,48 @@
+/* ==========================================================================
+   Componente: Alerta — PROMOTECS-Digital
+   Banners de retroalimentación al usuario: éxito, error, info, advertencia.
+   Independiente de form.css y login.css.
+   ========================================================================== */
+
+/* --- Base de alerta --- */
+.alert {
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  border-left: 4px solid;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
+/* --- Ocultar cuando tiene el atributo hidden (HTML nativo) --- */
+.alert[hidden] {
+  display: none;
+}
+
+/* --- Variante: éxito --- */
+.alert--success {
+  border-color: var(--color-success);
+  background-color: color-mix(in srgb, var(--color-success) 10%, white);
+  color: var(--color-text);
+}
+
+/* --- Variante: error / peligro --- */
+.alert--danger {
+  border-color: var(--color-danger);
+  background-color: color-mix(in srgb, var(--color-danger) 10%, white);
+  color: var(--color-text);
+}
+
+/* --- Variante: información --- */
+.alert--info {
+  border-color: var(--color-info);
+  background-color: color-mix(in srgb, var(--color-info) 10%, white);
+  color: var(--color-text);
+}
+
+/* --- Variante: advertencia --- */
+.alert--warning {
+  border-color: var(--color-warning);
+  background-color: color-mix(in srgb, var(--color-warning) 10%, white);
+  color: var(--color-text);
+}
