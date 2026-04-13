@@ -9,6 +9,7 @@
 *.key
 *.pem
 config.local.js
+js/config.js
 secrets.js
 
 # ============================================
@@ -88,6 +89,8 @@ temp/
 # ============================================
 coverage/
 .nyc_output/
+playwright-report/
+test-results/
 
 # ============================================
 # Archivos personales / scratch
@@ -101,3 +104,8 @@ TODO.personal.md
 # ============================================
 .claude/
 .atl/
+claude.md
+agents.md
+.agents/
+
+*sdd*.md

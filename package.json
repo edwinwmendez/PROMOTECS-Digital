@@ -1,0 +1,55 @@
+{
+  "name": "promotecs-digital",
+  "version": "1.0.0",
+  "description": "Plataforma web de IIC PROMOTECS E.I.R.L. — catálogo de programas, inscripción en línea y validación de certificados",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{html,css,json,md}": [
+      "prettier --write"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edwinwmendez/PROMOTECS-Digital.git"
+  },
+  "author": "edwinwmendez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/edwinwmendez/PROMOTECS-Digital/issues"
+  },
+  "homepage": "https://github.com/edwinwmendez/PROMOTECS-Digital#readme",
+  "devDependencies": {
+    "@axe-core/playwright": "^4.11.1",
+    "@commitlint/cli": "^20.5.0",
+    "@commitlint/config-conventional": "^20.5.0",
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.59.1",
+    "eslint": "^10.2.0",
+    "globals": "^17.5.0",
+    "happy-dom": "^20.8.9",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
+    "prettier": "^3.8.2",
+    "vite": "^8.0.8",
+    "vitest": "^4.1.4"
+  }
+}
