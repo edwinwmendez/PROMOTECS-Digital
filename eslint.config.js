@@ -22,7 +22,8 @@ export default [
         'error',
         {
           selector: 'MemberExpression[object.type="MetaProperty"][property.name="env"]',
-          message: 'import.meta.env no está disponible en GitHub Pages. Usar js/config.js en su lugar.',
+          message:
+            'import.meta.env no está disponible en GitHub Pages. Usar js/config.js en su lugar.',
         },
         {
           selector: 'ImportDeclaration[source.value=/\\.css$/]',

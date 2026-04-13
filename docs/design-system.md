@@ -119,9 +119,12 @@ Por qué: Fuente de interfaces modernas por excelencia. Hiper-legible a
 ### Carga en HTML
 
 ```html
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap"
+  rel="stylesheet"
+/>
 ```
 
 ---
@@ -230,8 +233,8 @@ css/
 ```css
 /* ❌ INCORRECTO — valores hard-codeados */
 .button-primary {
-  background: #FFC20E;
-  color: #061A36;
+  background: #ffc20e;
+  color: #061a36;
   padding: 16px 24px;
   border-radius: 8px;
   font-family: 'Inter', sans-serif;

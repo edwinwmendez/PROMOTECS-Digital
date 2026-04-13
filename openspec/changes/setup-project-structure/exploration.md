@@ -3,7 +3,7 @@ change: setup-project-structure
 artifact: exploration
 phase: sdd-explore
 author: edwinwmendez
-version: "1.0.0"
+version: '1.0.0'
 formality_level: 2
 foundation_used: true
 created: 2026-04-11
@@ -38,21 +38,21 @@ Este change es el **change 001** del proyecto. Materializa la estructura de carp
 
 La constitution v1.0.0 fija estas elecciones como no-negociables. Esta exploration las respeta y NO las cuestiona:
 
-| Decisión | Valor fijo | Referencia |
-|---|---|---|
-| Stack producción | HTML5 + CSS3 + JS ES6+ vanilla + Supabase + EmailJS | Principio 1 |
-| Dev tooling permitido | Vitest, Playwright, ESLint, Prettier, Husky, lint-staged | Principio 2 |
-| Arquitectura | 3 capas estricta | Principio 3 |
-| Unit test runner | **Vitest** | Principio 9 |
-| E2E framework | **Playwright** (Chrome/Firefox/Edge) | Principios 9 + RNF02 |
-| Accessibility testing | **@axe-core/playwright** | Principio 16 |
-| Git hooks | **Husky + lint-staged** | Principio 18 |
-| Linting / Formatting | **ESLint + Prettier** | Principios 2 + 18 |
-| Git Flow | `main ← release/* ← develop ← feature/* / hotfix/*` | Principio 20 |
-| Commit convention | **Conventional Commits** | Principio 21 |
-| Performance budget | < 5 segundos (Lighthouse) | Principio 15 + RNF01 |
-| Comentarios en código | Español | Principio 17 |
-| Archivos < 300 líneas | Obligatorio | Principio 19 |
+| Decisión              | Valor fijo                                               | Referencia           |
+| --------------------- | -------------------------------------------------------- | -------------------- |
+| Stack producción      | HTML5 + CSS3 + JS ES6+ vanilla + Supabase + EmailJS      | Principio 1          |
+| Dev tooling permitido | Vitest, Playwright, ESLint, Prettier, Husky, lint-staged | Principio 2          |
+| Arquitectura          | 3 capas estricta                                         | Principio 3          |
+| Unit test runner      | **Vitest**                                               | Principio 9          |
+| E2E framework         | **Playwright** (Chrome/Firefox/Edge)                     | Principios 9 + RNF02 |
+| Accessibility testing | **@axe-core/playwright**                                 | Principio 16         |
+| Git hooks             | **Husky + lint-staged**                                  | Principio 18         |
+| Linting / Formatting  | **ESLint + Prettier**                                    | Principios 2 + 18    |
+| Git Flow              | `main ← release/* ← develop ← feature/* / hotfix/*`      | Principio 20         |
+| Commit convention     | **Conventional Commits**                                 | Principio 21         |
+| Performance budget    | < 5 segundos (Lighthouse)                                | Principio 15 + RNF01 |
+| Comentarios en código | Español                                                  | Principio 17         |
+| Archivos < 300 líneas | Obligatorio                                              | Principio 19         |
 
 Este exploration se concentra en las decisiones **instrumentales** que la constitution NO fija.
 
@@ -84,11 +84,13 @@ Observaciones tras inspeccionar el repo y el `.gitignore`:
 ## Decisión 1 — Dev Server (servidor local de desarrollo)
 
 ### Contexto
+
 Necesitamos un HTTP server local para desarrollo. El proyecto son archivos estáticos (HTML/CSS/JS) — NO hay bundling ni transpilación. El principio 1 prohíbe frameworks en el bundle final, pero el principio 2 permite dev tooling que NO afecta producción. La pregunta es: ¿cuál tool elegir?
 
 ### Opciones
 
 #### Opción A — `vite` (modo static / `vite preview`)
+
 - **Pros**:
   - HMR (Hot Module Reload) real — cambios visibles sin refresh. Gran impacto en productividad con 4 devs.
   - Maneja ES modules modernos sin config.
@@ -102,6 +104,7 @@ Necesitamos un HTTP server local para desarrollo. El proyecto son archivos está
 - **Evidence**: [vitejs.dev — Static Site Deployment](https://vitejs.dev/guide/static-deploy.html). Vitest comparte config con Vite, reduciendo duplicación.
 
 #### Opción B — `http-server` (minimalista, cero config)
+
 - **Pros**:
   - Una sola dependencia. Sirve el directorio tal cual.
   - **Cero riesgo de framework creep** — no hay features que puedan seducir al equipo.
@@ -114,6 +117,7 @@ Necesitamos un HTTP server local para desarrollo. El proyecto son archivos está
 - **Evidence**: [github.com/http-party/http-server](https://github.com/http-party/http-server). API estable por 10+ años. Usado en cursos académicos por su simplicidad.
 
 #### Opción C — `live-server` (auto-reload ligero)
+
 - **Pros**:
   - Auto-reload en cambios de archivos (no HMR real, pero refresh automático del browser).
   - Sirve directo sin transformar nada (principio 1 ok).
@@ -134,11 +138,13 @@ Necesitamos un HTTP server local para desarrollo. El proyecto son archivos está
 ## Decisión 2 — Package Manager
 
 ### Contexto
+
 El grupo son 4 devs activos (Hugo, Edwin Mendez, Manuel, Edwin Miranda) colaborando vía git. La reproducibilidad del `node_modules` entre máquinas es crítica para que `npm run test` se comporte igual en todas.
 
 ### Opciones
 
 #### Opción A — `npm`
+
 - **Pros**:
   - Viene con Node.js — cero instalación extra para el equipo.
   - Familiar para todos. Cero onboarding.
@@ -150,6 +156,7 @@ El grupo son 4 devs activos (Hugo, Edwin Mendez, Manuel, Edwin Miranda) colabora
 - **Effort**: Cero (ya instalado con Node).
 
 #### Opción B — `pnpm`
+
 - **Pros**:
   - 2x-3x más rápido que npm en installs.
   - Store global → menor uso de disco.
@@ -161,6 +168,7 @@ El grupo son 4 devs activos (Hugo, Edwin Mendez, Manuel, Edwin Miranda) colabora
 - **Effort**: Bajo, pero agrega fricción al onboarding.
 
 #### Opción C — `yarn` (classic o berry)
+
 - **Pros**:
   - Yarn classic v1: rápido, familiar, estable.
 - **Cons**:
@@ -179,11 +187,13 @@ El grupo son 4 devs activos (Hugo, Edwin Mendez, Manuel, Edwin Miranda) colabora
 ## Decisión 3 — Test Environment para Vitest
 
 ### Contexto
+
 Vitest corre tests de JS puro y de código que toca el DOM. Los módulos 2 (Catálogo filtrable) y 3 (Inscripción con validaciones) tendrán funciones que manipulan `document`, `FormData`, `querySelector`, etc. Necesitamos elegir un entorno que simule el DOM sin browser real.
 
 ### Opciones
 
 #### Opción A — `happy-dom`
+
 - **Pros**:
   - ~2x más rápido que jsdom (benchmark oficial de Vitest).
   - Menor footprint en memoria.
@@ -196,6 +206,7 @@ Vitest corre tests de JS puro y de código que toca el DOM. Los módulos 2 (Cat�
 - **Evidence**: [vitest.dev/guide/environment](https://vitest.dev/guide/environment.html) — "happy-dom is a good choice when you need speed".
 
 #### Opción B — `jsdom`
+
 - **Pros**:
   - Estándar de facto desde hace 10+ años. Compatibilidad máxima.
   - Comunidad grande, bugs raros.
@@ -205,6 +216,7 @@ Vitest corre tests de JS puro y de código que toca el DOM. Los módulos 2 (Cat�
 - **Effort**: Bajo.
 
 #### Opción C — `node` (sin DOM)
+
 - **Pros**:
   - Máxima velocidad.
 - **Cons**:
@@ -223,13 +235,13 @@ Vitest corre tests de JS puro y de código que toca el DOM. Los módulos 2 (Cat�
 
 Estas decisiones tienen un claro "defecto moderno" que la industria ya adoptó. No requieren comparación de L2:
 
-| Decisión | Elección | Justificación breve |
-|---|---|---|
-| **ESLint config style** | Flat config (`eslint.config.js`) | ESLint 9+ (2024) hizo flat config el default. `.eslintrc` está deprecated para nuevos proyectos. |
-| **Node version pinning** | `.nvmrc` con Node 22 LTS | `.nvmrc` es el estándar de facto. `volta` agrega fricción de instalación. |
-| **Commit message linting** | `commitlint` + `@commitlint/config-conventional` | Principio 21 exige Conventional Commits — sin enforcement es sólo una guía. `commitlint` lo valida en `commit-msg` hook. |
-| **CI** | GitHub Actions | GitHub Pages + repo GitHub → GitHub Actions es la ruta de menor resistencia. `actions/setup-node@v4 + npm ci + npm test + playwright test` en ~30 líneas YAML. |
-| **Prettier config** | Defaults + `"singleQuote": true`, `"printWidth": 100` | Mínima customización. Single quotes por coherencia con JS moderno. 100 cols para que Prettier no destruya líneas de HTML inline. |
+| Decisión                   | Elección                                              | Justificación breve                                                                                                                                            |
+| -------------------------- | ----------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **ESLint config style**    | Flat config (`eslint.config.js`)                      | ESLint 9+ (2024) hizo flat config el default. `.eslintrc` está deprecated para nuevos proyectos.                                                               |
+| **Node version pinning**   | `.nvmrc` con Node 22 LTS                              | `.nvmrc` es el estándar de facto. `volta` agrega fricción de instalación.                                                                                      |
+| **Commit message linting** | `commitlint` + `@commitlint/config-conventional`      | Principio 21 exige Conventional Commits — sin enforcement es sólo una guía. `commitlint` lo valida en `commit-msg` hook.                                       |
+| **CI**                     | GitHub Actions                                        | GitHub Pages + repo GitHub → GitHub Actions es la ruta de menor resistencia. `actions/setup-node@v4 + npm ci + npm test + playwright test` en ~30 líneas YAML. |
+| **Prettier config**        | Defaults + `"singleQuote": true`, `"printWidth": 100` | Mínima customización. Single quotes por coherencia con JS moderno. 100 cols para que Prettier no destruya líneas de HTML inline.                               |
 
 ---
 
@@ -306,6 +318,7 @@ El change `setup-project-structure` debe entregar, en un solo PR:
 ## Decision Override (Gate 1 Post-Explore — 2026-04-12)
 
 > **Decisión 1 (Dev Server) fue overrideada por el usuario en el gate post-explore.**
+>
 > - **Recomendación original de exploration**: `http-server` (Opción B)
 > - **Decisión final del usuario**: `vite` (Opción A) — HMR real vale el constraint educativo
 > - **Rationale**: el módulo 3 (Inscripción) tendrá formularios complejos que se iteran muchas veces; HMR elimina el ciclo F5 + re-fill. El equipo debe respetar el constraint de NO usar features de Vite que no sobreviven a producción (import.meta.env, CSS-from-JS, aliases). ADR-001 documenta el constraint.

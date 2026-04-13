@@ -4,7 +4,7 @@ artifact: spec
 capability: project-infrastructure
 phase: sdd-spec
 author: edwinwmendez
-version: "1.0.0"
+version: '1.0.0'
 formality_level: 2
 ears_notation: true
 gherkin: false

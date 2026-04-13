@@ -3,7 +3,7 @@ change: setup-project-structure
 artifact: tasks
 phase: sdd-tasks
 author: edwinwmendez
-version: "1.0.0"
+version: '1.0.0'
 formality_level: 2
 budget_exception: true
 budget_justification: >
@@ -194,6 +194,7 @@ Task 1 [CONFIG] package.json + devDeps + .nvmrc
 - **Type**: `[TEST]`
 - **What to do**:
   - Create `tests/unit/smoke.test.js`:
+
     ```js
     import { describe, test, expect } from 'vitest';
 
@@ -210,7 +211,9 @@ Task 1 [CONFIG] package.json + devDeps + .nvmrc
       });
     });
     ```
+
   - Run `npm test` → both tests must pass in <5 seconds
+
 - **Files to create**: `tests/unit/smoke.test.js`
 - **Traces to**: AC-1.1, AC-1.3, AC-1.4 (QG REQ-1)
 - **Constitution checks**: principio 9 (testing automatizado), principio 15 (budget <5s)
@@ -225,6 +228,7 @@ Task 1 [CONFIG] package.json + devDeps + .nvmrc
 - **Type**: `[TEST]`
 - **What to do**:
   - Create `tests/e2e/smoke.spec.js`:
+
     ```js
     import { test, expect } from '@playwright/test';
     import AxeBuilder from '@axe-core/playwright';
@@ -247,7 +251,9 @@ Task 1 [CONFIG] package.json + devDeps + .nvmrc
       });
     });
     ```
+
   - Run `npm run test:e2e` → both tests must pass on Chromium + Firefox + Edge
+
 - **Files to create**: `tests/e2e/smoke.spec.js`
 - **Traces to**: AC-2.1, AC-2.3, AC-2.5 (QG REQ-2)
 - **Constitution checks**: principio 9 (testing), principio 16 (WCAG AA via axe-core), RNF02 (3 browsers)
@@ -269,11 +275,14 @@ Task 1 [CONFIG] package.json + devDeps + .nvmrc
     - `unit` job: `npm ci`, `npm test`
     - `e2e` job: `npm ci`, cache `~/.cache/ms-playwright` with `actions/cache@v4` (key: `playwright-${{ hashFiles('**/package-lock.json') }}`), `npx playwright install --with-deps`, `npm run test:e2e`
   - Create `.github/PULL_REQUEST_TEMPLATE.md`:
+
     ```markdown
     ## Descripción
+
     <!-- ¿Qué cambia este PR? Resumen breve. -->
 
     ## Checklist
+
     - [ ] `npm test` verde (unit tests pasan)
     - [ ] `npm run test:e2e` verde (3 browsers: Chrome, Firefox, Edge)
     - [ ] `npm run lint` sin errores
@@ -283,6 +292,7 @@ Task 1 [CONFIG] package.json + devDeps + .nvmrc
     - [ ] ADR creado/referenciado si hay decisión arquitectural
     - [ ] Screenshots si hay cambio visual
     ```
+
 - **Files to create**: `.github/workflows/ci.yml`, `.github/PULL_REQUEST_TEMPLATE.md`
 - **Traces to**: AC-3.1 to AC-3.9 (PI REQ-3)
 - **Constitution checks**: principio 21 (PR template), principio 9 (CI corre tests)

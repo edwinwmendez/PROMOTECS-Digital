@@ -3,7 +3,7 @@ change: setup-project-structure
 artifact: proposal
 phase: sdd-propose
 author: edwinwmendez
-version: "1.0.0"
+version: '1.0.0'
 formality_level: 2
 foundation_used: true
 exploration_used: true
@@ -22,6 +22,7 @@ PROMOTECS-Digital es greenfield: no hay `package.json`, estructura de carpetas, 
 ## Scope
 
 ### In Scope
+
 - Estructura de carpetas del CLAUDE.md: 5 HTMLs raíz vacíos, `css/{tokens,reset,base}`, `css/{components,layouts,pages}`, `js/{modules,utils}`, `assets/{images,icons}`, `tests/{unit,e2e}`, `docs/adr`
 - `package.json` + devDependencies (Vite, Vitest+happy-dom, Playwright+@axe-core/playwright, ESLint flat, Prettier, Husky, lint-staged, commitlint)
 - Configs: `vite.config.js` (MPA dev-only), `vitest.config.js`, `playwright.config.js` (Chrome+Firefox+Edge), `eslint.config.js`, `.prettierrc.json`, `commitlint.config.js`
@@ -34,6 +35,7 @@ PROMOTECS-Digital es greenfield: no hay `package.json`, estructura de carpetas, 
 - `docs/adr/ADR-001-tooling-selection.md` justificando 3 decisiones mayores (vite, npm, happy-dom)
 
 ### Out of Scope
+
 - Contenido real de los 5 módulos (changes posteriores)
 - Schema/RLS de Supabase (change `supabase-schema-initial`)
 - Protección de ramas en GitHub (click-ops manual del owner — task documentado)
@@ -41,11 +43,13 @@ PROMOTECS-Digital es greenfield: no hay `package.json`, estructura de carpetas, 
 ## Capabilities (L2+)
 
 ### New Capabilities
+
 - `project-infrastructure`: estructura multi-page estática + dev server Vite MPA dev-only + CI GitHub Actions
 - `quality-gates`: Vitest+happy-dom unit + Playwright+axe-core e2e (3 browsers) + ESLint+Prettier + Husky+commitlint
 - `design-tokens`: `css/tokens.css` como fuente de verdad visual derivada de `docs/design-system.md`
 
 ### Modified Capabilities
+
 - None (greenfield)
 
 ## Approach
@@ -54,27 +58,27 @@ PROMOTECS-Digital es greenfield: no hay `package.json`, estructura de carpetas, 
 
 ## Affected Areas
 
-| Área | Impacto | Descripción |
-|---|---|---|
-| Raíz del repo | New | package.json, configs (vite/vitest/playwright/eslint/prettier/commitlint), .nvmrc, README.md |
-| `.husky/` | New | pre-commit + commit-msg hooks |
-| `.github/workflows/` | New | ci.yml con jobs lint + unit + e2e |
-| `css/` | New | tokens.css, reset.css, base.css + subfolders vacías |
-| `js/` | New | config.example.js + modules/ y utils/ (vacías) |
-| `assets/` | New | images/ con Logotipo.png movido + icons/ vacío |
-| Raíz HTMLs | New | 5 archivos HTML esqueleto (head + body vacío + link tokens.css) |
-| `tests/` | New | unit/smoke.test.js + e2e/smoke.spec.js |
-| `docs/adr/` | New | ADR-001-tooling-selection.md |
+| Área                 | Impacto | Descripción                                                                                  |
+| -------------------- | ------- | -------------------------------------------------------------------------------------------- |
+| Raíz del repo        | New     | package.json, configs (vite/vitest/playwright/eslint/prettier/commitlint), .nvmrc, README.md |
+| `.husky/`            | New     | pre-commit + commit-msg hooks                                                                |
+| `.github/workflows/` | New     | ci.yml con jobs lint + unit + e2e                                                            |
+| `css/`               | New     | tokens.css, reset.css, base.css + subfolders vacías                                          |
+| `js/`                | New     | config.example.js + modules/ y utils/ (vacías)                                               |
+| `assets/`            | New     | images/ con Logotipo.png movido + icons/ vacío                                               |
+| Raíz HTMLs           | New     | 5 archivos HTML esqueleto (head + body vacío + link tokens.css)                              |
+| `tests/`             | New     | unit/smoke.test.js + e2e/smoke.spec.js                                                       |
+| `docs/adr/`          | New     | ADR-001-tooling-selection.md                                                                 |
 
 ## Risks
 
-| Riesgo | Probabilidad | Mitigación |
-|---|---|---|
-| Branch protection no automatizable | Alta | Task explícito para el owner (Edwin Mendez) con screenshots de pasos en README |
-| Husky falla en Windows sin Git Bash | Media | README documenta requisito Git for Windows |
-| Playwright browsers download ~300MB | Media | `actions/cache@v4` para browsers en CI; doc en README sobre primer install local |
-| Secretos Supabase commiteados por error | Alta impacto, baja prob | `.gitignore` ya cubre `js/config.js`; committed `js/config.example.js` como template visible |
-| Estudiante usa feature exclusiva de Vite (`import.meta.env`) | Media | ADR-001 documenta constraint + ejemplo de "lo que NO se puede" + regla ESLint custom opcional |
+| Riesgo                                                       | Probabilidad            | Mitigación                                                                                    |
+| ------------------------------------------------------------ | ----------------------- | --------------------------------------------------------------------------------------------- |
+| Branch protection no automatizable                           | Alta                    | Task explícito para el owner (Edwin Mendez) con screenshots de pasos en README                |
+| Husky falla en Windows sin Git Bash                          | Media                   | README documenta requisito Git for Windows                                                    |
+| Playwright browsers download ~300MB                          | Media                   | `actions/cache@v4` para browsers en CI; doc en README sobre primer install local              |
+| Secretos Supabase commiteados por error                      | Alta impacto, baja prob | `.gitignore` ya cubre `js/config.js`; committed `js/config.example.js` como template visible  |
+| Estudiante usa feature exclusiva de Vite (`import.meta.env`) | Media                   | ADR-001 documenta constraint + ejemplo de "lo que NO se puede" + regla ESLint custom opcional |
 
 ## Rollback Plan
 
