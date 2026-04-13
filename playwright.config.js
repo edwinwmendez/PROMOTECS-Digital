@@ -20,10 +20,11 @@ export default defineConfig({
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
     },
-    {
-      name: 'edge',
-      use: { channel: 'msedge' },
-    },
+    // Edge corre en CI (GitHub Actions lo tiene instalado).
+    // Localmente es opcional: npx playwright install msedge
+    ...(process.env.CI || process.env.TEST_ALL_BROWSERS
+      ? [{ name: 'edge', use: { channel: 'msedge' } }]
+      : []),
   ],
   webServer: {
     command: 'npm run dev',
