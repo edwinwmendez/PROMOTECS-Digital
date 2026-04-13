@@ -36,16 +36,16 @@ npx playwright install
 
 ## Scripts de desarrollo
 
-| Comando                | Descripción                                       |
-| ---------------------- | ------------------------------------------------- |
-| `npm run dev`          | Inicia servidor de desarrollo (Vite, puerto 5173) |
-| `npm test`             | Ejecuta tests unitarios (Vitest + happy-dom)      |
-| `npm run test:watch`   | Tests unitarios en modo watch                     |
-| `npm run test:e2e`     | Tests E2E (Playwright × Chromium + Firefox)       |
-| `npm run lint`         | Verifica código con ESLint                        |
-| `npm run lint:fix`     | Corrige errores de ESLint automáticamente         |
-| `npm run format`       | Formatea código con Prettier                      |
-| `npm run format:check` | Verifica formato sin modificar archivos           |
+| Comando                | Descripción                                             |
+| ---------------------- | ------------------------------------------------------- |
+| `npm run dev`          | Inicia servidor de desarrollo (Vite, puerto 5173)       |
+| `npm test`             | Ejecuta tests unitarios (Vitest + happy-dom)            |
+| `npm run test:watch`   | Tests unitarios en modo watch                           |
+| `npm run test:e2e`     | Tests E2E (Playwright × Chromium + Firefox; Edge en CI) |
+| `npm run lint`         | Verifica código con ESLint                              |
+| `npm run lint:fix`     | Corrige errores de ESLint automáticamente               |
+| `npm run format`       | Formatea código con Prettier                            |
+| `npm run format:check` | Verifica formato sin modificar archivos                 |
 
 ## Vite es solo para desarrollo
 
@@ -59,6 +59,8 @@ Este proyecto **NO usa `vite build`**. El código debe funcionar tal cual en el 
 - Cargar CSS con `<link>` en HTML, no con `import` en JS
 
 Para más detalles, ver [ADR-001](docs/adr/ADR-001-tooling-selection.md).
+
+> **Nota sobre Edge**: localmente, `npm run test:e2e` corre Chromium + Firefox. Edge se activa automáticamente en CI (`CI=true`). Para correr los 3 browsers localmente: `TEST_ALL_BROWSERS=1 npm run test:e2e` (requiere `npx playwright install msedge`).
 
 ## Arquitectura
 

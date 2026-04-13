@@ -9,6 +9,7 @@
 *.key
 *.pem
 config.local.js
+js/config.js
 secrets.js
 
 # ============================================
