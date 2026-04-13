@@ -1,0 +1,110 @@
+/* ==========================================================================
+   Tokens de diseño — PROMOTECS-Digital
+   Fuente de verdad: docs/design-system.md v1.0.0
+   Prohibido hard-codear valores. Todo sale de estas variables.
+   ========================================================================== */
+
+:root {
+  /* --- Paleta: Navy (marca / primario) --- */
+  --color-navy-900: #061A36;
+  --color-navy-800: #0B2545;
+  --color-navy-700: #13315C;
+  --color-navy-600: #1D3D6F;
+  --color-navy-500: #2C5282;
+
+  /* --- Paleta: Gold (acento / prestigio) --- */
+  --color-gold-700: #B8860B;
+  --color-gold-600: #D4A017;
+  --color-gold-500: #E5A823;
+
+  /* --- Paleta: Yellow (CTA / llamadas a la acción) --- */
+  --color-yellow-500: #FFC20E;
+  --color-yellow-400: #FFD43B;
+  --color-yellow-300: #FFE066;
+
+  /* --- Paleta: Neutrales --- */
+  --color-white: #FFFFFF;
+  --color-gray-50: #F8FAFC;
+  --color-gray-100: #F1F5F9;
+  --color-gray-200: #E2E8F0;
+  --color-gray-400: #94A3B8;
+  --color-gray-600: #475569;
+  --color-gray-800: #1E293B;
+
+  /* --- Paleta: Semánticos (estados del sistema) --- */
+  --color-success: #16A34A;
+  --color-danger: #DC2626;
+  --color-warning: #F59E0B;
+  --color-info: #2563EB;
+
+  /* --- Aliases semánticos --- */
+  --color-bg: var(--color-white);
+  --color-text: var(--color-navy-900);
+  --color-text-muted: var(--color-gray-600);
+  --color-primary: var(--color-navy-700);
+  --color-accent: var(--color-gold-600);
+  --color-cta: var(--color-yellow-500);
+  --color-border: var(--color-gray-200);
+
+  /* --- Tipografía: familias --- */
+  --font-display: 'Montserrat', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* --- Tipografía: escala (Major Third 1.250) --- */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 3.75rem;
+
+  /* --- Tipografía: pesos --- */
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  --font-extrabold: 800;
+  --font-black: 900;
+
+  /* --- Tipografía: line-heights --- */
+  --leading-tight: 1.2;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.75;
+
+  /* --- Espaciado (base 4px per docs/design-system.md) --- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-24: 96px;
+  --space-32: 128px;
+
+  /* --- Breakpoints (mobile-first, solo referencia — usar en @media) --- */
+  --bp-sm: 640px;
+  --bp-md: 768px;
+  --bp-lg: 1024px;
+  --bp-xl: 1280px;
+  --bp-2xl: 1536px;
+
+  /* --- Sombras (navy-800 con alpha, NO negro puro) --- */
+  --shadow-sm: 0 1px 2px rgba(11, 37, 69, 0.05);
+  --shadow-md: 0 4px 6px rgba(11, 37, 69, 0.08);
+  --shadow-lg: 0 10px 20px rgba(11, 37, 69, 0.10);
+  --shadow-xl: 0 20px 40px rgba(11, 37, 69, 0.15);
+
+  /* --- Border radius --- */
+  --radius-none: 0;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+}
