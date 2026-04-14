@@ -1,0 +1,74 @@
+/* ==========================================================================
+   Layout: Header institucional — PROMOTECS-Digital
+   Reutilizable en todas las páginas del sitio (excepto login.html).
+   ========================================================================== */
+
+/* --- Header con fondo navy y borde dorado --- */
+.site-header {
+  background: var(--color-navy-800);
+  padding: var(--space-2) var(--space-6);
+  border-bottom: 3px solid var(--color-gold-600);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* --- Logo constrañido a 44px de alto (no depende de width del HTML) --- */
+.site-header__logo img {
+  height: 44px;
+  width: auto;
+}
+
+/* --- Session-ui en el header --- */
+.session-ui__greeting {
+  font-size: var(--text-sm);
+  color: var(--color-gray-200);
+  margin-right: var(--space-3);
+}
+
+.session-ui__logout {
+  color: var(--color-white);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.session-ui__logout:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.session-ui__login {
+  background: var(--color-gold-600);
+  color: var(--color-navy-900);
+}
+
+.session-ui__login:hover {
+  background: var(--color-gold-500);
+}
+
+/* --- Botones mínimos (se moverán a button.css en modulo-landing) --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-weight: var(--font-semibold);
+  font-size: var(--text-base);
+  cursor: pointer;
+  border: none;
+  transition:
+    background-color 0.2s ease,
+    opacity 0.2s ease;
+  text-decoration: none;
+}
+
+.btn--sm {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-sm);
+}

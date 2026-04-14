@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PROMOTECS — Catálogo de Programas</title>
-    <!-- Preconexión a Google Fonts para mejor rendimiento -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -12,45 +11,647 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./css/base.css" />
-    <link rel="stylesheet" href="./css/pages/login.css" />
+    <style>
+      :root {
+        --navy-900: #061a36;
+        --navy-800: #0b2545;
+        --navy-700: #13315c;
+        --gold-600: #d4a017;
+        --gold-500: #e5a823;
+        --white: #fff;
+        --gray-50: #f8fafc;
+        --gray-200: #e2e8f0;
+        --gray-600: #475569;
+        --font-d: 'Montserrat', sans-serif;
+        --font-b: 'Inter', sans-serif;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: var(--font-b);
+        color: #1e293b;
+        background: var(--gray-50);
+      }
+      .navbar {
+        background: var(--navy-800);
+        border-bottom: 3px solid var(--gold-600);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      .navbar__inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 24px;
+      }
+      .navbar__logo img {
+        height: 48px;
+      }
+      .navbar__links {
+        display: flex;
+        gap: 4px;
+        list-style: none;
+      }
+      .navbar__links a {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        padding: 8px 14px;
+        border-radius: 8px;
+        transition: background 0.2s;
+      }
+      .navbar__links a:hover,
+      .navbar__links a.active {
+        background: rgba(255, 255, 255, 0.12);
+        color: #fff;
+      }
+      .navbar__cta {
+        background: var(--gold-600);
+        color: var(--navy-900);
+        font-weight: 700;
+        font-size: 14px;
+        padding: 9px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+      }
+      .hero {
+        background: linear-gradient(135deg, var(--navy-900), var(--navy-700));
+        padding: 56px 24px;
+        text-align: center;
+      }
+      .hero__tag {
+        display: inline-block;
+        background: rgba(212, 160, 23, 0.15);
+        color: var(--gold-500);
+        border: 1px solid var(--gold-600);
+        padding: 5px 14px;
+        border-radius: 9999px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+      }
+      .hero__title {
+        font-family: var(--font-d);
+        font-size: 2rem;
+        font-weight: 900;
+        color: #fff;
+        margin-bottom: 8px;
+      }
+      .hero__subtitle {
+        color: rgba(255, 255, 255, 0.65);
+        font-size: 16px;
+      }
+      .filters {
+        background: #fff;
+        border-bottom: 1px solid var(--gray-200);
+        padding: 16px 24px;
+      }
+      .filters__inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      select,
+      input[type='text'] {
+        border: 1px solid var(--gray-200);
+        border-radius: 8px;
+        padding: 8px 12px;
+        font-size: 14px;
+        font-family: var(--font-b);
+        outline: none;
+        background: #fff;
+      }
+      select:focus,
+      input:focus {
+        border-color: var(--navy-800);
+      }
+      .btn-f {
+        background: var(--navy-800);
+        color: #fff;
+        border: none;
+        padding: 9px 20px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: var(--font-b);
+      }
+      .main {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 24px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 24px;
+      }
+      /* CARD MEJORADA */
+      .card {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(11, 37, 69, 0.08);
+        overflow: hidden;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        display: flex;
+        flex-direction: column;
+      }
+      .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 20px rgba(11, 37, 69, 0.12);
+      }
+      .card__header {
+        background: var(--navy-800);
+        padding: 20px;
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        position: relative;
+      }
+      .card__icon {
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        background: rgba(212, 160, 23, 0.2);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+      }
+      .card__tipo {
+        font-size: 10px;
+        font-weight: 700;
+        color: var(--gold-500);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      .card__name {
+        font-family: var(--font-d);
+        font-size: 14px;
+        font-weight: 700;
+        color: #fff;
+        margin-top: 4px;
+        line-height: 1.35;
+      }
+      .card__estado {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        font-size: 11px;
+        font-weight: 600;
+        padding: 3px 8px;
+        border-radius: 9999px;
+      }
+      .estado-activo {
+        background: rgba(22, 163, 74, 0.25);
+        color: #86efac;
+      }
+      .estado-prox {
+        background: rgba(245, 158, 11, 0.25);
+        color: #fde68a;
+      }
+      .card__body {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        flex: 1;
+      }
+      .card__desc {
+        font-size: 13px;
+        color: var(--gray-600);
+        line-height: 1.6;
+      }
+      .card__tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 4px 10px;
+        border-radius: 9999px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .tag-virtual {
+        background: #dbeafe;
+        color: #1d4ed8;
+      }
+      .tag-presencial {
+        background: #dcfce7;
+        color: #15803d;
+      }
+      .tag-semipresencial {
+        background: #fef9c3;
+        color: #854d0e;
+      }
+      .tag-area {
+        background: #f1f5f9;
+        color: #334155;
+      }
+      .card__info {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        padding: 12px;
+        background: var(--gray-50);
+        border-radius: 8px;
+      }
+      .info-item {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .info-item__label {
+        font-size: 11px;
+        color: var(--gray-600);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+      .info-item__value {
+        font-size: 14px;
+        font-weight: 700;
+        color: #1e293b;
+      }
+      .card__price {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 4px;
+      }
+      .price-label {
+        font-size: 12px;
+        color: var(--gray-600);
+      }
+      .price-value {
+        font-family: var(--font-d);
+        font-size: 20px;
+        font-weight: 800;
+        color: var(--navy-800);
+      }
+      .price-currency {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--gray-600);
+        margin-right: 2px;
+      }
+      .card__link {
+        display: block;
+        text-align: center;
+        background: var(--navy-800);
+        color: #fff;
+        padding: 12px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 700;
+        transition: background 0.2s;
+        margin-top: auto;
+      }
+      .card__link:hover {
+        background: var(--navy-700);
+      }
+      .card__link--prox {
+        background: var(--gray-200);
+        color: var(--gray-600);
+        cursor: default;
+        pointer-events: none;
+      }
+      footer {
+        background: var(--navy-900);
+        color: rgba(255, 255, 255, 0.6);
+        padding: 48px 24px 24px;
+        margin-top: 80px;
+      }
+      .footer__inner {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .footer__grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 48px;
+        margin-bottom: 48px;
+      }
+      .footer__brand-name {
+        font-family: var(--font-d);
+        font-size: 18px;
+        font-weight: 800;
+        color: #fff;
+        margin-bottom: 8px;
+      }
+      .footer__brand-desc {
+        font-size: 14px;
+        line-height: 1.7;
+      }
+      .footer__col-title {
+        font-size: 13px;
+        font-weight: 700;
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-bottom: 16px;
+      }
+      .footer__links {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .footer__links a {
+        color: rgba(255, 255, 255, 0.6);
+        text-decoration: none;
+        font-size: 14px;
+      }
+      .footer__links li {
+        font-size: 14px;
+      }
+      .footer__bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 24px;
+        font-size: 13px;
+        display: flex;
+        justify-content: space-between;
+      }
+    </style>
   </head>
   <body>
-    <!-- Cabecera principal con logo y sesión de usuario -->
-    <header class="site-header">
-      <div class="site-header__inner">
-        <a href="./index.html" class="site-header__logo">
-          <img src="./assets/images/Logotipo.png" alt="IIC PROMOTECS E.I.R.L." width="140" />
-        </a>
-        <div id="session-ui"></div>
-      </div>
+    <header>
+      <nav class="navbar" aria-label="Navegación principal">
+        <div class="navbar__inner">
+          <a href="./index.html" class="navbar__logo"
+            ><img src="./assets/images/Logotipo.png" alt="IIC PROMOTECS"
+          /></a>
+          <ul class="navbar__links">
+            <li><a href="./index.html">Inicio</a></li>
+            <li><a href="./catalogo.html" class="active">Programas</a></li>
+            <li><a href="./inscripcion.html">Inscripción</a></li>
+            <li><a href="./validacion.html">Certificados</a></li>
+            <li><a href="./contacto.html">Contacto</a></li>
+          </ul>
+          <a href="./login.html" class="navbar__cta">Ingresar</a>
+        </div>
+      </nav>
     </header>
+    <section class="hero">
+      <div class="hero__tag">Oferta académica completa</div>
+      <h1 class="hero__title">Catálogo de Programas</h1>
+      <p class="hero__subtitle">Encuentra el programa que impulse tu carrera profesional</p>
+    </section>
+    <div class="filters">
+      <div class="filters__inner">
+        <span style="font-size: 13px; font-weight: 600; color: #475569">Filtrar por:</span>
+        <select>
+          <option value="">Modalidad</option>
+          <option>Virtual</option>
+          <option>Presencial</option>
+          <option>Semipresencial</option>
+        </select>
+        <select>
+          <option value="">Tipo de programa</option>
+          <option>Diplomado</option>
+          <option>Especialización</option>
+          <option>Curso</option>
+        </select>
+        <input type="text" placeholder="Buscar programa..." style="min-width: 220px" />
+        <button class="btn-f">Buscar</button>
+      </div>
+    </div>
+    <main class="main">
+      <div class="grid">
+        <!-- Programa 1: Diplomado Educación -->
+        <article class="card">
+          <div class="card__header">
+            <div class="card__icon">🎓</div>
+            <div>
+              <div class="card__tipo">Diplomado</div>
+              <div class="card__name">Diplomado en Educación y Gestión Escolar</div>
+            </div>
+            <span class="card__estado estado-activo">● Activo</span>
+          </div>
+          <div class="card__body">
+            <p class="card__desc">
+              Formación integral para docentes y directivos en gestión pedagógica, liderazgo
+              institucional y administración escolar moderna.
+            </p>
+            <div class="card__tags">
+              <span class="tag tag-virtual">🖥 Virtual</span>
+              <span class="tag tag-area">📚 Educación</span>
+            </div>
+            <div class="card__info">
+              <div class="info-item">
+                <span class="info-item__label">Horas pedagógicas</span
+                ><span class="info-item__value">1,200 hrs</span>
+              </div>
+              <div class="info-item">
+                <span class="info-item__label">Créditos</span
+                ><span class="info-item__value">80 créditos</span>
+              </div>
+              <div class="info-item">
+                <span class="info-item__label">Modalidad</span
+                ><span class="info-item__value">Virtual</span>
+              </div>
+              <div class="info-item">
+                <span class="info-item__label">Duración</span
+                ><span class="info-item__value">12 meses</span>
+              </div>
+            </div>
+            <div class="card__price">
+              <span class="price-label">Inversión</span
+              ><span class="price-value"><span class="price-currency">S/</span>350.00</span>
+            </div>
+            <a href="./inscripcion.html" class="card__link">Inscribirse ahora</a>
+          </div>
+        </article>
 
-    <!-- Navegación secundaria / menú de accesibilidad -->
-    <nav aria-label="Navegación principal">
-      <!-- TODO: enlaces a Inicio, Inscripción, Validación, Contacto -->
-    </nav>
+        <!-- Programa 2: Curso Farmacia -->
+        <article class="card">
+          <div class="card__header">
+            <div class="card__icon">💊</div>
+            <div>
+              <div class="card__tipo">Curso</div>
+              <div class="card__name">Actualización en Farmacia Clínica</div>
+            </div>
+            <span class="card__estado estado-activo">● Activo</span>
+          </div>
+          <div class="card__body">
+            <p class="card__desc">
+              Actualización en buenas prácticas de farmacia clínica, interacciones medicamentosas y
+              atención farmacéutica al paciente.
+            </p>
+            <div class="card__tags">
+              <span class="tag tag-semipresencial">🏫 Semipresencial</span>
+              <span class="tag tag-area">💉 Farmacia</span>
+            </div>
+            <div class="card__info">
+              <div class="info-item">
+                <span class="info-item__label">Horas pedagógicas</span
+                ><span class="info-item__value">120 hrs</span>
+              </div>
+              <div class="info-item">
+                <span class="info-item__label">Créditos</span
+                ><span class="info-item__value">—</span>
+              </div>
+              <div class="info-item">
+                <span class="info-item__label">Modalidad</span
+                ><span class="info-item__value">Semipresencial</span>
+              </div>
+              <div class="info-item">
+                <span class="info-item__label">Duración</span
+                ><span class="info-item__value">2 meses</span>
+              </div>
+            </div>
+            <div class="card__price">
+              <span class="price-label">Inversión</span
+              ><span class="price-value"><span class="price-currency">S/</span>150.00</span>
+            </div>
+            <a href="./inscripcion.html" class="card__link">Inscribirse ahora</a>
+          </div>
+        </article>
 
-    <!-- Contenido principal: catálogo de programas con filtros -->
-    <main>
-      <!-- Sección de filtros: búsqueda y refinamiento del catálogo -->
-      <!-- TODO: filtro por area_tematica (select/chips) -->
-      <!-- TODO: filtro por modalidad (presencial / virtual / semipresencial) -->
-      <!-- TODO: buscador de texto libre por nombre del programa -->
+        <!-- Programa 3: Especialización Salud -->
+        <article class="card">
+          <div class="card__header">
+            <div class="card__icon">🏥</div>
+            <div>
+              <div class="card__tipo">Especialización</div>
+              <div class="card__name">Salud Pública y Epidemiología</div>
+            </div>
+            <span class="card__estado estado-activo">● Activo</span>
+          </div>
+          <div class="card__body">
+            <p class="card__desc">
+              Especialización en vigilancia epidemiológica, gestión sanitaria y políticas de salud
+              pública para profesionales del sector salud.
+            </p>
+            <div class="card__tags">
+              <span class="tag tag-virtual">🖥 Virtual</span>
+              <span class="tag tag-area">🩺 Salud</span>
+            </div>
+            <div class="card__info">
+              <div class="info-item">
+                <span class="info-item__label">Horas pedagógicas</span
+                ><span class="info-item__value">600 hrs</span>
+              </div>
+              <div class="info-item">
+                <span class="info-item__label">Créditos</span
+                ><span class="info-item__value">40 créditos</span>
+              </div>
+              <div class="info-item">
+                <span class="info-item__label">Modalidad</span
+                ><span class="info-item__value">Virtual</span>
+              </div>
+              <div class="info-item">
+                <span class="info-item__label">Duración</span
+                ><span class="info-item__value">6 meses</span>
+              </div>
+            </div>
+            <div class="card__price">
+              <span class="price-label">Inversión</span
+              ><span class="price-value"><span class="price-currency">S/</span>280.00</span>
+            </div>
+            <a href="./inscripcion.html" class="card__link">Inscribirse ahora</a>
+          </div>
+        </article>
 
-      <!-- Sección de listado: programas que coinciden con los filtros activos -->
-      <!-- TODO: grid/lista de tarjetas de programa -->
-      <!-- Cada tarjeta incluye: nombre, area_tematica, modalidad, horas_pedagogicas, fecha de inicio -->
-      <!-- TODO: paginación o carga infinita de programas -->
+        <!-- Programa 4: Gestión Pública (Próximamente) -->
+        <article class="card">
+          <div class="card__header">
+            <div class="card__icon">🏛️</div>
+            <div>
+              <div class="card__tipo">Curso</div>
+              <div class="card__name">Gestión Pública y Modernización del Estado</div>
+            </div>
+            <span class="card__estado estado-prox">⏳ Próximamente</span>
+          </div>
+          <div class="card__body">
+            <p class="card__desc">
+              Formación en herramientas de modernización del Estado, simplificación administrativa y
+              gestión por resultados para servidores públicos.
+            </p>
+            <div class="card__tags">
+              <span class="tag tag-virtual">🖥 Virtual</span>
+              <span class="tag tag-area">⚖️ Gestión Pública</span>
+            </div>
+            <div class="card__info">
+              <div class="info-item">
+                <span class="info-item__label">Horas pedagógicas</span
+                ><span class="info-item__value">200 hrs</span>
+              </div>
+              <div class="info-item">
+                <span class="info-item__label">Créditos</span
+                ><span class="info-item__value">—</span>
+              </div>
+              <div class="info-item">
+                <span class="info-item__label">Modalidad</span
+                ><span class="info-item__value">Virtual</span>
+              </div>
+              <div class="info-item">
+                <span class="info-item__label">Duración</span
+                ><span class="info-item__value">3 meses</span>
+              </div>
+            </div>
+            <div class="card__price">
+              <span class="price-label">Inversión</span
+              ><span class="price-value"><span class="price-currency">S/</span>120.00</span>
+            </div>
+            <a href="#" class="card__link card__link--prox">Próximamente disponible</a>
+          </div>
+        </article>
+      </div>
     </main>
-
-    <!-- Pie de página: datos institucionales y enlaces legales -->
     <footer>
-      <!-- TODO: dirección de PROMOTECS, teléfono, redes sociales, copyright -->
+      <div class="footer__inner">
+        <div class="footer__grid">
+          <div>
+            <div class="footer__brand-name">IIC PROMOTECS E.I.R.L.</div>
+            <p class="footer__brand-desc">
+              Instituto de Investigación y Capacitación. RUC 20608895150.
+            </p>
+          </div>
+          <div>
+            <div class="footer__col-title">Plataforma</div>
+            <ul class="footer__links">
+              <li><a href="./catalogo.html">Catálogo</a></li>
+              <li><a href="./inscripcion.html">Inscripción</a></li>
+              <li><a href="./validacion.html">Certificados</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="footer__col-title">Contacto</div>
+            <ul class="footer__links">
+              <li>📍 Leoncio Prado 154, Barranca</li>
+              <li>📧 informes@promotecs.edu.pe</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer__bottom">
+          <span>© 2026 IIC PROMOTECS E.I.R.L.</span><span>Barranca, Lima — Perú</span>
+        </div>
+      </div>
     </footer>
-
-    <!-- Módulo de sesión: muestra estado de autenticación en el header -->
     <script type="module" src="./js/modules/session-ui.js"></script>
-    <!-- Módulo de catálogo: carga y renderiza programas desde Supabase -->
-    <script type="module" src="./js/modules/catalogo.js"></script>
   </body>
 </html>
+<script>
+  lucide.createIcons();
+</script>
