@@ -12,12 +12,17 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./css/pages/login.css" />
   </head>
   <body>
-    <!-- Cabecera principal con logo y navegación primaria -->
-    <header>
-      <!-- TODO: logo de la institución + enlace a inicio -->
-      <!-- TODO: navegación principal entre módulos -->
+    <!-- Cabecera principal con logo y sesión de usuario -->
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a href="./index.html" class="site-header__logo">
+          <img src="./assets/images/Logotipo.png" alt="IIC PROMOTECS E.I.R.L." width="140" />
+        </a>
+        <div id="session-ui"></div>
+      </div>
     </header>
 
     <!-- Navegación secundaria / menú de accesibilidad -->
@@ -42,6 +47,8 @@
       <!-- TODO: dirección de PROMOTECS, teléfono, redes sociales, copyright -->
     </footer>
 
+    <!-- Módulo de sesión: muestra estado de autenticación en el header -->
+    <script type="module" src="./js/modules/session-ui.js"></script>
     <!-- Módulo de validación: consulta certificados en Supabase por codigo_validacion -->
     <script type="module" src="./js/modules/validacion.js"></script>
   </body>

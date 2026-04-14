@@ -1,0 +1,168 @@
+/* ==========================================================================
+   Página: Login / Registro — PROMOTECS-Digital
+   Estilos exclusivos del módulo de autenticación (login.html).
+   Depende de: tokens.css, form.css, alert.css.
+   ========================================================================== */
+
+/* ==========================================================================
+   Contenedor principal de autenticación
+   ========================================================================== */
+
+/* --- Centra la tarjeta verticalmente en toda la pantalla --- */
+.auth-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: var(--color-gray-50);
+  padding: var(--space-4);
+}
+
+/* ==========================================================================
+   Tarjeta de autenticación
+   ========================================================================== */
+
+.auth-card {
+  background: var(--color-bg);
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  width: 100%;
+  max-width: 440px;
+}
+
+/* --- Logo centrado en la tarjeta --- */
+.auth-card__logo {
+  display: block;
+  margin: 0 auto var(--space-6);
+  text-align: center;
+}
+
+/* --- Título principal de la tarjeta --- */
+.auth-card__title {
+  font-family: var(--font-display);
+  text-align: center;
+  margin-bottom: var(--space-6);
+}
+
+/* ==========================================================================
+   Tabs de autenticación (Login / Registro)
+   ========================================================================== */
+
+.auth-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: var(--space-6);
+}
+
+/* --- Tab individual --- */
+.auth-tab {
+  flex: 1;
+  padding: var(--space-3) var(--space-4);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  /* Borde inferior como indicador activo; -1px para solapar el borde del contenedor */
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+/* --- Tab activo --- */
+.auth-tab--active {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+  font-weight: var(--font-semibold);
+}
+
+/* --- Hover en tabs no activos --- */
+.auth-tab:hover:not(.auth-tab--active) {
+  color: var(--color-text);
+}
+
+/* --- Focus visible accesible (nunca outline: none sin reemplazo) --- */
+.auth-tab:focus-visible {
+  outline: 2px solid var(--color-navy-500);
+  outline-offset: -2px;
+}
+
+/* ==========================================================================
+   Botones mínimos para esta página
+   Nota: se moverán a css/components/button.css en modulo-landing.
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-weight: var(--font-semibold);
+  font-size: var(--text-base);
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.2s ease;
+  text-decoration: none;
+}
+
+/* --- Botón primario (navy) --- */
+.btn--primary {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.btn--primary:hover {
+  opacity: 0.9;
+}
+
+.btn--primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* --- Modificador: ancho completo con margen superior --- */
+.btn--full {
+  width: 100%;
+  margin-top: var(--space-4);
+}
+
+/* --- Modificador: tamaño pequeño --- */
+.btn--sm {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-sm);
+}
+
+/* ==========================================================================
+   Header mínimo para la UI de sesión (session-ui)
+   ========================================================================== */
+
+.site-header {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* --- Mantiene el logo proporcional sin altura fija --- */
+.site-header__logo img {
+  height: auto;
+}
+
+/* --- Saludo al usuario autenticado --- */
+.session-ui__greeting {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-right: var(--space-3);
+}

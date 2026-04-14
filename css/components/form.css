@@ -1,0 +1,97 @@
+/* ==========================================================================
+   Componente: Formulario — PROMOTECS-Digital
+   Estilos reutilizables para grupos de campos, inputs, selects y mensajes.
+   Independiente de login.css y alert.css.
+   ========================================================================== */
+
+/* --- Contenedor principal del formulario --- */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* --- Grupo de campo: label + input + mensaje --- */
+.form__group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+/* --- Etiqueta de campo --- */
+.form__label {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--color-text);
+}
+
+/* --- Input de texto y select compartidos --- */
+.form__input,
+.form__select {
+  border: 1px solid var(--color-border);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  font-size: var(--text-base);
+  font-family: var(--font-body);
+  background: var(--color-white);
+  color: var(--color-text);
+  width: 100%;
+  transition: border-color 0.2s ease;
+}
+
+/* --- Focus: borde y outline visibles (nunca outline: none sin reemplazo) --- */
+.form__input:focus,
+.form__select:focus {
+  border-color: var(--color-navy-500);
+  outline: 2px solid var(--color-navy-500);
+  outline-offset: 1px;
+}
+
+/* --- Estado de error en el input --- */
+.form__input--error {
+  border-color: var(--color-danger);
+}
+
+.form__input--error:focus {
+  outline-color: var(--color-danger);
+}
+
+/* --- Estado válido en el input --- */
+.form__input--valid {
+  border-color: var(--color-success);
+}
+
+/* --- Estado deshabilitado --- */
+.form__input:disabled,
+.form__select:disabled {
+  background: var(--color-gray-100);
+  color: var(--color-gray-400);
+  cursor: not-allowed;
+}
+
+/* --- Select: oculta la flecha nativa e inyecta chevron SVG --- */
+.form__select {
+  appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--space-3) center;
+  padding-right: var(--space-8);
+}
+
+/* --- Mensaje de error bajo el campo --- */
+.form__error {
+  color: var(--color-danger);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  /* Altura mínima para evitar salto de layout cuando aparece el mensaje */
+  min-height: 1.25em;
+}
+
+/* --- Texto de ayuda bajo el campo --- */
+.form__hint {
+  color: var(--color-text-muted);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+}
