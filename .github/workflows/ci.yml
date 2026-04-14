@@ -49,6 +49,8 @@ jobs:
         with:
           path: ~/.cache/ms-playwright
           key: playwright-${{ hashFiles('**/package-lock.json') }}
+      - name: Crear config.js con placeholders para CI
+        run: cp js/config.example.js js/config.js
       - name: Instalar navegadores de Playwright
         run: npx playwright install --with-deps
       - run: npm run test:e2e
