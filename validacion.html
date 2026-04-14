@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PROMOTECS — Validación de Certificados</title>
-    <!-- Preconexión a Google Fonts para mejor rendimiento -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -12,44 +11,336 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./css/base.css" />
-    <link rel="stylesheet" href="./css/pages/login.css" />
+    <style>
+      :root {
+        --color-navy-900: #061a36;
+        --color-navy-800: #0b2545;
+        --color-navy-700: #13315c;
+        --color-gold-600: #d4a017;
+        --color-gold-500: #e5a823;
+        --color-white: #fff;
+        --color-gray-50: #f8fafc;
+        --color-gray-200: #e2e8f0;
+        --color-gray-600: #475569;
+        --color-success: #16a34a;
+        --color-danger: #dc2626;
+        --font-display: 'Montserrat', sans-serif;
+        --font-body: 'Inter', sans-serif;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: var(--font-body);
+        color: var(--color-gray-600);
+        background: var(--color-gray-50);
+      }
+      .navbar {
+        background: var(--color-navy-800);
+        border-bottom: 3px solid var(--color-gold-600);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      .navbar__inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 24px;
+      }
+      .navbar__logo img {
+        height: 48px;
+        width: auto;
+      }
+      .navbar__links {
+        display: flex;
+        gap: 8px;
+        list-style: none;
+      }
+      .navbar__links a {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        padding: 8px 14px;
+        border-radius: 8px;
+        transition: background 0.2s;
+      }
+      .navbar__links a:hover,
+      .navbar__links a.active {
+        background: rgba(255, 255, 255, 0.12);
+        color: #fff;
+      }
+      .navbar__cta {
+        background: var(--color-gold-600);
+        color: var(--color-navy-900);
+        font-weight: 700;
+        font-size: 14px;
+        padding: 9px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+      }
+
+      .page-hero {
+        background: linear-gradient(135deg, var(--color-navy-900), var(--color-navy-700));
+        padding: 56px 24px;
+        text-align: center;
+      }
+      .page-hero__tag {
+        display: inline-block;
+        background: rgba(212, 160, 23, 0.15);
+        color: var(--color-gold-500);
+        border: 1px solid var(--color-gold-600);
+        padding: 5px 14px;
+        border-radius: 9999px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+      }
+      .page-hero__title {
+        font-family: var(--font-display);
+        font-size: 2rem;
+        font-weight: 900;
+        color: #fff;
+        margin-bottom: 8px;
+      }
+      .page-hero__subtitle {
+        color: rgba(255, 255, 255, 0.65);
+        font-size: 16px;
+      }
+
+      .main {
+        max-width: 640px;
+        margin: 0 auto;
+        padding: 48px 24px;
+      }
+      .card {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(11, 37, 69, 0.08);
+        padding: 40px;
+        border-top: 4px solid var(--color-gold-600);
+      }
+      .card__title {
+        font-family: var(--font-display);
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--color-navy-800);
+        margin-bottom: 8px;
+      }
+      .card__desc {
+        font-size: 14px;
+        color: var(--color-gray-600);
+        margin-bottom: 28px;
+      }
+      label {
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+        color: #1e293b;
+        margin-bottom: 6px;
+      }
+      input {
+        width: 100%;
+        border: 1px solid var(--color-gray-200);
+        border-radius: 8px;
+        padding: 12px 16px;
+        font-size: 16px;
+        font-family: var(--font-body);
+        outline: none;
+        transition: border 0.2s;
+      }
+      input:focus {
+        border-color: var(--color-navy-800);
+      }
+      .input-hint {
+        font-size: 12px;
+        color: var(--color-gray-600);
+        margin-top: 6px;
+      }
+      .btn {
+        width: 100%;
+        margin-top: 20px;
+        background: var(--color-navy-800);
+        color: #fff;
+        font-weight: 700;
+        font-size: 16px;
+        padding: 14px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-family: var(--font-body);
+        transition: background 0.2s;
+      }
+      .btn:hover {
+        background: var(--color-navy-700);
+      }
+
+      .result {
+        margin-top: 24px;
+        border-radius: 12px;
+        padding: 24px;
+        display: none;
+      }
+      .result--valid {
+        background: #f0fdf4;
+        border: 1px solid #86efac;
+      }
+      .result--invalid {
+        background: #fef2f2;
+        border: 1px solid #fca5a5;
+      }
+      .result__status {
+        font-weight: 700;
+        font-size: 15px;
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .result__status--valid {
+        color: var(--color-success);
+      }
+      .result__status--invalid {
+        color: var(--color-danger);
+      }
+      .result__row {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        font-size: 14px;
+      }
+      .result__row:last-child {
+        border: none;
+      }
+      .result__label {
+        color: var(--color-gray-600);
+      }
+      .result__value {
+        font-weight: 600;
+        color: #1e293b;
+      }
+
+      footer {
+        background: var(--color-navy-900);
+        color: rgba(255, 255, 255, 0.5);
+        text-align: center;
+        padding: 24px;
+        font-size: 13px;
+        margin-top: 80px;
+      }
+    </style>
   </head>
   <body>
-    <!-- Cabecera principal con logo y sesión de usuario -->
-    <header class="site-header">
-      <div class="site-header__inner">
-        <a href="./index.html" class="site-header__logo">
-          <img src="./assets/images/Logotipo.png" alt="IIC PROMOTECS E.I.R.L." width="140" />
-        </a>
-        <div id="session-ui"></div>
-      </div>
+    <header>
+      <nav class="navbar" aria-label="Navegación principal">
+        <div class="navbar__inner">
+          <a href="./index.html" class="navbar__logo"
+            ><img src="./assets/images/Logotipo.png" alt="IIC PROMOTECS E.I.R.L."
+          /></a>
+          <ul class="navbar__links">
+            <li><a href="./index.html">Inicio</a></li>
+            <li><a href="./catalogo.html">Programas</a></li>
+            <li><a href="./inscripcion.html">Inscripción</a></li>
+            <li><a href="./validacion.html" class="active">Certificados</a></li>
+            <li><a href="./contacto.html">Contacto</a></li>
+          </ul>
+          <a href="./login.html" class="navbar__cta">Ingresar</a>
+        </div>
+      </nav>
     </header>
 
-    <!-- Navegación secundaria / menú de accesibilidad -->
-    <nav aria-label="Navegación principal">
-      <!-- TODO: enlaces a Inicio, Catálogo, Inscripción, Contacto -->
-    </nav>
+    <section class="page-hero">
+      <div class="page-hero__tag">Autenticidad garantizada</div>
+      <h1 class="page-hero__title">Validación de Certificados</h1>
+      <p class="page-hero__subtitle">
+        Verifica la autenticidad de cualquier certificado emitido por IIC PROMOTECS
+      </p>
+    </section>
 
-    <!-- Contenido principal: validación de certificados por codigo_validacion -->
-    <main>
-      <!-- Sección buscador: ingreso del código único del certificado -->
-      <!-- TODO: campo de texto para ingresar el codigo_validacion -->
-      <!-- TODO: botón de búsqueda y mensaje de instrucciones al participante -->
+    <main class="main">
+      <div class="card">
+        <h2 class="card__title">Validar Certificado</h2>
+        <p class="card__desc">
+          Ingresa el código único impreso en el certificado para verificar su autenticidad en
+          nuestra base de datos oficial.
+        </p>
+        <label for="codigo">Código de certificado</label>
+        <input type="text" id="codigo" placeholder="Ej: PROMO-2026-001" autocomplete="off" />
+        <p class="input-hint">
+          El código se encuentra en la parte inferior del certificado físico o digital.
+        </p>
+        <button class="btn" onclick="verificar()">🔍 Verificar certificado</button>
 
-      <!-- Sección resultado: datos del certificado si el código es válido -->
-      <!-- TODO: nombre del participante, programa, horas_pedagogicas, fecha de emisión -->
-      <!-- TODO: nombre del instructor y de la institucion_certificadora -->
-      <!-- TODO: mensaje de error si el codigo_validacion no existe o está inactivo -->
+        <div class="result result--valid" id="result-valid">
+          <div class="result__status result__status--valid">✅ Certificado válido y auténtico</div>
+          <div class="result__row">
+            <span class="result__label">Participante</span
+            ><span class="result__value" id="r-nombre">—</span>
+          </div>
+          <div class="result__row">
+            <span class="result__label">Programa</span
+            ><span class="result__value" id="r-programa">—</span>
+          </div>
+          <div class="result__row">
+            <span class="result__label">Horas pedagógicas</span
+            ><span class="result__value" id="r-horas">—</span>
+          </div>
+          <div class="result__row">
+            <span class="result__label">Fecha de emisión</span
+            ><span class="result__value" id="r-fecha">—</span>
+          </div>
+          <div class="result__row">
+            <span class="result__label">Código de validación</span
+            ><span class="result__value" id="r-codigo">—</span>
+          </div>
+        </div>
+        <div class="result result--invalid" id="result-invalid">
+          <div class="result__status result__status--invalid">❌ Certificado no encontrado</div>
+          <p style="font-size: 14px; color: #7f1d1d">
+            El código ingresado no corresponde a ningún certificado en nuestra base de datos.
+            Verifica que lo hayas copiado correctamente.
+          </p>
+        </div>
+      </div>
     </main>
 
-    <!-- Pie de página: datos institucionales y enlaces legales -->
-    <footer>
-      <!-- TODO: dirección de PROMOTECS, teléfono, redes sociales, copyright -->
-    </footer>
+    <footer>© 2026 IIC PROMOTECS E.I.R.L. — Barranca, Lima, Perú</footer>
 
-    <!-- Módulo de sesión: muestra estado de autenticación en el header -->
-    <script type="module" src="./js/modules/session-ui.js"></script>
-    <!-- Módulo de validación: consulta certificados en Supabase por codigo_validacion -->
-    <script type="module" src="./js/modules/validacion.js"></script>
+    <script type="module">
+      import { supabase } from './js/supabase-client.js';
+      window.verificar = async function () {
+        const codigo = document.getElementById('codigo').value.trim();
+        document.getElementById('result-valid').style.display = 'none';
+        document.getElementById('result-invalid').style.display = 'none';
+        if (!codigo) return;
+        const { data } = await supabase
+          .from('certificados')
+          .select(
+            'codigo_validacion,fecha_emision,horas_pedagogicas,inscripciones(participantes(nombre),programas(titulo))',
+          )
+          .eq('codigo_validacion', codigo)
+          .single();
+        if (data) {
+          document.getElementById('r-nombre').textContent =
+            data.inscripciones?.participantes?.nombre || '—';
+          document.getElementById('r-programa').textContent =
+            data.inscripciones?.programas?.titulo || '—';
+          document.getElementById('r-horas').textContent = data.horas_pedagogicas + ' horas';
+          document.getElementById('r-fecha').textContent = data.fecha_emision;
+          document.getElementById('r-codigo').textContent = data.codigo_validacion;
+          document.getElementById('result-valid').style.display = 'block';
+        } else {
+          document.getElementById('result-invalid').style.display = 'block';
+        }
+      };
+    </script>
   </body>
 </html>

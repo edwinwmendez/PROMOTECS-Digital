@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PROMOTECS — Contacto</title>
-    <!-- Preconexión a Google Fonts para mejor rendimiento -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -12,51 +11,433 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./css/base.css" />
-    <link rel="stylesheet" href="./css/pages/login.css" />
+    <style>
+      :root {
+        --color-navy-900: #061a36;
+        --color-navy-800: #0b2545;
+        --color-navy-700: #13315c;
+        --color-gold-600: #d4a017;
+        --color-gold-500: #e5a823;
+        --color-white: #fff;
+        --color-gray-50: #f8fafc;
+        --color-gray-200: #e2e8f0;
+        --color-gray-600: #475569;
+        --font-display: 'Montserrat', sans-serif;
+        --font-body: 'Inter', sans-serif;
+        --shadow-md: 0 4px 6px rgba(11, 37, 69, 0.08);
+        --radius-md: 8px;
+        --radius-lg: 12px;
+        --radius-full: 9999px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: var(--font-body);
+        color: #1e293b;
+        background: var(--color-gray-50);
+      }
+      .navbar {
+        background: var(--color-navy-800);
+        border-bottom: 3px solid var(--color-gold-600);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      .navbar__inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 24px;
+      }
+      .navbar__logo img {
+        height: 48px;
+        width: auto;
+      }
+      .navbar__links {
+        display: flex;
+        gap: 4px;
+        list-style: none;
+      }
+      .navbar__links a {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        padding: 8px 14px;
+        border-radius: var(--radius-md);
+        transition: background 0.2s;
+      }
+      .navbar__links a:hover,
+      .navbar__links a.active {
+        background: rgba(255, 255, 255, 0.12);
+        color: #fff;
+      }
+      .navbar__cta {
+        background: var(--color-gold-600);
+        color: var(--color-navy-900);
+        font-weight: 700;
+        font-size: 14px;
+        padding: 9px 20px;
+        border-radius: var(--radius-md);
+        text-decoration: none;
+      }
+      .page-hero {
+        background: linear-gradient(135deg, var(--color-navy-900), var(--color-navy-700));
+        padding: 56px 24px;
+        text-align: center;
+      }
+      .page-hero__tag {
+        display: inline-block;
+        background: rgba(212, 160, 23, 0.15);
+        color: var(--color-gold-500);
+        border: 1px solid var(--color-gold-600);
+        padding: 5px 14px;
+        border-radius: 9999px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+      }
+      .page-hero__title {
+        font-family: var(--font-display);
+        font-size: 2rem;
+        font-weight: 900;
+        color: #fff;
+        margin-bottom: 8px;
+      }
+      .page-hero__subtitle {
+        color: rgba(255, 255, 255, 0.65);
+        font-size: 16px;
+      }
+      .main {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 48px 24px;
+        display: grid;
+        grid-template-columns: 1fr 320px;
+        gap: 32px;
+        align-items: start;
+      }
+      .form-card {
+        background: #fff;
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-md);
+        padding: 40px;
+        border-top: 4px solid var(--color-gold-600);
+      }
+      .form-card__title {
+        font-family: var(--font-display);
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--color-navy-800);
+        margin-bottom: 8px;
+      }
+      .form-card__subtitle {
+        font-size: 14px;
+        color: var(--color-gray-600);
+        margin-bottom: 24px;
+      }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin-bottom: 16px;
+      }
+      label {
+        font-size: 13px;
+        font-weight: 600;
+        color: #334155;
+      }
+      input,
+      select,
+      textarea {
+        border: 1px solid var(--color-gray-200);
+        border-radius: var(--radius-md);
+        padding: 10px 12px;
+        font-size: 14px;
+        font-family: var(--font-body);
+        outline: none;
+        transition: border 0.2s;
+        width: 100%;
+      }
+      input:focus,
+      select:focus,
+      textarea:focus {
+        border-color: var(--color-navy-800);
+      }
+      textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+      .btn-submit {
+        width: 100%;
+        background: var(--color-navy-800);
+        color: #fff;
+        border: none;
+        padding: 14px;
+        border-radius: var(--radius-md);
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        font-family: var(--font-display);
+        transition: background 0.2s;
+      }
+      .btn-submit:hover {
+        background: var(--color-navy-700);
+      }
+      .info-card {
+        background: #fff;
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-md);
+        padding: 28px;
+        border-top: 4px solid var(--color-gold-600);
+      }
+      .info-card__title {
+        font-family: var(--font-display);
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--color-navy-800);
+        margin-bottom: 20px;
+      }
+      .info-item {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 20px;
+        align-items: flex-start;
+      }
+      .info-item__icon {
+        font-size: 20px;
+        min-width: 28px;
+      }
+      .info-item__label {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--color-gray-600);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+      .info-item__value {
+        font-size: 14px;
+        color: #1e293b;
+        margin-top: 2px;
+        line-height: 1.5;
+      }
+      .horario-card {
+        background: var(--color-navy-800);
+        border-radius: var(--radius-lg);
+        padding: 20px;
+        margin-top: 16px;
+        text-align: center;
+      }
+      .horario-card__title {
+        font-family: var(--font-display);
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--color-gold-500);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-bottom: 8px;
+      }
+      .horario-card__text {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 13px;
+        line-height: 1.6;
+      }
+      footer {
+        background: var(--color-navy-900);
+        color: rgba(255, 255, 255, 0.6);
+        padding: 48px 24px 24px;
+        margin-top: 80px;
+      }
+      .footer__inner {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .footer__grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 48px;
+        margin-bottom: 48px;
+      }
+      .footer__brand-name {
+        font-family: var(--font-display);
+        font-size: 18px;
+        font-weight: 800;
+        color: #fff;
+        margin-bottom: 8px;
+      }
+      .footer__brand-desc {
+        font-size: 14px;
+        line-height: 1.7;
+      }
+      .footer__col-title {
+        font-size: 13px;
+        font-weight: 700;
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-bottom: 16px;
+      }
+      .footer__links {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .footer__links a {
+        color: rgba(255, 255, 255, 0.6);
+        text-decoration: none;
+        font-size: 14px;
+      }
+      .footer__links li {
+        font-size: 14px;
+      }
+      .footer__bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 24px;
+        font-size: 13px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+    </style>
   </head>
   <body>
-    <!-- Cabecera principal con logo y sesión de usuario -->
-    <header class="site-header">
-      <div class="site-header__inner">
-        <a href="./index.html" class="site-header__logo">
-          <img src="./assets/images/Logotipo.png" alt="IIC PROMOTECS E.I.R.L." width="140" />
-        </a>
-        <div id="session-ui"></div>
-      </div>
+    <header>
+      <nav class="navbar" aria-label="Navegación principal">
+        <div class="navbar__inner">
+          <a href="./index.html" class="navbar__logo"
+            ><img src="./assets/images/Logotipo.png" alt="IIC PROMOTECS E.I.R.L."
+          /></a>
+          <ul class="navbar__links">
+            <li><a href="./index.html">Inicio</a></li>
+            <li><a href="./catalogo.html">Programas</a></li>
+            <li><a href="./inscripcion.html">Inscripción</a></li>
+            <li><a href="./validacion.html">Certificados</a></li>
+            <li><a href="./contacto.html" class="active">Contacto</a></li>
+          </ul>
+          <a href="./login.html" class="navbar__cta">Ingresar</a>
+        </div>
+      </nav>
     </header>
-
-    <!-- Navegación secundaria / menú de accesibilidad -->
-    <nav aria-label="Navegación principal">
-      <!-- TODO: enlaces a Inicio, Catálogo, Inscripción, Validación -->
-    </nav>
-
-    <!-- Contenido principal: información de contacto e institución -->
-    <main>
-      <!-- Sección formulario de contacto: canal directo con la institución -->
-      <!-- TODO: campos nombre, correo electrónico, asunto, mensaje -->
-      <!-- TODO: envío vía EmailJS (módulo de contacto) -->
-      <!-- TODO: confirmación de envío al participante -->
-
-      <!-- Sección mapa: ubicación física de PROMOTECS en Barranca -->
-      <!-- TODO: mapa embebido de Google Maps — Leoncio Prado 154 2do piso, Barranca, Lima -->
-
-      <!-- Sección datos institucionales: información oficial de la institución -->
-      <!-- TODO: razón social: IIC PROMOTECS E.I.R.L. -->
-      <!-- TODO: RUC: 20608895150 -->
-      <!-- TODO: dirección: Leoncio Prado 154 2do piso, Barranca, Lima -->
-      <!-- TODO: gerente: Mg. Lusbelia Sabina León Mallqui -->
-      <!-- TODO: teléfono y correo institucional -->
-      <!-- TODO: horario de atención -->
+    <section class="page-hero">
+      <div class="page-hero__tag">Estamos para ayudarte</div>
+      <h1 class="page-hero__title">Contacto e Información</h1>
+      <p class="page-hero__subtitle">Nuestro equipo responde en menos de 24 horas</p>
+    </section>
+    <main class="main">
+      <div class="form-card">
+        <h2 class="form-card__title">Envíanos un mensaje</h2>
+        <p class="form-card__subtitle">
+          Completa el formulario y nos pondremos en contacto contigo a la brevedad.
+        </p>
+        <form novalidate>
+          <div class="form-group">
+            <label for="nombre">Nombre completo</label
+            ><input type="text" id="nombre" placeholder="Tu nombre completo" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Correo electrónico</label
+            ><input type="email" id="email" placeholder="correo@ejemplo.com" required />
+          </div>
+          <div class="form-group">
+            <label for="asunto">Asunto</label>
+            <select id="asunto">
+              <option value="" disabled selected>Selecciona un asunto</option>
+              <option>Consulta sobre programas</option>
+              <option>Proceso de inscripción</option>
+              <option>Validación de certificado</option>
+              <option>Convenios institucionales</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="mensaje">Mensaje</label
+            ><textarea id="mensaje" placeholder="Escribe tu consulta aquí..." required></textarea>
+          </div>
+          <button type="submit" class="btn-submit">Enviar mensaje</button>
+        </form>
+      </div>
+      <aside>
+        <div class="info-card">
+          <h3 class="info-card__title">Información de contacto</h3>
+          <div class="info-item">
+            <div class="info-item__icon">📍</div>
+            <div>
+              <div class="info-item__label">Dirección</div>
+              <div class="info-item__value">
+                Leoncio Prado 154, 2do piso<br />Barranca, Lima, Perú
+              </div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-item__icon">📧</div>
+            <div>
+              <div class="info-item__label">Correo</div>
+              <div class="info-item__value">informes@promotecs.edu.pe</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-item__icon">🌐</div>
+            <div>
+              <div class="info-item__label">Sitio web</div>
+              <div class="info-item__value">promotecs.edu.pe</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-item__icon">📄</div>
+            <div>
+              <div class="info-item__label">RUC</div>
+              <div class="info-item__value">20608895150</div>
+            </div>
+          </div>
+        </div>
+        <div class="horario-card">
+          <div class="horario-card__title">Horario de atención</div>
+          <div class="horario-card__text">
+            Lunes a Viernes<br /><strong style="color: #fff">8:00 AM — 6:00 PM</strong
+            ><br />Sábados<br /><strong style="color: #fff">9:00 AM — 1:00 PM</strong>
+          </div>
+        </div>
+      </aside>
     </main>
-
-    <!-- Pie de página: datos institucionales y enlaces legales -->
     <footer>
-      <!-- TODO: dirección de PROMOTECS, teléfono, redes sociales, copyright -->
+      <div class="footer__inner">
+        <div class="footer__grid">
+          <div>
+            <div class="footer__brand-name">IIC PROMOTECS E.I.R.L.</div>
+            <p class="footer__brand-desc">
+              Instituto de Investigación y Capacitación. RUC 20608895150.
+            </p>
+          </div>
+          <div>
+            <div class="footer__col-title">Plataforma</div>
+            <ul class="footer__links">
+              <li><a href="./catalogo.html">Catálogo</a></li>
+              <li><a href="./inscripcion.html">Inscripción</a></li>
+              <li><a href="./validacion.html">Certificados</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="footer__col-title">Contacto</div>
+            <ul class="footer__links">
+              <li>📍 Leoncio Prado 154, Barranca</li>
+              <li>📧 informes@promotecs.edu.pe</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer__bottom">
+          <span>© 2026 IIC PROMOTECS E.I.R.L.</span><span>Barranca, Lima — Perú</span>
+        </div>
+      </div>
     </footer>
-
-    <!-- Módulo de sesión: muestra estado de autenticación en el header -->
     <script type="module" src="./js/modules/session-ui.js"></script>
-    <!-- Módulo de contacto: envía mensajes vía EmailJS -->
-    <script type="module" src="./js/modules/contacto.js"></script>
   </body>
 </html>

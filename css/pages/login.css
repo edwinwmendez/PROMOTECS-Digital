@@ -1,168 +1,269 @@
 /* ==========================================================================
-   Página: Login / Registro — PROMOTECS-Digital
-   Estilos exclusivos del módulo de autenticación (login.html).
-   Depende de: tokens.css, form.css, alert.css.
+   Login — Diseño split PROMOTECS-Digital
    ========================================================================== */
 
-/* ==========================================================================
-   Contenedor principal de autenticación
-   ========================================================================== */
+.auth-body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+}
 
-/* --- Centra la tarjeta verticalmente en toda la pantalla --- */
-.auth-container {
+/* Grid fijo a 100vh — ningún panel se expande */
+.auth-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100vh;
+}
+
+/* ── Panel izquierdo: navy, fijo ─────────────────────────── */
+.auth-brand {
+  background: linear-gradient(160deg, var(--color-navy-900) 0%, var(--color-navy-700) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--space-8);
+  position: relative;
+  overflow: hidden;
+}
+
+.auth-brand__deco {
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  border: 70px solid rgba(212, 160, 23, 0.07);
+  bottom: -130px;
+  right: -130px;
+  pointer-events: none;
+}
+
+.auth-brand__top {
   display: flex;
   align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  background: var(--color-gray-50);
-  padding: var(--space-4);
 }
 
-/* ==========================================================================
-   Tarjeta de autenticación
-   ========================================================================== */
+.auth-brand__badge {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: var(--font-bold);
+  color: var(--color-gold-500);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-gold-700);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+}
+
+.auth-brand__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.auth-brand__headline {
+  font-family: var(--font-display);
+  font-size: var(--text-5xl);
+  font-weight: var(--font-black);
+  color: var(--color-white);
+  line-height: 1.1;
+  margin: 0;
+}
+
+.auth-brand__tagline {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: rgba(255, 255, 255, 0.65);
+  margin: 0;
+  line-height: var(--leading-relaxed);
+}
+
+.auth-brand__features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.auth-brand__features li {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.auth-brand__check {
+  color: var(--color-gold-500);
+  font-weight: var(--font-bold);
+}
+.auth-brand__footer {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: rgba(255, 255, 255, 0.3);
+  margin: 0;
+}
+
+/* ── Panel derecho: scroll interno ──────────────────────── */
+.auth-form-panel {
+  background: var(--color-gray-50);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* no centra: permite scroll desde arriba */
+  padding: var(--space-6);
+  overflow-y: auto; /* scroll interno cuando el form es largo */
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+/* Empuja la card al centro vertical cuando hay espacio suficiente */
+.auth-form-panel::before,
+.auth-form-panel::after {
+  content: '';
+  flex: 1;
+}
+.auth-form-panel::after {
+  flex: 2;
+} /* más espacio abajo para que la card quede levemente alta */
+
+.auth-back {
+  align-self: flex-start;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+  margin-bottom: var(--space-4);
+  flex-shrink: 0;
+}
+.auth-back:hover {
+  color: var(--color-navy-800);
+}
 
 .auth-card {
-  background: var(--color-bg);
+  background: var(--color-white);
+  border-radius: var(--radius-xl);
   box-shadow: var(--shadow-lg);
-  border-radius: var(--radius-lg);
   padding: var(--space-8);
   width: 100%;
-  max-width: 440px;
+  max-width: 420px;
+  border-top: 4px solid var(--color-gold-600);
+  flex-shrink: 0;
 }
 
-/* --- Logo centrado en la tarjeta --- */
+.auth-card__logo-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--space-6);
+}
 .auth-card__logo {
-  display: block;
-  margin: 0 auto var(--space-6);
-  text-align: center;
+  width: 90px;
+  height: auto;
 }
 
-/* --- Título principal de la tarjeta --- */
 .auth-card__title {
   font-family: var(--font-display);
-  text-align: center;
-  margin-bottom: var(--space-6);
+  font-size: var(--text-2xl);
+  font-weight: var(--font-bold);
+  color: var(--color-navy-900);
+  margin: 0 0 var(--space-1);
 }
 
-/* ==========================================================================
-   Tabs de autenticación (Login / Registro)
-   ========================================================================== */
+.auth-card__subtitle {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin: 0 0 var(--space-6);
+}
 
+/* Tabs */
 .auth-tabs {
   display: flex;
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 2px solid var(--color-border);
   margin-bottom: var(--space-6);
 }
-
-/* --- Tab individual --- */
 .auth-tab {
   flex: 1;
-  padding: var(--space-3) var(--space-4);
+  padding: var(--space-3) var(--space-2);
   background: none;
   border: none;
   cursor: pointer;
   font-family: var(--font-body);
-  font-size: var(--text-base);
+  font-size: var(--text-sm);
   color: var(--color-text-muted);
-  /* Borde inferior como indicador activo; -1px para solapar el borde del contenedor */
-  border-bottom: 2px solid transparent;
-  margin-bottom: -1px;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
   transition:
-    color 0.2s ease,
-    border-color 0.2s ease;
+    color 0.2s,
+    border-color 0.2s;
 }
-
-/* --- Tab activo --- */
 .auth-tab--active {
-  color: var(--color-primary);
-  border-bottom-color: var(--color-primary);
+  color: var(--color-navy-800);
+  border-bottom-color: var(--color-gold-600);
   font-weight: var(--font-semibold);
 }
-
-/* --- Hover en tabs no activos --- */
 .auth-tab:hover:not(.auth-tab--active) {
   color: var(--color-text);
 }
-
-/* --- Focus visible accesible (nunca outline: none sin reemplazo) --- */
 .auth-tab:focus-visible {
   outline: 2px solid var(--color-navy-500);
   outline-offset: -2px;
 }
 
-/* ==========================================================================
-   Botones mínimos para esta página
-   Nota: se moverán a css/components/button.css en modulo-landing.
-   ========================================================================== */
-
+/* Botones */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: var(--space-3) var(--space-6);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   font-family: var(--font-body);
   font-weight: var(--font-semibold);
   font-size: var(--text-base);
   cursor: pointer;
   border: none;
-  transition: opacity 0.2s ease;
+  transition: background-color 0.2s;
   text-decoration: none;
 }
-
-/* --- Botón primario (navy) --- */
 .btn--primary {
-  background-color: var(--color-primary);
+  background: var(--color-navy-800);
   color: var(--color-white);
 }
-
 .btn--primary:hover {
-  opacity: 0.9;
+  background: var(--color-navy-700);
 }
-
 .btn--primary:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
-
-/* --- Modificador: ancho completo con margen superior --- */
 .btn--full {
   width: 100%;
   margin-top: var(--space-4);
+  padding: var(--space-4);
 }
 
-/* --- Modificador: tamaño pequeño --- */
-.btn--sm {
-  padding: var(--space-2) var(--space-4);
-  font-size: var(--text-sm);
-}
-
-/* ==========================================================================
-   Header mínimo para la UI de sesión (session-ui)
-   ========================================================================== */
-
-.site-header {
-  padding: var(--space-3) var(--space-4);
-  border-bottom: 1px solid var(--color-border);
-}
-
-.site-header__inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1280px;
-  margin: 0 auto;
-}
-
-/* --- Mantiene el logo proporcional sin altura fija --- */
-.site-header__logo img {
-  height: auto;
-}
-
-/* --- Saludo al usuario autenticado --- */
-.session-ui__greeting {
-  font-size: var(--text-sm);
-  color: var(--color-text-muted);
-  margin-right: var(--space-3);
+/* Responsive */
+@media (max-width: 768px) {
+  .auth-body {
+    overflow: auto;
+    height: auto;
+  }
+  .auth-layout {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  .auth-brand {
+    display: none;
+  }
+  .auth-form-panel {
+    height: auto;
+    min-height: 100vh;
+    overflow-y: visible;
+  }
+  .auth-form-panel::before,
+  .auth-form-panel::after {
+    display: none;
+  }
 }
