@@ -50,25 +50,4 @@
   background: var(--color-gold-500);
 }
 
-/* --- Botones mínimos (se moverán a button.css en modulo-landing) --- */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-3) var(--space-6);
-  border-radius: var(--radius-md);
-  font-family: var(--font-body);
-  font-weight: var(--font-semibold);
-  font-size: var(--text-base);
-  cursor: pointer;
-  border: none;
-  transition:
-    background-color 0.2s ease,
-    opacity 0.2s ease;
-  text-decoration: none;
-}
-
-.btn--sm {
-  padding: var(--space-2) var(--space-4);
-  font-size: var(--text-sm);
-}
+/* Nota: .btn y .btn--sm movidos a css/components/button.css (change rediseno-sistema-ui P0.2). */
