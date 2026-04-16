@@ -1,0 +1,47 @@
+/* ==========================================================================
+   Componente: Stat — PROMOTECS-Digital
+   Bloque numérico para métricas destacadas (ej. "+5000 participantes").
+   Diseñado para fondos navy oscuros (hero landing). Número en yellow-500.
+   ========================================================================== */
+
+/* --- Bloque individual: número + label centrados --- */
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  text-align: center;
+}
+
+/* --- Número: Montserrat black, amarillo CTA, text-4xl --- */
+.stat__number {
+  font-family: var(--font-display);
+  font-weight: var(--font-black);
+  font-size: var(--text-4xl);
+  color: var(--color-yellow-500);
+  line-height: 1;
+  margin: 0;
+}
+
+/* --- Label: inter regular, color tenue sobre navy --- */
+/* overlay sobre navy — blanco alpha sin token disponible */
+.stat__label {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+}
+
+/* --- Grid contenedor: 2 cols mobile, 4 cols desde tablet --- */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-8);
+  }
+}

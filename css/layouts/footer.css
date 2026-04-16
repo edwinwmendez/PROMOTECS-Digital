@@ -1,0 +1,96 @@
+/* ==========================================================================
+   Layout: Footer institucional — PROMOTECS-Digital
+   Footer reutilizable en todas las páginas del sitio (incluyendo login).
+   Mobile-first: 1 columna; desde lg pasa a 3 columnas (brand + 2 cols links).
+   ========================================================================== */
+
+/* --- Contenedor principal: fondo navy, color base tenue --- */
+/* overlay blanco sobre navy — sin token disponible para blanco con alpha */
+.site-footer {
+  background: var(--color-navy-900);
+  padding: var(--space-12) var(--space-6);
+  color: rgba(255, 255, 255, 0.7);
+  font-family: var(--font-body);
+}
+
+/* --- Inner constrained: max-width + grid mobile 1col --- */
+.site-footer__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* --- Columna de marca (logo + descripción corta) --- */
+.site-footer__brand-name {
+  font-family: var(--font-display);
+  font-weight: var(--font-extrabold);
+  font-size: var(--text-lg);
+  color: var(--color-white);
+  margin: 0 0 var(--space-2) 0;
+}
+
+/* --- Descripción corta del instituto --- */
+.site-footer__brand-desc {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  margin: 0;
+}
+
+/* --- Título de columna (LINKS / CONTACTO) --- */
+.site-footer__col-title {
+  font-family: var(--font-body);
+  font-weight: var(--font-bold);
+  font-size: var(--text-sm);
+  color: var(--color-white);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 var(--space-4) 0;
+}
+
+/* --- Lista de enlaces: reset visual + gap vertical --- */
+.site-footer__links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- Enlaces del footer: color tenue, hover white --- */
+/* overlay blanco sobre navy — sin token disponible para blanco con alpha */
+.site-footer__links a {
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  font-size: var(--text-sm);
+  transition: color 200ms ease;
+}
+
+.site-footer__links a:hover {
+  color: var(--color-white);
+}
+
+/* --- Bottom bar: copyright y RUC separados por flex --- */
+/* overlay blanco sobre navy — sin token disponible para blanco con alpha */
+.site-footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-2);
+  max-width: 1280px;
+  margin: var(--space-8) auto 0 auto;
+  padding-top: var(--space-6);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: var(--text-xs);
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* --- Desktop (lg): 3 columnas (brand ancha + 2 cols auxiliares) --- */
+@media (min-width: 1024px) {
+  .site-footer__inner {
+    grid-template-columns: 2fr 1fr 1fr;
+  }
+}

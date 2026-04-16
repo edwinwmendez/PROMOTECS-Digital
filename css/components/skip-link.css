@@ -1,0 +1,28 @@
+/* ==========================================================================
+   Componente: Skip Link — PROMOTECS-Digital
+   Accesibilidad: primer elemento del <body>, permite saltar la navegación
+   con el teclado. Oculto visualmente hasta recibir :focus.
+   WCAG 2.4.1 Bypass Blocks.
+   ========================================================================== */
+
+/* --- Oculto visualmente pero accesible a screen readers (top negativo) --- */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-4);
+  z-index: 9999;
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-yellow-500);
+  color: var(--color-navy-900);
+  font-family: var(--font-body);
+  font-weight: var(--font-semibold);
+  font-size: var(--text-sm);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: top 200ms ease;
+}
+
+/* --- Aparece en viewport al recibir foco por teclado --- */
+.skip-link:focus {
+  top: var(--space-4);
+}

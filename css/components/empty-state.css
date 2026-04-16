@@ -1,0 +1,41 @@
+/* ==========================================================================
+   Componente: Empty State — PROMOTECS-Digital
+   Mostrado cuando un listado (catálogo, inscripciones, certificados) no tiene
+   resultados. Incluye icono, título y descripción orientadora.
+   ========================================================================== */
+
+/* --- Contenedor principal: centrado con padding generoso --- */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-16) var(--space-8);
+  gap: var(--space-4);
+}
+
+/* --- Icono decorativo (gris para no competir con contenido real) --- */
+.empty-state__icon {
+  width: 48px;
+  height: 48px;
+  color: var(--color-gray-400);
+}
+
+/* --- Título del empty state --- */
+.empty-state__title {
+  font-family: var(--font-display);
+  font-weight: var(--font-bold);
+  font-size: var(--text-xl);
+  color: var(--color-navy-900);
+  margin: 0;
+}
+
+/* --- Descripción orientadora (qué hacer a continuación) --- */
+.empty-state__desc {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  line-height: var(--leading-normal);
+  max-width: 50ch;
+  margin: 0;
+}
