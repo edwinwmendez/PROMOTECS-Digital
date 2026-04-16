@@ -1,0 +1,110 @@
+/* ==========================================================================
+   Componente: Page Hero — PROMOTECS-Digital
+   Unifica .hero (landing) y .page-hero (resto de páginas) en un solo contrato BEM.
+   Gradient navy-900 → navy-700 replica el hero pre-rediseño (evita regresión visual).
+   Mobile-first: padding y font-size escalan hacia md y lg.
+   ========================================================================== */
+
+/* --- Contenedor base del hero --- */
+.page-hero {
+  background: linear-gradient(135deg, var(--color-navy-900) 0%, var(--color-navy-700) 100%);
+  padding: var(--space-12) var(--space-4);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* --- Variante landing: padding vertical generoso (hero above-the-fold) --- */
+.page-hero--landing {
+  padding-top: var(--space-24);
+  padding-bottom: var(--space-24);
+}
+
+/* --- Tag decorativo sobre el título (categoría / nombre de sección) --- */
+/* overlay sobre navy — gold con alpha bajo, sin token equivalente */
+.page-hero__tag {
+  display: inline-block;
+  margin-bottom: var(--space-4);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--font-bold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: rgba(212, 160, 23, 0.2);
+  color: var(--color-gold-500);
+  border: 1px solid var(--color-gold-600);
+}
+
+/* --- Título principal del hero (mobile-first: text-4xl) --- */
+.page-hero__title {
+  font-family: var(--font-display);
+  font-weight: var(--font-black);
+  color: var(--color-white);
+  line-height: var(--leading-tight);
+  font-size: var(--text-4xl);
+  margin: 0 0 var(--space-4) 0;
+}
+
+/* --- Subtítulo descriptivo debajo del título --- */
+/* overlay sobre navy — blanco alpha sin token disponible */
+.page-hero__subtitle {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  color: rgba(255, 255, 255, 0.8);
+  line-height: var(--leading-normal);
+  max-width: 60ch;
+  margin: 0 auto var(--space-6) auto;
+}
+
+/* --- Breadcrumb (opcional) en la parte superior del hero --- */
+/* overlay sobre navy — blanco alpha sin token */
+.page-hero__breadcrumb {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: var(--space-4);
+}
+
+/* --- Grupo de CTAs: mobile en columna, desktop en fila --- */
+.page-hero__cta-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+/* --- Tablet (md): título y padding escalan, CTAs en fila --- */
+@media (min-width: 768px) {
+  .page-hero {
+    padding: var(--space-16) var(--space-6);
+  }
+
+  .page-hero--landing {
+    padding-top: var(--space-16);
+    padding-bottom: var(--space-16);
+  }
+
+  .page-hero__title {
+    font-size: var(--text-5xl);
+  }
+
+  .page-hero__cta-group {
+    flex-direction: row;
+    justify-content: center;
+    gap: var(--space-4);
+  }
+}
+
+/* --- Desktop (lg): título gigante y padding épico en landing --- */
+@media (min-width: 1024px) {
+  .page-hero__title {
+    font-size: var(--text-6xl);
+  }
+
+  .page-hero--landing {
+    padding-top: var(--space-24);
+    padding-bottom: var(--space-24);
+  }
+}
