@@ -10,14 +10,12 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap"
       rel="stylesheet"
     />
-    <!--
-      EmailJS SDK — CDN. SRI pendiente: calcular con
-      `curl -s https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js | openssl dgst -sha384 -binary | base64`
-      y agregar integrity="sha384-..." crossorigin="anonymous" (P1.8 done criteria).
-    -->
+    <!-- EmailJS SDK — CDN con SRI (Subresource Integrity) para prevenir tampering -->
     <script
       type="text/javascript"
       src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+      integrity="sha384-SALc35EccAf6RzGw4iNsyj7kTPr33K7RoGzYu+7heZhT8s0GZouafRiCg1qy44AS"
+      crossorigin="anonymous"
     ></script>
     <!-- Cascada CSS: base → componentes → layouts → página -->
     <link rel="stylesheet" href="./css/base.css" />

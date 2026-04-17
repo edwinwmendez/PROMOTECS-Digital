@@ -55,6 +55,19 @@ test.describe('landmarks — AC-9: <header>, <nav>, <main>, <footer> presentes',
 
   for (const { path, nombre } of PAGINAS_COMPLETAS) {
     test(`${nombre}: tiene <header>, <nav>, <main>, <footer>`, async ({ page }) => {
+      // inscripcion.html ejecuta requireAuth() al cargar → sin sesión redirige a
+      // login.html y el DOM se reemplaza. Como este test audita el MARKUP FUENTE
+      // (los landmarks son estáticos, no generados por JS), usamos waitUntil:'commit'
+      // para inspeccionar el HTML de respuesta antes de que el JS module corra.
+      if (nombre === 'inscripcion') {
+        const response = await page.goto(path, { waitUntil: 'commit' });
+        const html = await response.text();
+        expect(html).toMatch(/<header[\s>]/);
+        expect(html).toMatch(/<nav[\s>]/);
+        expect(html).toMatch(/<main[\s>]/);
+        expect(html).toMatch(/<footer[\s>]/);
+        return;
+      }
       await page.goto(path);
       await expect(page.locator('header').first()).toBeAttached();
       await expect(page.locator('nav').first()).toBeAttached();
