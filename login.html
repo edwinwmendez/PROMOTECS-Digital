@@ -11,12 +11,14 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./css/components/skip-link.css" />
     <link rel="stylesheet" href="./css/components/form.css" />
     <link rel="stylesheet" href="./css/components/alert.css" />
     <link rel="stylesheet" href="./css/pages/login.css" />
   </head>
   <body class="auth-body">
-    <main class="auth-layout">
+    <a href="#main-content" class="skip-link">Ir al contenido principal</a>
+    <main id="main-content" class="auth-layout">
       <!-- Panel izquierdo: navy, solo texto institucional -->
       <aside class="auth-brand">
         <div class="auth-brand__top">
@@ -48,11 +50,16 @@
         <div class="auth-card">
           <!-- Logo aquí: fondo blanco, perfecto -->
           <div class="auth-card__logo-wrap">
-            <img
-              src="./assets/images/Logotipo.png"
-              alt="IIC PROMOTECS E.I.R.L."
-              class="auth-card__logo"
-            />
+            <picture>
+              <source srcset="./assets/images/logotipo.webp" type="image/webp" />
+              <img
+                src="./assets/images/logotipo-fallback.png"
+                alt="IIC PROMOTECS E.I.R.L."
+                class="auth-card__logo"
+                width="96"
+                height="96"
+              />
+            </picture>
           </div>
 
           <h1 class="auth-card__title">Bienvenido</h1>
