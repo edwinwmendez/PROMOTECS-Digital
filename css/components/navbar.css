@@ -11,6 +11,9 @@
 }
 
 /* --- Modifier aplicado por navbar.js al tocar el toggle (overlay mobile) --- */
+/* navy-900 (más oscuro que el hero en navy-800) + shadow para separar visualmente
+   del contenido detrás. Combinado con .site-header__backdrop indica al user que
+   el resto de la página está pausado (patrón estándar Material/iOS). */
 .site-header__nav--open {
   display: flex;
   flex-direction: column;
@@ -18,10 +21,20 @@
   top: 100%;
   left: 0;
   right: 0;
-  background: var(--color-navy-800);
+  background: var(--color-navy-900);
   padding: var(--space-4);
-  border-top: 1px solid var(--color-gold-600);
+  box-shadow: var(--shadow-lg);
   z-index: 100;
+}
+
+/* --- Backdrop scrim: oscurece el contenido detrás del menú mobile --- */
+/* Lo crea/destruye navbar.js al abrir/cerrar el menú. Click en él cierra el menú. */
+.site-header__backdrop {
+  position: fixed;
+  inset: 0;
+  background: var(--color-backdrop-scrim);
+  z-index: 90; /* menor que nav (100), mayor que el contenido de la página */
+  cursor: pointer;
 }
 
 /* --- Lista de enlaces: reset visual + flex --- */
@@ -80,6 +93,14 @@
 }
 
 /* --- Iconos del toggle: por defecto menu visible, close oculto --- */
+/* filter garantiza contraste: los SVG lucide usan stroke=currentColor pero al cargar
+   como <img> no heredan el color del padre. brightness(0)+invert(1) fuerza blanco puro
+   para que el icono sea visible sobre fondo navy del header. */
+.icon-menu,
+.icon-close {
+  filter: brightness(0) invert(1);
+}
+
 .icon-menu {
   display: block;
 }
@@ -115,6 +136,11 @@
   }
 
   .site-header__toggle {
+    display: none;
+  }
+
+  /* Desde md+ no hay menú mobile → no hay backdrop */
+  .site-header__backdrop {
     display: none;
   }
 }

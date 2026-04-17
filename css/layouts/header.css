@@ -4,7 +4,11 @@
    ========================================================================== */
 
 /* --- Header con fondo navy y borde dorado --- */
+/* position: relative establece el containing block para el nav mobile en overlay.
+   z-index 110 mantiene el header (logo + botón cerrar) por encima del backdrop (90). */
 .site-header {
+  position: relative;
+  z-index: 110;
   background: var(--color-navy-800);
   padding: var(--space-2) var(--space-6);
   border-bottom: 3px solid var(--color-gold-600);
