@@ -1,47 +1,31 @@
-// Test E2E: skip-link y landmarks WCAG — P2.1
-// AC cubiertos: a11y AC-1 (skip-link funcional), a11y AC-9 (landmarks presentes)
-// Protocolo ATDD: este test debe fallar (RED) antes de la implementación,
-// y pasar (GREEN) después de agregar skip-link + landmarks a los 6 HTMLs.
+// Test E2E: skip-link y landmarks WCAG.
+// AC cubiertos: a11y AC-1 (skip-link funcional), a11y AC-9 (landmarks presentes).
 
 import { test, expect } from '@playwright/test';
-
-// Páginas que deben tener skip-link operativo.
-const PAGINAS = [
-  { path: '/', nombre: 'index' },
-  { path: '/catalogo.html', nombre: 'catalogo' },
-  { path: '/inscripcion.html', nombre: 'inscripcion' },
-  { path: '/validacion.html', nombre: 'validacion' },
-  { path: '/contacto.html', nombre: 'contacto' },
-  { path: '/login.html', nombre: 'login' },
-];
+import { PAGINAS, PAGINAS_SIN_LOGIN } from '../_shared/paginas.js';
 
 test.describe('skip-link — AC-1: navegación por teclado hacia contenido principal', () => {
   for (const { path, nombre } of PAGINAS) {
     test(`${nombre}: Tab → skip-link visible → Enter → foco en #main-content`, async ({ page }) => {
       await page.goto(path);
 
-      // El skip-link debe existir como primer elemento interactivo del <body>.
       const skipLink = page.locator('a.skip-link[href="#main-content"]').first();
       await expect(skipLink).toBeAttached();
 
-      // Al hacer Tab desde el inicio, el skip-link debe recibir foco y hacerse visible.
       await page.keyboard.press('Tab');
       await expect(skipLink).toBeFocused();
 
-      // El elemento debe ser visualmente visible cuando tiene foco
-      // (skip-link.css lo hace visible con :focus-within o :focus).
+      // skip-link oculto tiene height ≤ 1px antes de focus; al recibir foco via CSS debe
+      // desplegarse a dimensiones reales (contrato con skip-link.css :focus-within).
       const box = await skipLink.boundingBox();
       expect(box).not.toBeNull();
-      // Un skip-link oculto tiene height ≤ 1px o width ≤ 1px antes del foco.
-      // Después del foco (Tab), debe tener dimensiones reales (height > 1, width > 1).
       expect(box.height).toBeGreaterThan(1);
       expect(box.width).toBeGreaterThan(1);
 
-      // Al presionar Enter, el foco debe ir a #main-content.
       await page.keyboard.press('Enter');
       const mainContent = page.locator('#main-content');
       await expect(mainContent).toBeAttached();
-      // El elemento debe tener tabindex para recibir foco programático.
+      // tabindex en <main> es necesario para recibir foco programático (elemento no interactivo).
       const tabindex = await mainContent.getAttribute('tabindex');
       expect(tabindex).not.toBeNull();
     });
@@ -49,16 +33,12 @@ test.describe('skip-link — AC-1: navegación por teclado hacia contenido princ
 });
 
 test.describe('landmarks — AC-9: <header>, <nav>, <main>, <footer> presentes', () => {
-  // login.html es layout de auth — no tiene site-header ni site-footer.
-  // Solo <main> es obligatorio en ese contexto.
-  const PAGINAS_COMPLETAS = PAGINAS.filter((p) => p.nombre !== 'login');
-
-  for (const { path, nombre } of PAGINAS_COMPLETAS) {
+  for (const { path, nombre } of PAGINAS_SIN_LOGIN) {
     test(`${nombre}: tiene <header>, <nav>, <main>, <footer>`, async ({ page }) => {
-      // inscripcion.html ejecuta requireAuth() al cargar → sin sesión redirige a
-      // login.html y el DOM se reemplaza. Como este test audita el MARKUP FUENTE
-      // (los landmarks son estáticos, no generados por JS), usamos waitUntil:'commit'
-      // para inspeccionar el HTML de respuesta antes de que el JS module corra.
+      // inscripcion.html ejecuta requireAuth() al cargar → sin sesión redirige a login.
+      // Como este test audita el MARKUP FUENTE (landmarks son estáticos), usamos
+      // waitUntil:'commit' para inspeccionar el HTML de respuesta del servidor antes
+      // de que el JS module corra y dispare el redirect.
       if (nombre === 'inscripcion') {
         const response = await page.goto(path, { waitUntil: 'commit' });
         const html = await response.text();

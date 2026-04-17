@@ -93,11 +93,11 @@
 }
 
 /* --- Iconos del toggle: por defecto menu visible, close oculto --- */
-/* filter garantiza contraste: los SVG lucide usan stroke=currentColor pero al cargar
-   como <img> no heredan el color del padre. brightness(0)+invert(1) fuerza blanco puro
-   para que el icono sea visible sobre fondo navy del header. */
-.icon-menu,
-.icon-close {
+/* filter fuerza blanco: los SVG de Lucide usan stroke=currentColor pero como <img> no
+   heredan el color del padre. Scoped a .site-header__toggle para no contaminar otros
+   usos futuros de .icon-menu/.icon-close en el proyecto. */
+.site-header__toggle .icon-menu,
+.site-header__toggle .icon-close {
   filter: brightness(0) invert(1);
 }
 

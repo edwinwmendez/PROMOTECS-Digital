@@ -26,15 +26,14 @@
   color: var(--color-navy-700);
 }
 
-/* --- Variante: salud (success verde) --- */
-/* color-text usa green-900 oscuro para cumplir AA sobre el fondo tenue (pastel) */
+/* Las variantes cromáticas usan tokens *-text (oscuros) en lugar del color base para
+   cumplir WCAG AA sobre los fondos color-mix al 12%. Ratios y origen de los valores
+   están documentados en tokens.css. */
 .tag--salud {
   background: color-mix(in srgb, var(--color-success) 12%, var(--color-white));
   color: var(--color-success-text);
 }
 
-/* --- Variante: farmacia (warning naranja) --- */
-/* color-text usa amber-800 oscuro para cumplir AA sobre el fondo tenue (pastel) */
 .tag--farmacia {
   background: color-mix(in srgb, var(--color-warning) 12%, var(--color-white));
   color: var(--color-warning-text);
