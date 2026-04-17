@@ -41,6 +41,15 @@ export default [
       },
     },
   },
+  // Tests corren en Node.js vía Vitest o Playwright (process, __dirname disponibles)
+  {
+    files: ['tests/**/*.js'],
+    languageOptions: {
+      globals: {
+        ...globals.node,
+      },
+    },
+  },
   {
     ignores: ['node_modules/', 'coverage/', 'playwright-report/', 'test-results/'],
   },

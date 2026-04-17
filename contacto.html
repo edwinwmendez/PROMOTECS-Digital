@@ -90,7 +90,7 @@
       </div>
     </header>
 
-    <main id="main-content">
+    <main id="main-content" tabindex="-1">
       <!-- Hero de la página de contacto -->
       <section class="page-hero">
         <span class="page-hero__tag">Estamos para ayudarte</span>
@@ -136,6 +136,7 @@
                     autocomplete="name"
                     maxlength="100"
                     required
+                    aria-required="true"
                     aria-describedby="contacto-nombre-error"
                   />
                   <span class="form__error" id="contacto-nombre-error" aria-live="polite"></span>
@@ -150,6 +151,7 @@
                     name="email"
                     autocomplete="email"
                     required
+                    aria-required="true"
                     aria-describedby="contacto-email-error"
                   />
                   <span class="form__error" id="contacto-email-error" aria-live="polite"></span>
@@ -162,6 +164,7 @@
                     id="contacto-asunto"
                     name="asunto"
                     required
+                    aria-required="true"
                     aria-describedby="contacto-asunto-error"
                   >
                     <option value="" disabled selected>Selecciona un asunto</option>
@@ -183,6 +186,7 @@
                     rows="6"
                     maxlength="2000"
                     required
+                    aria-required="true"
                     aria-describedby="contacto-mensaje-error"
                   ></textarea>
                   <span class="form__error" id="contacto-mensaje-error" aria-live="polite"></span>
