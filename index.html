@@ -10,791 +10,386 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap"
       rel="stylesheet"
     />
+    <!-- Cascada CSS: base → componentes → layouts → página -->
     <link rel="stylesheet" href="./css/base.css" />
-    <!-- Lucide icons via CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/umd/lucide.min.js"></script>
-    <style>
-      :root {
-        --navy-900: #061a36;
-        --navy-800: #0b2545;
-        --navy-700: #13315c;
-        --gold-600: #d4a017;
-        --gold-500: #e5a823;
-        --white: #fff;
-        --gray-50: #f8fafc;
-        --gray-100: #f1f5f9;
-        --gray-200: #e2e8f0;
-        --gray-600: #475569;
-        --font-d: 'Montserrat', sans-serif;
-        --font-b: 'Inter', sans-serif;
-      }
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-      body {
-        font-family: var(--font-b);
-        color: #1e293b;
-        background: var(--white);
-      }
-      /* NAVBAR */
-      .navbar {
-        background: var(--navy-800);
-        border-bottom: 3px solid var(--gold-600);
-        position: sticky;
-        top: 0;
-        z-index: 100;
-      }
-      .navbar__inner {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 12px 24px;
-      }
-      .navbar__logo img {
-        height: 48px;
-      }
-      .navbar__links {
-        display: flex;
-        gap: 4px;
-        list-style: none;
-      }
-      .navbar__links a {
-        color: rgba(255, 255, 255, 0.8);
-        text-decoration: none;
-        font-size: 14px;
-        font-weight: 500;
-        padding: 8px 14px;
-        border-radius: 8px;
-        transition: background 0.2s;
-      }
-      .navbar__links a:hover,
-      .navbar__links a.active {
-        background: rgba(255, 255, 255, 0.12);
-        color: #fff;
-      }
-      .navbar__cta {
-        background: var(--gold-600);
-        color: var(--navy-900);
-        font-weight: 700;
-        font-size: 14px;
-        padding: 9px 20px;
-        border-radius: 8px;
-        text-decoration: none;
-        transition: background 0.2s;
-      }
-      .navbar__cta:hover {
-        background: var(--gold-500);
-      }
-      /* HERO */
-      .hero {
-        background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-700) 100%);
-        padding: 96px 24px;
-        text-align: center;
-        position: relative;
-        overflow: hidden;
-      }
-      .hero::before {
-        content: '';
-        position: absolute;
-        width: 500px;
-        height: 500px;
-        border-radius: 50%;
-        border: 80px solid rgba(212, 160, 23, 0.06);
-        top: -150px;
-        right: -150px;
-      }
-      .hero__tag {
-        display: inline-block;
-        background: rgba(212, 160, 23, 0.15);
-        color: var(--gold-500);
-        border: 1px solid var(--gold-600);
-        padding: 6px 16px;
-        border-radius: 9999px;
-        font-size: 13px;
-        font-weight: 600;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        margin-bottom: 24px;
-      }
-      .hero__title {
-        font-family: var(--font-d);
-        font-size: clamp(2rem, 5vw, 3.5rem);
-        font-weight: 900;
-        color: #fff;
-        line-height: 1.1;
-        max-width: 700px;
-        margin: 0 auto 24px;
-      }
-      .hero__title span {
-        color: var(--gold-500);
-      }
-      .hero__subtitle {
-        color: rgba(255, 255, 255, 0.7);
-        font-size: 18px;
-        max-width: 560px;
-        margin: 0 auto 40px;
-        line-height: 1.7;
-      }
-      .hero__actions {
-        display: flex;
-        gap: 16px;
-        justify-content: center;
-        flex-wrap: wrap;
-      }
-      .btn-primary {
-        background: var(--gold-600);
-        color: var(--navy-900);
-        font-weight: 700;
-        padding: 14px 32px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-size: 16px;
-        display: inline-block;
-        transition: background 0.2s;
-      }
-      .btn-primary:hover {
-        background: var(--gold-500);
-      }
-      .btn-outline {
-        border: 2px solid rgba(255, 255, 255, 0.4);
-        color: #fff;
-        font-weight: 600;
-        padding: 12px 32px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-size: 16px;
-        transition: all 0.2s;
-      }
-      .btn-outline:hover {
-        background: rgba(255, 255, 255, 0.1);
-      }
-      /* STATS */
-      .stats {
-        background: var(--white);
-        padding: 48px 24px;
-        border-bottom: 1px solid var(--gray-200);
-      }
-      .stats__grid {
-        max-width: 900px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 32px;
-        text-align: center;
-      }
-      .stat__number {
-        font-family: var(--font-d);
-        font-size: 2.5rem;
-        font-weight: 900;
-        color: var(--navy-800);
-      }
-      .stat__label {
-        font-size: 14px;
-        color: var(--gray-600);
-        margin-top: 4px;
-      }
-      /* SECTIONS */
-      .section {
-        padding: 80px 24px;
-      }
-      .section--gray {
-        background: var(--gray-50);
-      }
-      .section__inner {
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-      .section__header {
-        text-align: center;
-        margin-bottom: 48px;
-      }
-      .section__tag {
-        display: inline-block;
-        font-size: 12px;
-        font-weight: 700;
-        color: var(--navy-800);
-        background: rgba(212, 160, 23, 0.15);
-        border: 1px solid var(--gold-600);
-        padding: 4px 14px;
-        border-radius: 9999px;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        margin-bottom: 12px;
-      }
-      .section__title {
-        font-family: var(--font-d);
-        font-size: 2rem;
-        font-weight: 800;
-        color: var(--navy-900);
-      }
-      .section__subtitle {
-        color: var(--gray-600);
-        margin-top: 12px;
-        font-size: 16px;
-        max-width: 560px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-      /* CARDS PROGRAMAS — estilo rico */
-      .cards {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 24px;
-      }
-      .card {
-        background: var(--white);
-        border-radius: 12px;
-        box-shadow: 0 4px 6px rgba(11, 37, 69, 0.08);
-        overflow: hidden;
-        transition:
-          transform 0.2s,
-          box-shadow 0.2s;
-        display: flex;
-        flex-direction: column;
-      }
-      .card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 10px 20px rgba(11, 37, 69, 0.12);
-      }
-      .card__header {
-        background: var(--navy-800);
-        padding: 20px;
-        display: flex;
-        align-items: flex-start;
-        gap: 12px;
-      }
-      .card__icon {
-        width: 44px;
-        height: 44px;
-        min-width: 44px;
-        background: rgba(212, 160, 23, 0.2);
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--gold-500);
-      }
-      .card__tipo {
-        font-size: 10px;
-        font-weight: 700;
-        color: var(--gold-500);
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-      }
-      .card__name {
-        font-family: var(--font-d);
-        font-size: 14px;
-        font-weight: 700;
-        color: #fff;
-        margin-top: 4px;
-        line-height: 1.35;
-      }
-      .card__body {
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        flex: 1;
-      }
-      .card__desc {
-        font-size: 13px;
-        color: var(--gray-600);
-        line-height: 1.6;
-      }
-      .card__tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 6px;
-      }
-      .tag {
-        display: inline-flex;
-        align-items: center;
-        gap: 4px;
-        padding: 4px 10px;
-        border-radius: 9999px;
-        font-size: 12px;
-        font-weight: 600;
-      }
-      .tag svg {
-        width: 12px;
-        height: 12px;
-      }
-      .tag-virtual {
-        background: #dbeafe;
-        color: #1d4ed8;
-      }
-      .tag-presencial {
-        background: #dcfce7;
-        color: #15803d;
-      }
-      .tag-semipresencial {
-        background: #fef9c3;
-        color: #854d0e;
-      }
-      .tag-area {
-        background: var(--gray-100);
-        color: #334155;
-      }
-      .card__info {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
-        padding: 12px;
-        background: var(--gray-50);
-        border-radius: 8px;
-      }
-      .info-item__label {
-        font-size: 11px;
-        color: var(--gray-600);
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
-      }
-      .info-item__value {
-        font-size: 14px;
-        font-weight: 700;
-        color: #1e293b;
-        margin-top: 2px;
-      }
-      .card__price {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-      .price-label {
-        font-size: 12px;
-        color: var(--gray-600);
-      }
-      .price-value {
-        font-family: var(--font-d);
-        font-size: 20px;
-        font-weight: 800;
-        color: var(--navy-800);
-      }
-      .price-currency {
-        font-size: 14px;
-        font-weight: 600;
-        color: var(--gray-600);
-        margin-right: 2px;
-      }
-      .card__link {
-        display: block;
-        text-align: center;
-        background: var(--navy-800);
-        color: #fff;
-        padding: 12px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-size: 14px;
-        font-weight: 700;
-        transition: background 0.2s;
-        margin-top: auto;
-      }
-      .card__link:hover {
-        background: var(--navy-700);
-      }
-      /* MÓDULOS */
-      .modules-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 24px;
-      }
-      .module-card {
-        background: var(--white);
-        border-radius: 12px;
-        padding: 28px;
-        text-align: center;
-        box-shadow: 0 4px 6px rgba(11, 37, 69, 0.08);
-      }
-      .module-card__icon {
-        width: 48px;
-        height: 48px;
-        background: rgba(11, 37, 69, 0.08);
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 16px;
-        color: var(--navy-800);
-      }
-      .module-card__title {
-        font-family: var(--font-d);
-        font-size: 15px;
-        font-weight: 700;
-        color: var(--navy-800);
-        margin-bottom: 8px;
-      }
-      .module-card__desc {
-        font-size: 13px;
-        color: var(--gray-600);
-        line-height: 1.6;
-      }
-      /* FOOTER */
-      footer {
-        background: var(--navy-900);
-        color: rgba(255, 255, 255, 0.6);
-        padding: 48px 24px 24px;
-      }
-      .footer__inner {
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-      .footer__grid {
-        display: grid;
-        grid-template-columns: 2fr 1fr 1fr;
-        gap: 48px;
-        margin-bottom: 48px;
-      }
-      .footer__brand-name {
-        font-family: var(--font-d);
-        font-size: 18px;
-        font-weight: 800;
-        color: #fff;
-        margin-bottom: 8px;
-      }
-      .footer__brand-desc {
-        font-size: 14px;
-        line-height: 1.7;
-      }
-      .footer__col-title {
-        font-size: 13px;
-        font-weight: 700;
-        color: #fff;
-        text-transform: uppercase;
-        letter-spacing: 0.06em;
-        margin-bottom: 16px;
-      }
-      .footer__links {
-        list-style: none;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-      .footer__links a {
-        color: rgba(255, 255, 255, 0.6);
-        text-decoration: none;
-        font-size: 14px;
-        transition: color 0.2s;
-      }
-      .footer__links a:hover {
-        color: #fff;
-      }
-      .footer__links li {
-        font-size: 14px;
-      }
-      .footer__bottom {
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        padding-top: 24px;
-        font-size: 13px;
-        display: flex;
-        justify-content: space-between;
-      }
-    </style>
+    <link rel="stylesheet" href="./css/components/skip-link.css" />
+    <link rel="stylesheet" href="./css/components/button.css" />
+    <link rel="stylesheet" href="./css/components/page-hero.css" />
+    <link rel="stylesheet" href="./css/components/card.css" />
+    <link rel="stylesheet" href="./css/components/tag.css" />
+    <link rel="stylesheet" href="./css/components/stat.css" />
+    <link rel="stylesheet" href="./css/components/navbar.css" />
+    <link rel="stylesheet" href="./css/layouts/header.css" />
+    <link rel="stylesheet" href="./css/layouts/footer.css" />
+    <link rel="stylesheet" href="./css/pages/landing.css" />
   </head>
   <body>
-    <header>
-      <nav class="navbar" aria-label="Navegación principal">
-        <div class="navbar__inner">
-          <a href="./index.html" class="navbar__logo"
-            ><img src="./assets/images/Logotipo.png" alt="IIC PROMOTECS E.I.R.L."
-          /></a>
-          <ul class="navbar__links">
-            <li><a href="./index.html" class="active">Inicio</a></li>
-            <li><a href="./catalogo.html">Programas</a></li>
-            <li><a href="./inscripcion.html">Inscripción</a></li>
-            <li><a href="./validacion.html">Certificados</a></li>
-            <li><a href="./contacto.html">Contacto</a></li>
+    <!-- Skip link a contenido principal (accesibilidad WCAG 2.4.1) -->
+    <a href="#main-content" class="skip-link">Ir al contenido principal</a>
+
+    <!-- Header institucional unificado -->
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a href="./index.html" class="site-header__logo">
+          <picture>
+            <source srcset="./assets/images/logotipo.webp" type="image/webp" />
+            <img
+              src="./assets/images/logotipo-fallback.png"
+              alt="IIC PROMOTECS E.I.R.L."
+              width="96"
+              height="96"
+            />
+          </picture>
+        </a>
+        <button
+          type="button"
+          class="site-header__toggle"
+          aria-expanded="false"
+          aria-controls="site-header-nav"
+          aria-label="Abrir menú de navegación"
+        >
+          <img
+            src="./assets/icons/menu.svg"
+            alt=""
+            aria-hidden="true"
+            class="icon-menu"
+            width="24"
+            height="24"
+          />
+          <img
+            src="./assets/icons/x.svg"
+            alt=""
+            aria-hidden="true"
+            class="icon-close"
+            width="24"
+            height="24"
+          />
+        </button>
+        <nav id="site-header-nav" class="site-header__nav" aria-label="Navegación principal">
+          <ul class="site-header__nav-list">
+            <li>
+              <a href="./index.html" class="site-header__nav-link" aria-current="page">Inicio</a>
+            </li>
+            <li><a href="./catalogo.html" class="site-header__nav-link">Programas</a></li>
+            <li><a href="./inscripcion.html" class="site-header__nav-link">Inscripción</a></li>
+            <li><a href="./validacion.html" class="site-header__nav-link">Certificados</a></li>
+            <li><a href="./contacto.html" class="site-header__nav-link">Contacto</a></li>
+            <li><a href="./login.html" class="btn btn--secondary btn--sm">Ingresar</a></li>
           </ul>
-          <a href="./login.html" class="navbar__cta">Ingresar</a>
-        </div>
-      </nav>
+        </nav>
+      </div>
     </header>
-    <main>
-      <section class="hero">
-        <div class="hero__tag">Instituto de Investigación y Capacitación</div>
-        <h1 class="hero__title">
+
+    <main id="main-content">
+      <!-- Hero landing con padding extendido -->
+      <section class="page-hero page-hero--landing">
+        <span class="page-hero__tag">Instituto de Investigación y Capacitación</span>
+        <h1 class="page-hero__title">
           Capacitación profesional para el <span>sector público y privado</span>
         </h1>
-        <p class="hero__subtitle">
+        <p class="page-hero__subtitle">
           Diplomados, especializaciones y cursos con certificación oficial en modalidad presencial,
           virtual y semipresencial.
         </p>
-        <div class="hero__actions">
-          <a href="./catalogo.html" class="btn-primary">Ver catálogo de programas</a>
-          <a href="./validacion.html" class="btn-outline">Validar certificado</a>
+        <div class="page-hero__cta-group">
+          <a href="./catalogo.html" class="btn btn--secondary">Ver catálogo de programas</a>
+          <a href="./validacion.html" class="btn btn--ghost">Validar certificado</a>
         </div>
       </section>
-      <section class="stats" aria-label="Indicadores institucionales">
-        <div class="stats__grid">
-          <div>
+
+      <!-- Stats institucionales -->
+      <section class="landing__stats" aria-label="Indicadores institucionales">
+        <div class="stats-grid">
+          <div class="stat">
             <div class="stat__number">+500</div>
             <div class="stat__label">Profesionales certificados</div>
           </div>
-          <div>
+          <div class="stat">
             <div class="stat__number">14</div>
             <div class="stat__label">Áreas temáticas</div>
           </div>
-          <div>
+          <div class="stat">
             <div class="stat__number">3</div>
             <div class="stat__label">Modalidades de estudio</div>
           </div>
-          <div>
+          <div class="stat">
             <div class="stat__number">100%</div>
             <div class="stat__label">Certificación con validez oficial</div>
           </div>
         </div>
       </section>
 
-      <!-- PROGRAMAS DESTACADOS con datos completos -->
-      <section class="section">
-        <div class="section__inner">
-          <div class="section__header">
-            <p class="section__tag">Oferta académica</p>
-            <h2 class="section__title">Programas destacados</h2>
-            <p class="section__subtitle">
+      <!-- Programas destacados -->
+      <section class="landing__section">
+        <div class="landing__section-inner">
+          <header class="landing__section-header">
+            <p class="landing__section-tag">Oferta académica</p>
+            <h2 class="landing__section-title">Programas destacados</h2>
+            <p class="landing__section-subtitle">
               Formación especializada para profesionales que buscan actualización y certificación en
               su área.
             </p>
-          </div>
-          <div class="cards">
-            <article class="card">
-              <div class="card__header">
-                <div class="card__icon">
-                  <i data-lucide="graduation-cap" style="width: 22px; height: 22px"></i>
-                </div>
-                <div>
-                  <div class="card__tipo">Diplomado</div>
-                  <div class="card__name">Educación y Gestión Escolar</div>
-                </div>
+          </header>
+          <div class="landing__programas-grid">
+            <!-- Programa 1: Educación -->
+            <article class="card-programa">
+              <img
+                src="./assets/icons/graduation-cap.svg"
+                alt=""
+                aria-hidden="true"
+                class="card-programa__icon"
+                width="40"
+                height="40"
+              />
+              <div class="card-programa__area">
+                <span class="tag tag--educacion">Educación</span>
               </div>
-              <div class="card__body">
-                <p class="card__desc">
-                  Formación integral para docentes y directivos en gestión pedagógica, liderazgo
-                  institucional y administración escolar moderna.
-                </p>
-                <div class="card__tags">
-                  <span class="tag tag-virtual"
-                    ><i data-lucide="monitor" style="width: 12px; height: 12px"></i> Virtual</span
+              <h3 class="card-programa__title">Diplomado en Educación y Gestión Escolar</h3>
+              <div class="card-programa__meta">
+                <span class="card-programa__horas">
+                  <img
+                    src="./assets/icons/clock.svg"
+                    alt=""
+                    aria-hidden="true"
+                    width="16"
+                    height="16"
+                  />
+                  1200 horas pedagógicas
+                </span>
+                <span class="card-programa__modalidad">
+                  <img
+                    src="./assets/icons/users.svg"
+                    alt=""
+                    aria-hidden="true"
+                    width="16"
+                    height="16"
+                  />
+                  Virtual
+                </span>
+              </div>
+              <div class="card-programa__footer">
+                <p class="card-programa__price">S/ 350.00</p>
+                <div class="card-programa__cta">
+                  <a href="./inscripcion.html" class="btn btn--primary btn--full"
+                    >Inscribirse ahora</a
                   >
-                  <span class="tag tag-area">Educación</span>
                 </div>
-                <div class="card__info">
-                  <div>
-                    <div class="info-item__label">Horas pedagógicas</div>
-                    <div class="info-item__value">1,200 hrs</div>
-                  </div>
-                  <div>
-                    <div class="info-item__label">Créditos</div>
-                    <div class="info-item__value">80 créditos</div>
-                  </div>
-                  <div>
-                    <div class="info-item__label">Modalidad</div>
-                    <div class="info-item__value">Virtual</div>
-                  </div>
-                  <div>
-                    <div class="info-item__label">Duración</div>
-                    <div class="info-item__value">12 meses</div>
-                  </div>
-                </div>
-                <div class="card__price">
-                  <span class="price-label">Inversión</span
-                  ><span class="price-value"><span class="price-currency">S/</span>350.00</span>
-                </div>
-                <a href="./inscripcion.html" class="card__link">Inscribirse ahora</a>
               </div>
             </article>
-            <article class="card">
-              <div class="card__header">
-                <div class="card__icon">
-                  <i data-lucide="flask-conical" style="width: 22px; height: 22px"></i>
-                </div>
-                <div>
-                  <div class="card__tipo">Curso</div>
-                  <div class="card__name">Actualización en Farmacia Clínica</div>
-                </div>
+
+            <!-- Programa 2: Farmacia Clínica -->
+            <article class="card-programa">
+              <img
+                src="./assets/icons/star.svg"
+                alt=""
+                aria-hidden="true"
+                class="card-programa__icon"
+                width="40"
+                height="40"
+              />
+              <div class="card-programa__area">
+                <span class="tag tag--farmacia">Farmacia</span>
               </div>
-              <div class="card__body">
-                <p class="card__desc">
-                  Actualización en buenas prácticas de farmacia clínica, interacciones
-                  medicamentosas y atención farmacéutica al paciente.
-                </p>
-                <div class="card__tags">
-                  <span class="tag tag-semipresencial"
-                    ><i data-lucide="building-2" style="width: 12px; height: 12px"></i>
-                    Semipresencial</span
+              <h3 class="card-programa__title">Actualización en Farmacia Clínica</h3>
+              <div class="card-programa__meta">
+                <span class="card-programa__horas">
+                  <img
+                    src="./assets/icons/clock.svg"
+                    alt=""
+                    aria-hidden="true"
+                    width="16"
+                    height="16"
+                  />
+                  120 horas pedagógicas
+                </span>
+                <span class="card-programa__modalidad">
+                  <img
+                    src="./assets/icons/users.svg"
+                    alt=""
+                    aria-hidden="true"
+                    width="16"
+                    height="16"
+                  />
+                  Semipresencial
+                </span>
+              </div>
+              <div class="card-programa__footer">
+                <p class="card-programa__price">S/ 150.00</p>
+                <div class="card-programa__cta">
+                  <a href="./inscripcion.html" class="btn btn--primary btn--full"
+                    >Inscribirse ahora</a
                   >
-                  <span class="tag tag-area">Farmacia</span>
                 </div>
-                <div class="card__info">
-                  <div>
-                    <div class="info-item__label">Horas pedagógicas</div>
-                    <div class="info-item__value">120 hrs</div>
-                  </div>
-                  <div>
-                    <div class="info-item__label">Créditos</div>
-                    <div class="info-item__value">—</div>
-                  </div>
-                  <div>
-                    <div class="info-item__label">Modalidad</div>
-                    <div class="info-item__value">Semipresencial</div>
-                  </div>
-                  <div>
-                    <div class="info-item__label">Duración</div>
-                    <div class="info-item__value">2 meses</div>
-                  </div>
-                </div>
-                <div class="card__price">
-                  <span class="price-label">Inversión</span
-                  ><span class="price-value"><span class="price-currency">S/</span>150.00</span>
-                </div>
-                <a href="./inscripcion.html" class="card__link">Inscribirse ahora</a>
               </div>
             </article>
-            <article class="card">
-              <div class="card__header">
-                <div class="card__icon">
-                  <i data-lucide="heart-pulse" style="width: 22px; height: 22px"></i>
-                </div>
-                <div>
-                  <div class="card__tipo">Especialización</div>
-                  <div class="card__name">Salud Pública y Epidemiología</div>
-                </div>
+
+            <!-- Programa 3: Salud Pública -->
+            <article class="card-programa">
+              <img
+                src="./assets/icons/award.svg"
+                alt=""
+                aria-hidden="true"
+                class="card-programa__icon"
+                width="40"
+                height="40"
+              />
+              <div class="card-programa__area">
+                <span class="tag tag--salud">Salud</span>
               </div>
-              <div class="card__body">
-                <p class="card__desc">
-                  Especialización en vigilancia epidemiológica, gestión sanitaria y políticas de
-                  salud pública para profesionales del sector.
-                </p>
-                <div class="card__tags">
-                  <span class="tag tag-virtual"
-                    ><i data-lucide="monitor" style="width: 12px; height: 12px"></i> Virtual</span
+              <h3 class="card-programa__title">Especialización en Salud Pública y Epidemiología</h3>
+              <div class="card-programa__meta">
+                <span class="card-programa__horas">
+                  <img
+                    src="./assets/icons/clock.svg"
+                    alt=""
+                    aria-hidden="true"
+                    width="16"
+                    height="16"
+                  />
+                  600 horas pedagógicas
+                </span>
+                <span class="card-programa__modalidad">
+                  <img
+                    src="./assets/icons/users.svg"
+                    alt=""
+                    aria-hidden="true"
+                    width="16"
+                    height="16"
+                  />
+                  Virtual
+                </span>
+              </div>
+              <div class="card-programa__footer">
+                <p class="card-programa__price">S/ 280.00</p>
+                <div class="card-programa__cta">
+                  <a href="./inscripcion.html" class="btn btn--primary btn--full"
+                    >Inscribirse ahora</a
                   >
-                  <span class="tag tag-area">Salud</span>
                 </div>
-                <div class="card__info">
-                  <div>
-                    <div class="info-item__label">Horas pedagógicas</div>
-                    <div class="info-item__value">600 hrs</div>
-                  </div>
-                  <div>
-                    <div class="info-item__label">Créditos</div>
-                    <div class="info-item__value">40 créditos</div>
-                  </div>
-                  <div>
-                    <div class="info-item__label">Modalidad</div>
-                    <div class="info-item__value">Virtual</div>
-                  </div>
-                  <div>
-                    <div class="info-item__label">Duración</div>
-                    <div class="info-item__value">6 meses</div>
-                  </div>
-                </div>
-                <div class="card__price">
-                  <span class="price-label">Inversión</span
-                  ><span class="price-value"><span class="price-currency">S/</span>280.00</span>
-                </div>
-                <a href="./inscripcion.html" class="card__link">Inscribirse ahora</a>
               </div>
             </article>
           </div>
-          <div style="text-align: center; margin-top: 40px">
-            <a href="./catalogo.html" class="btn-primary">Ver todos los programas →</a>
+          <div class="landing__section-cta">
+            <a href="./catalogo.html" class="btn btn--primary">Ver todos los programas →</a>
           </div>
         </div>
       </section>
 
-      <!-- MÓDULOS DEL SISTEMA con iconos SVG -->
-      <section class="section section--gray">
-        <div class="section__inner">
-          <div class="section__header">
-            <p class="section__tag">Plataforma digital</p>
-            <h2 class="section__title">Todo en un solo sistema</h2>
-          </div>
-          <div class="modules-grid">
-            <div class="module-card">
-              <div class="module-card__icon">
-                <i data-lucide="layout-list" style="width: 24px; height: 24px"></i>
+      <!-- Módulos del sistema -->
+      <section class="landing__section landing__section--gray">
+        <div class="landing__section-inner">
+          <header class="landing__section-header">
+            <p class="landing__section-tag">Plataforma digital</p>
+            <h2 class="landing__section-title">Todo en un solo sistema</h2>
+          </header>
+          <div class="landing__modules-grid">
+            <article class="card-module">
+              <img
+                src="./assets/icons/filter.svg"
+                alt=""
+                aria-hidden="true"
+                class="card-module__icon"
+                width="32"
+                height="32"
+              />
+              <div>
+                <h3 class="card-module__title">Catálogo de Programas</h3>
+                <p class="card-module__desc">
+                  Explora nuestra oferta académica filtrada por área temática, modalidad y tipo de
+                  programa.
+                </p>
               </div>
-              <h3 class="module-card__title">Catálogo de Programas</h3>
-              <p class="module-card__desc">
-                Explora nuestra oferta académica filtrada por área temática, modalidad y tipo de
-                programa.
-              </p>
-            </div>
-            <div class="module-card">
-              <div class="module-card__icon">
-                <i data-lucide="clipboard-pen" style="width: 24px; height: 24px"></i>
+            </article>
+            <article class="card-module">
+              <img
+                src="./assets/icons/check-circle.svg"
+                alt=""
+                aria-hidden="true"
+                class="card-module__icon"
+                width="32"
+                height="32"
+              />
+              <div>
+                <h3 class="card-module__title">Inscripción en Línea</h3>
+                <p class="card-module__desc">
+                  Regístrate en cualquier programa desde tu dispositivo en minutos, sin trámites
+                  presenciales.
+                </p>
               </div>
-              <h3 class="module-card__title">Inscripción en Línea</h3>
-              <p class="module-card__desc">
-                Regístrate en cualquier programa desde tu dispositivo en minutos, sin trámites
-                presenciales.
-              </p>
-            </div>
-            <div class="module-card">
-              <div class="module-card__icon">
-                <i data-lucide="badge-check" style="width: 24px; height: 24px"></i>
+            </article>
+            <article class="card-module">
+              <img
+                src="./assets/icons/award.svg"
+                alt=""
+                aria-hidden="true"
+                class="card-module__icon"
+                width="32"
+                height="32"
+              />
+              <div>
+                <h3 class="card-module__title">Validación de Certificados</h3>
+                <p class="card-module__desc">
+                  Verifica la autenticidad de cualquier certificado emitido mediante código único de
+                  validación.
+                </p>
               </div>
-              <h3 class="module-card__title">Validación de Certificados</h3>
-              <p class="module-card__desc">
-                Verifica la autenticidad de cualquier certificado emitido mediante código único de
-                validación.
-              </p>
-            </div>
-            <div class="module-card">
-              <div class="module-card__icon">
-                <i data-lucide="mail" style="width: 24px; height: 24px"></i>
+            </article>
+            <article class="card-module">
+              <img
+                src="./assets/icons/mail.svg"
+                alt=""
+                aria-hidden="true"
+                class="card-module__icon"
+                width="32"
+                height="32"
+              />
+              <div>
+                <h3 class="card-module__title">Contacto y Soporte</h3>
+                <p class="card-module__desc">
+                  Resuelve tus dudas con nuestro equipo institucional. Respondemos en menos de 24
+                  horas.
+                </p>
               </div>
-              <h3 class="module-card__title">Contacto y Soporte</h3>
-              <p class="module-card__desc">
-                Resuelve tus dudas con nuestro equipo institucional. Respondemos en menos de 24
-                horas.
-              </p>
-            </div>
+            </article>
           </div>
         </div>
       </section>
     </main>
-    <footer>
-      <div class="footer__inner">
-        <div class="footer__grid">
-          <div>
-            <div class="footer__brand-name">IIC PROMOTECS E.I.R.L.</div>
-            <p class="footer__brand-desc">
-              Instituto de Investigación y Capacitación para profesionales del sector público y
-              privado. RUC 20608895150.
-            </p>
-          </div>
-          <div>
-            <div class="footer__col-title">Plataforma</div>
-            <ul class="footer__links">
-              <li><a href="./catalogo.html">Catálogo de Programas</a></li>
-              <li><a href="./inscripcion.html">Inscripción en Línea</a></li>
-              <li><a href="./validacion.html">Validar Certificado</a></li>
-              <li><a href="./login.html">Área de Participantes</a></li>
-            </ul>
-          </div>
-          <div>
-            <div class="footer__col-title">Contacto</div>
-            <ul class="footer__links">
-              <li>Leoncio Prado 154, 2do piso, Barranca, Lima</li>
-              <li>informes@promotecs.edu.pe</li>
-            </ul>
-          </div>
+
+    <!-- Footer institucional unificado -->
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <div>
+          <p class="site-footer__brand-name">IIC PROMOTECS E.I.R.L.</p>
+          <p class="site-footer__brand-desc">
+            Instituto de Investigación y Capacitación para profesionales del sector público y
+            privado. RUC 20608895150.
+          </p>
         </div>
-        <div class="footer__bottom">
-          <span>© 2026 IIC PROMOTECS E.I.R.L. Todos los derechos reservados.</span
-          ><span>Barranca, Lima — Perú</span>
+        <div>
+          <p class="site-footer__col-title">Plataforma</p>
+          <ul class="site-footer__links">
+            <li><a href="./catalogo.html">Catálogo de Programas</a></li>
+            <li><a href="./inscripcion.html">Inscripción en Línea</a></li>
+            <li><a href="./validacion.html">Validar Certificado</a></li>
+            <li><a href="./login.html">Área de Participantes</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="site-footer__col-title">Contacto</p>
+          <ul class="site-footer__links">
+            <li>Leoncio Prado 154, 2do piso, Barranca, Lima</li>
+            <li>informes@promotecs.edu.pe</li>
+          </ul>
         </div>
       </div>
+      <div class="site-footer__bottom">
+        <span>© 2026 IIC PROMOTECS E.I.R.L. Todos los derechos reservados.</span>
+        <span>Barranca, Lima — Perú</span>
+      </div>
     </footer>
+
+    <script type="module" src="./js/utils/navbar.js"></script>
     <script type="module" src="./js/modules/session-ui.js"></script>
-    <script>
-      lucide.createIcons();
-    </script>
   </body>
 </html>

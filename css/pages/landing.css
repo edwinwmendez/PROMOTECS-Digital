@@ -1,0 +1,129 @@
+/* ==========================================================================
+   Página: Landing (index.html) — PROMOTECS-Digital
+   Solo estilos específicos de la landing que no cubren los componentes.
+   Grids de programas/módulos, secciones alternas y layout stats.
+   Todos los valores vienen de tokens. Cero hex hardcoded.
+   ========================================================================== */
+
+/* --- Banda de stats sobre fondo navy (post-hero), sin borde decorativo --- */
+.landing__stats {
+  background: var(--color-navy-800);
+  padding: var(--space-12) var(--space-4);
+}
+
+/* --- Inner con max-width para stats --- */
+.landing__stats .stats-grid {
+  max-width: var(--container-narrow);
+  margin: 0 auto;
+}
+
+/* --- Sección base: padding vertical grande, fondo blanco --- */
+.landing__section {
+  background: var(--color-white);
+  padding: var(--space-16) var(--space-4);
+}
+
+/* --- Modifier: sección con fondo gris (alterna contraste) --- */
+.landing__section--gray {
+  background: var(--color-gray-50);
+}
+
+/* --- Inner de cada sección: max-width 1280px centrado --- */
+.landing__section-inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+/* --- Header de la sección (tag + título + subtítulo) --- */
+.landing__section-header {
+  text-align: center;
+  margin-bottom: var(--space-12);
+}
+
+/* --- Tag decorativo encima del título de sección --- */
+.landing__section-tag {
+  display: inline-block;
+  margin: 0 0 var(--space-3) 0;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--font-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-navy-800);
+  background: color-mix(in srgb, var(--color-gold-600) 15%, var(--color-white));
+  border: 1px solid var(--color-gold-600);
+}
+
+/* --- Título principal de sección --- */
+.landing__section-title {
+  font-family: var(--font-display);
+  font-weight: var(--font-extrabold);
+  font-size: var(--text-3xl);
+  line-height: var(--leading-tight);
+  color: var(--color-navy-900);
+  margin: 0;
+}
+
+/* --- Subtítulo descriptivo bajo el título de sección --- */
+.landing__section-subtitle {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--color-text-muted);
+  max-width: var(--measure);
+  margin: var(--space-3) auto 0 auto;
+}
+
+/* --- Grid de programas destacados (mobile: 1 col) --- */
+.landing__programas-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+/* --- Grid de módulos del sistema (mobile: 1 col) --- */
+.landing__modules-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+
+/* --- CTA al pie de sección (link a catálogo, etc.) --- */
+.landing__section-cta {
+  margin-top: var(--space-12);
+  display: flex;
+  justify-content: center;
+}
+
+/* --- Tablet (md): 2 columnas de programas, 2 de módulos --- */
+@media (min-width: 768px) {
+  .landing__section {
+    padding: var(--space-16) var(--space-6);
+  }
+
+  .landing__section-title {
+    font-size: var(--text-4xl);
+  }
+
+  .landing__programas-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .landing__modules-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+}
+
+/* --- Desktop (lg): 3 columnas de programas, 4 de módulos --- */
+@media (min-width: 1024px) {
+  .landing__programas-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .landing__modules-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
