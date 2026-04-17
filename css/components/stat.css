@@ -28,7 +28,7 @@
 .stat__label {
   font-family: var(--font-body);
   font-size: var(--text-sm);
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--color-on-navy);
   margin: 0;
 }
 

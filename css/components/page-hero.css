@@ -32,7 +32,7 @@
   font-weight: var(--font-bold);
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  background: rgba(212, 160, 23, 0.2);
+  background: var(--color-overlay-gold);
   color: var(--color-gold-500);
   border: 1px solid var(--color-gold-600);
 }
@@ -52,9 +52,9 @@
 .page-hero__subtitle {
   font-family: var(--font-body);
   font-size: var(--text-lg);
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--color-on-navy);
   line-height: var(--leading-normal);
-  max-width: 60ch;
+  max-width: var(--measure);
   margin: 0 auto var(--space-6) auto;
 }
 
@@ -63,7 +63,7 @@
 .page-hero__breadcrumb {
   font-family: var(--font-body);
   font-size: var(--text-sm);
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--color-on-navy-muted);
   margin-bottom: var(--space-4);
 }
 

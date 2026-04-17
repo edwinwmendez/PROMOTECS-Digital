@@ -22,27 +22,27 @@
 /* --- Variante: éxito --- */
 .alert--success {
   border-color: var(--color-success);
-  background-color: color-mix(in srgb, var(--color-success) 10%, white);
+  background-color: color-mix(in srgb, var(--color-success) 10%, var(--color-white));
   color: var(--color-text);
 }
 
 /* --- Variante: error / peligro --- */
 .alert--danger {
   border-color: var(--color-danger);
-  background-color: color-mix(in srgb, var(--color-danger) 10%, white);
+  background-color: color-mix(in srgb, var(--color-danger) 10%, var(--color-white));
   color: var(--color-text);
 }
 
 /* --- Variante: información --- */
 .alert--info {
   border-color: var(--color-info);
-  background-color: color-mix(in srgb, var(--color-info) 10%, white);
+  background-color: color-mix(in srgb, var(--color-info) 10%, var(--color-white));
   color: var(--color-text);
 }
 
 /* --- Variante: advertencia --- */
 .alert--warning {
   border-color: var(--color-warning);
-  background-color: color-mix(in srgb, var(--color-warning) 10%, white);
+  background-color: color-mix(in srgb, var(--color-warning) 10%, var(--color-white));
   color: var(--color-text);
 }

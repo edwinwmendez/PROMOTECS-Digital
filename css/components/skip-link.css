@@ -19,7 +19,7 @@
   font-size: var(--text-sm);
   border-radius: var(--radius-md);
   text-decoration: none;
-  transition: top 200ms ease;
+  transition: top var(--duration-fast) ease;
 }
 
 /* --- Aparece en viewport al recibir foco por teclado --- */

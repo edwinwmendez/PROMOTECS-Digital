@@ -16,8 +16,8 @@
 
 /* --- Icono decorativo (gris para no competir con contenido real) --- */
 .empty-state__icon {
-  width: 48px;
-  height: 48px;
+  width: var(--size-icon-xl);
+  height: var(--size-icon-xl);
   color: var(--color-gray-400);
 }
 
@@ -36,6 +36,6 @@
   font-size: var(--text-base);
   color: var(--color-text-muted);
   line-height: var(--leading-normal);
-  max-width: 50ch;
+  max-width: var(--measure-narrow);
   margin: 0;
 }

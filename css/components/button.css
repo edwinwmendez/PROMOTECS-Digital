@@ -20,11 +20,11 @@
   border: none;
   text-decoration: none;
   transition:
-    background-color 200ms ease,
-    color 200ms ease,
-    border-color 200ms ease,
-    opacity 200ms ease,
-    transform 200ms ease;
+    background-color var(--duration-fast) ease,
+    color var(--duration-fast) ease,
+    border-color var(--duration-fast) ease,
+    opacity var(--duration-fast) ease,
+    transform var(--duration-fast) ease;
 }
 
 /* --- Variante: primary (CTA principal sobre fondo claro) --- */
@@ -65,7 +65,7 @@
 /* overlay sobre navy — sin token disponible para blanco con alpha */
 .btn--ghost {
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid var(--color-border-on-navy);
   color: var(--color-white);
   /* Compensar borde para altura consistente */
   padding: calc(var(--space-3) - 1px) calc(var(--space-6) - 1px);
@@ -73,7 +73,7 @@
 
 /* overlay sobre navy — sin token disponible para blanco con alpha */
 .btn--ghost:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--color-overlay-hover-on-navy);
 }
 
 /* --- Modifier: tamaño pequeño --- */

@@ -9,7 +9,7 @@
 .site-footer {
   background: var(--color-navy-900);
   padding: var(--space-12) var(--space-6);
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--color-on-navy);
   font-family: var(--font-body);
 }
 
@@ -18,7 +18,7 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-8);
-  max-width: 1280px;
+  max-width: var(--container-max);
   margin: 0 auto;
 }
 
@@ -63,10 +63,10 @@
 /* --- Enlaces del footer: color tenue, hover white --- */
 /* overlay blanco sobre navy — sin token disponible para blanco con alpha */
 .site-footer__links a {
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--color-on-navy-muted);
   text-decoration: none;
   font-size: var(--text-sm);
-  transition: color 200ms ease;
+  transition: color var(--duration-fast) ease;
 }
 
 .site-footer__links a:hover {
@@ -80,12 +80,12 @@
   flex-wrap: wrap;
   justify-content: space-between;
   gap: var(--space-2);
-  max-width: 1280px;
+  max-width: var(--container-max);
   margin: var(--space-8) auto 0 auto;
   padding-top: var(--space-6);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid var(--color-divider-on-navy);
   font-size: var(--text-xs);
-  color: rgba(255, 255, 255, 0.4);
+  color: var(--color-on-navy-subtle);
 }
 
 /* --- Desktop (lg): 3 columnas (brand ancha + 2 cols auxiliares) --- */

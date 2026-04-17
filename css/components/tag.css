@@ -1,7 +1,7 @@
 /* ==========================================================================
    Componente: Tag — PROMOTECS-Digital
    Pill pequeño para etiquetar áreas temáticas, perfiles profesionales, estados.
-   Uso color-mix(in srgb, <color> 12%, white) para fondos tenues consistentes.
+   Uso color-mix(in srgb, <color> 12%, var(--color-white)) para fondos tenues consistentes.
    TODO: extender a los 14 valores del enum area_tematica cuando se definan en seed.
    ========================================================================== */
 
@@ -22,25 +22,25 @@
 
 /* --- Variante: educación (navy con fondo tenue) --- */
 .tag--educacion {
-  background: color-mix(in srgb, var(--color-navy-700) 12%, white);
+  background: color-mix(in srgb, var(--color-navy-700) 12%, var(--color-white));
   color: var(--color-navy-700);
 }
 
 /* --- Variante: salud (success verde) --- */
 .tag--salud {
-  background: color-mix(in srgb, var(--color-success) 12%, white);
+  background: color-mix(in srgb, var(--color-success) 12%, var(--color-white));
   color: var(--color-success);
 }
 
 /* --- Variante: farmacia (warning naranja) --- */
 .tag--farmacia {
-  background: color-mix(in srgb, var(--color-warning) 12%, white);
+  background: color-mix(in srgb, var(--color-warning) 12%, var(--color-white));
   color: var(--color-warning);
 }
 
 /* --- Variante: derecho (info azul) --- */
 .tag--derecho {
-  background: color-mix(in srgb, var(--color-info) 12%, white);
+  background: color-mix(in srgb, var(--color-info) 12%, var(--color-white));
   color: var(--color-info);
 }
 
