@@ -37,6 +37,10 @@
   --color-warning: #f59e0b;
   --color-info: #2563eb;
 
+  /* --- Semánticos oscuros: texto sobre fondos color-mix al 12% (cumplen WCAG AA) --- */
+  --color-success-text: #14532d; /* green-900: ~7.7:1 sobre fondo salud */
+  --color-warning-text: #92400e; /* amber-800: ~8.1:1 sobre fondo farmacia */
+
   /* --- Aliases semánticos --- */
   --color-bg: var(--color-white);
   --color-text: var(--color-navy-900);
