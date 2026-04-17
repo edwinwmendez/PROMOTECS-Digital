@@ -107,4 +107,50 @@
   --radius-lg: 12px;
   --radius-xl: 16px;
   --radius-full: 9999px;
+
+  /* --- Overlays de texto sobre fondos navy (texto institucional) --- */
+  --color-on-navy-strong: rgba(255, 255, 255, 0.87);
+  --color-on-navy: rgba(255, 255, 255, 0.8);
+  --color-on-navy-muted: rgba(255, 255, 255, 0.65);
+  --color-on-navy-subtle: rgba(255, 255, 255, 0.4);
+
+  /* --- Superficies interactivas sobre navy (hover, borders, dividers) --- */
+  --color-overlay-hover-on-navy: rgba(255, 255, 255, 0.1);
+  --color-border-on-navy: rgba(255, 255, 255, 0.3);
+  --color-divider-on-navy: rgba(255, 255, 255, 0.1);
+
+  /* --- Overlays de gold (badges/decoraciones sobre fondos navy) --- */
+  --color-overlay-gold: rgba(212, 160, 23, 0.2); /* pill tag sobre hero */
+  --color-overlay-gold-subtle: rgba(212, 160, 23, 0.07); /* círculo decorativo de auth */
+
+  /* --- Duraciones de transición --- */
+  --duration-fast: 200ms;
+  --duration-normal: 400ms;
+  --duration-stagger: 80ms; /* delay entre cards animadas en grid */
+
+  /* --- Dimensiones fijas de UI (touch targets, iconos, avatares) --- */
+  --size-touch-min: 44px; /* WCAG 2.5.8 AAA target mínimo */
+  --size-icon-sm: 16px; /* iconos inline en texto */
+  --size-icon-md: 20px; /* iconos de info-items */
+  --size-icon-lg: 24px; /* iconos de navbar y toggles */
+  --size-icon-2xl: 32px; /* iconos medianos (card-module) */
+  --size-icon-xl: 48px; /* iconos grandes (empty-state) */
+  --size-avatar-sm: 28px; /* step-num circular, badges pequeños */
+  --size-avatar-md: 40px; /* card-programa__icon */
+  --size-avatar-lg: 90px; /* logo en auth-card */
+
+  /* --- Offsets de elementos decorativos posicionados (auth-brand deco) --- */
+  --auth-deco-offset: -130px;
+
+  /* --- Measures tipográficos (line-length óptimo) --- */
+  --measure-narrow: 50ch;
+  --measure: 60ch;
+
+  /* --- Max-widths de containers (layout horizontal) --- */
+  --container-max: 1280px;
+  --container-wide: 1040px;
+  --container-narrow: 900px;
+  --container-form: 640px;
+  --container-auth: 420px;
+  --container-sidebar: 340px;
 }
