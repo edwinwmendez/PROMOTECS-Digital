@@ -19,16 +19,6 @@ const MSG_EXITO = '¡Tu inscripción fue recibida! Te contactaremos en 24 horas.
 const MSG_PARTICIPANTE_NO_ENCONTRADO =
   'No encontramos tu perfil de participante. Por favor cierra sesión y vuelve a iniciarla.';
 
-// Los 4 programas hardcoded coinciden con catalogo.html (estado actual del sistema).
-// TODO(modulo-catalogo): migrar a query Supabase cuando se implemente el catálogo;
-// los IDs deben ser UUIDs reales de la tabla `programas` para que el INSERT respete la FK.
-const PROGRAMAS_HARDCODED = [
-  { id: 'diplomado-educacion', nombre: 'Diplomado en Educación y Gestión Escolar' },
-  { id: 'curso-farmacia', nombre: 'Actualización en Farmacia Clínica' },
-  { id: 'especializacion-salud', nombre: 'Especialización en Salud Pública y Epidemiología' },
-  { id: 'curso-gestion-publica', nombre: 'Gestión Pública y Modernización del Estado' },
-];
-
 // Si no hay sesión activa, persiste la URL de retorno y redirige a login.
 async function requireAuth() {
   const user = await getCurrentUser();
@@ -40,15 +30,41 @@ async function requireAuth() {
   return user;
 }
 
-// Hidrata el <select> de programas con las opciones hardcodeadas vía createElement.
-function hydrateProgramasSelect() {
+// Hidrata el <select> de programas consultando Supabase (estado=activo).
+async function hydrateProgramasSelect() {
   const select = document.getElementById('inscripcion-programa');
   if (!select) return;
-  PROGRAMAS_HARDCODED.forEach(({ id, nombre }) => {
-    const option = document.createElement('option');
-    option.value = id;
-    option.textContent = nombre;
-    select.appendChild(option);
+
+  const loadingOpt = document.createElement('option');
+  loadingOpt.value = '';
+  loadingOpt.textContent = 'Cargando programas...';
+  loadingOpt.disabled = true;
+  select.appendChild(loadingOpt);
+  select.disabled = true;
+
+  const { data, error } = await supabase
+    .from('programas')
+    .select('id, titulo')
+    .eq('estado', 'activo')
+    .order('titulo');
+
+  loadingOpt.remove();
+  select.disabled = false;
+
+  if (error || !data?.length) {
+    const errOpt = document.createElement('option');
+    errOpt.value = '';
+    errOpt.textContent = 'Error al cargar programas. Recarga la página.';
+    errOpt.disabled = true;
+    select.appendChild(errOpt);
+    return;
+  }
+
+  data.forEach(({ id, titulo }) => {
+    const opt = document.createElement('option');
+    opt.value = id;
+    opt.textContent = titulo;
+    select.appendChild(opt);
   });
 }
 
@@ -248,7 +264,7 @@ async function init() {
   const form = document.getElementById('form-inscripcion');
   if (!form) return;
 
-  hydrateProgramasSelect();
+  await hydrateProgramasSelect();
   form.addEventListener('submit', handleSubmit);
   initBlurValidation();
 }
