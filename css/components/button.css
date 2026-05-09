@@ -1,0 +1,95 @@
+/* ==========================================================================
+   Componente: Button — PROMOTECS-Digital
+   Extraído de header.css (change rediseno-sistema-ui, task P0.2).
+   Contrato BEM: .btn (base) + modifiers primary/secondary/outline/ghost/sm/full.
+   Todos los valores salen de tokens. NUNCA hard-code.
+   ========================================================================== */
+
+/* --- Base del botón: estructura y tipografía compartida --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-weight: var(--font-semibold);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  transition:
+    background-color var(--duration-fast) ease,
+    color var(--duration-fast) ease,
+    border-color var(--duration-fast) ease,
+    opacity var(--duration-fast) ease,
+    transform var(--duration-fast) ease;
+}
+
+/* --- Variante: primary (CTA principal sobre fondo claro) --- */
+.btn--primary {
+  background: var(--color-navy-800);
+  color: var(--color-white);
+}
+
+.btn--primary:hover {
+  background: var(--color-navy-700);
+}
+
+/* --- Variante: secondary (acento gold, nunca en botones principales) --- */
+.btn--secondary {
+  background: var(--color-gold-600);
+  color: var(--color-navy-900);
+}
+
+.btn--secondary:hover {
+  background: var(--color-gold-500);
+}
+
+/* --- Variante: outline (borde navy sobre fondo claro) --- */
+.btn--outline {
+  background: transparent;
+  border: 2px solid var(--color-navy-700);
+  color: var(--color-navy-700);
+  /* Compensar el borde de 2px para mantener altura consistente con .btn */
+  padding: calc(var(--space-3) - 2px) calc(var(--space-6) - 2px);
+}
+
+.btn--outline:hover {
+  background: var(--color-navy-700);
+  color: var(--color-white);
+}
+
+/* --- Variante: ghost (para uso sobre fondo navy oscuro, ej. header) --- */
+/* overlay sobre navy — sin token disponible para blanco con alpha */
+.btn--ghost {
+  background: transparent;
+  border: 1px solid var(--color-border-on-navy);
+  color: var(--color-white);
+  /* Compensar borde para altura consistente */
+  padding: calc(var(--space-3) - 1px) calc(var(--space-6) - 1px);
+}
+
+/* overlay sobre navy — sin token disponible para blanco con alpha */
+.btn--ghost:hover {
+  background: var(--color-overlay-hover-on-navy);
+}
+
+/* --- Modifier: tamaño pequeño --- */
+.btn--sm {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-sm);
+}
+
+/* --- Modifier: ancho total (común en forms) --- */
+.btn--full {
+  width: 100%;
+}
+
+/* --- Estado deshabilitado (disabled attr o modifier --loading) --- */
+.btn:disabled,
+.btn--loading {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

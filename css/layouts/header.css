@@ -1,0 +1,56 @@
+/* ==========================================================================
+   Layout: Header institucional — PROMOTECS-Digital
+   Reutilizable en todas las páginas del sitio (excepto login.html).
+   ========================================================================== */
+
+/* --- Header con fondo navy y borde dorado --- */
+/* z-index 110 mantiene logo + botón cerrar por encima del backdrop (90) y del nav (100). */
+.site-header {
+  position: relative;
+  z-index: 110;
+  background: var(--color-navy-800);
+  padding: var(--space-2) var(--space-6);
+  border-bottom: 3px solid var(--color-gold-600);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+/* --- Logo constrañido a 44px de alto (no depende de width del HTML) --- */
+.site-header__logo img {
+  height: var(--size-touch-min);
+  width: auto;
+}
+
+/* --- Session-ui en el header --- */
+.session-ui__greeting {
+  font-size: var(--text-sm);
+  color: var(--color-gray-200);
+  margin-right: var(--space-3);
+}
+
+.session-ui__logout {
+  color: var(--color-white);
+  background: transparent;
+  border: 1px solid var(--color-border-on-navy);
+}
+
+.session-ui__logout:hover {
+  background: var(--color-overlay-hover-on-navy);
+}
+
+.session-ui__login {
+  background: var(--color-gold-600);
+  color: var(--color-navy-900);
+}
+
+.session-ui__login:hover {
+  background: var(--color-gold-500);
+}
+
+/* Nota: .btn y .btn--sm movidos a css/components/button.css (change rediseno-sistema-ui P0.2). */

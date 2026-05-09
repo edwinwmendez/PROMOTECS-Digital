@@ -1,0 +1,146 @@
+/* ==========================================================================
+   Componente: Navbar — PROMOTECS-Digital
+   Estilos del <nav> dentro del site-header. El bloque .site-header vive en
+   layouts/header.css; aquí solo los elementos de navegación y el toggle mobile.
+   Mobile-first: nav oculto por defecto, toggle visible. Desde md se invierte.
+   ========================================================================== */
+
+/* --- Mobile (base): nav oculto, aparece con modifier --open --- */
+.site-header__nav {
+  display: none;
+}
+
+/* --- Modifier aplicado por navbar.js al tocar el toggle (overlay mobile) --- */
+/* navy-900 (más oscuro que el hero en navy-800) + shadow para separar visualmente
+   del contenido detrás. Combinado con .site-header__backdrop indica al user que
+   el resto de la página está pausado (patrón estándar Material/iOS). */
+.site-header__nav--open {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--color-navy-900);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-lg);
+  z-index: 100;
+}
+
+/* --- Backdrop scrim: oscurece el contenido detrás del menú mobile --- */
+/* Lo crea/destruye navbar.js al abrir/cerrar el menú. Click en él cierra el menú. */
+.site-header__backdrop {
+  position: fixed;
+  inset: 0;
+  background: var(--color-backdrop-scrim);
+  z-index: 90; /* menor que nav (100), mayor que el contenido de la página */
+  cursor: pointer;
+}
+
+/* --- Lista de enlaces: reset visual + flex --- */
+.site-header__nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- Enlace de navegación (44px min para cumplir WCAG 2.5.8 touch target) --- */
+/* overlay sobre navy — rgba con blanco para fade sin perder contraste */
+.site-header__nav-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--size-touch-min);
+  padding: var(--space-2) var(--space-3);
+  color: var(--color-on-navy);
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  transition:
+    background-color var(--duration-fast) ease,
+    color var(--duration-fast) ease;
+}
+
+/* --- Hover: fondo sutil blanco alpha + color full --- */
+/* overlay sobre navy — sin token disponible para blanco con alpha */
+.site-header__nav-link:hover {
+  background: var(--color-overlay-hover-on-navy);
+  border-radius: var(--radius-sm);
+  color: var(--color-white);
+}
+
+/* --- Página actual: subrayado gold + color full --- */
+.site-header__nav-link[aria-current='page'] {
+  border-bottom: 2px solid var(--color-gold-500);
+  color: var(--color-white);
+}
+
+/* --- Botón hamburger: visible solo mobile, 44×44 para touch target --- */
+.site-header__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--size-touch-min);
+  height: var(--size-touch-min);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--color-white);
+  padding: 0;
+}
+
+/* --- Iconos del toggle: por defecto menu visible, close oculto --- */
+/* filter fuerza blanco: los SVG de Lucide usan stroke=currentColor pero como <img> no
+   heredan el color del padre. Scoped a .site-header__toggle para no contaminar otros
+   usos futuros de .icon-menu/.icon-close en el proyecto. */
+.site-header__toggle .icon-menu,
+.site-header__toggle .icon-close {
+  filter: brightness(0) invert(1);
+}
+
+.icon-menu {
+  display: block;
+}
+
+.icon-close {
+  display: none;
+}
+
+/* --- Estado aria-expanded true: invertir iconos (hamburger → X) --- */
+.site-header__toggle[aria-expanded='true'] .icon-menu {
+  display: none;
+}
+
+.site-header__toggle[aria-expanded='true'] .icon-close {
+  display: block;
+}
+
+/* --- Desde tablet (md): layout desktop, oculta toggle, muestra nav inline --- */
+@media (min-width: 768px) {
+  .site-header__nav,
+  .site-header__nav--open {
+    display: flex;
+    position: static;
+    flex-direction: row;
+    background: transparent;
+    padding: 0;
+    border-top: none;
+  }
+
+  .site-header__nav-list {
+    flex-direction: row;
+    gap: var(--space-2);
+  }
+
+  .site-header__toggle {
+    display: none;
+  }
+
+  /* Desde md+ no hay menú mobile → no hay backdrop */
+  .site-header__backdrop {
+    display: none;
+  }
+}

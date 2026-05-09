@@ -1,0 +1,156 @@
+/* ==========================================================================
+   Página: Inscripción (inscripcion.html) — PROMOTECS-Digital
+   Layout split form + sidebar "¿Cómo funciona?" + form-grid responsivo.
+   Mobile-first: una columna; lg: form 1fr + sidebar 340px fijos.
+   Cero hex hardcoded — todo desde tokens.
+   ========================================================================== */
+
+/* --- Wrapper general de la página: padding y max-width estándar --- */
+.inscripcion__main {
+  max-width: var(--container-wide);
+  margin: 0 auto;
+  padding: var(--space-12) var(--space-4);
+}
+
+/* --- Layout: form + sidebar (mobile = una sola columna) --- */
+.inscripcion__layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+  align-items: start;
+}
+
+/* --- Card del formulario: blanca + sombra (sin bordes decorativos,
+   ver .claude/rules/no-decorative-borders.md) --- */
+.inscripcion__form-card {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-6);
+}
+
+/* --- Título del bloque "Datos de inscripción" --- */
+.inscripcion__form-title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  color: var(--color-navy-800);
+  margin: 0 0 var(--space-6) 0;
+}
+
+/* --- Grid interno para pares de campos cortos (nombres/apellidos, dni/teléfono) --- */
+/* Mobile: una sola columna; tablet+: dos columnas. */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+
+/* --- Modifier: ocupa toda la fila del form-grid --- */
+.form-grid__full {
+  grid-column: 1 / -1;
+}
+
+/* --- Textarea hereda estilos de form__input pero permite resize vertical --- */
+.form__textarea {
+  border: 1px solid var(--color-border);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  font-size: var(--text-base);
+  font-family: var(--font-body);
+  background: var(--color-white);
+  color: var(--color-text);
+  width: 100%;
+  min-height: var(--space-24);
+  resize: vertical;
+  transition: border-color var(--duration-fast) ease;
+}
+
+.form__textarea:focus {
+  border-color: var(--color-navy-500);
+  outline: 2px solid var(--color-navy-500);
+  outline-offset: 1px;
+}
+
+.form__textarea--error {
+  border-color: var(--color-danger);
+}
+
+/* --- Sidebar "¿Cómo funciona?" — card blanca pequeña (sin bordes decorativos) --- */
+.inscripcion__sidebar {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-6);
+}
+
+.inscripcion__sidebar-title {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: var(--font-bold);
+  color: var(--color-navy-800);
+  margin: 0 0 var(--space-4) 0;
+}
+
+/* --- Lista de pasos: contenedor flex column --- */
+.inscripcion__steps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* --- Cada paso: número circular + texto --- */
+.inscripcion__step {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+/* --- Círculo navy con número blanco (28x28) --- */
+.inscripcion__step-num {
+  flex-shrink: 0;
+  width: var(--size-avatar-sm);
+  height: var(--size-avatar-sm);
+  background: var(--color-navy-800);
+  color: var(--color-white);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--font-bold);
+}
+
+/* --- Texto del paso --- */
+.inscripcion__step-text {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: var(--leading-normal);
+}
+
+/* --- Tablet (md): form-grid pasa a 2 columnas --- */
+@media (min-width: 768px) {
+  .inscripcion__main {
+    padding: var(--space-16) var(--space-6);
+  }
+
+  .inscripcion__form-card {
+    padding: var(--space-8);
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* --- Desktop (lg): layout split form + sidebar 340px --- */
+@media (min-width: 1024px) {
+  .inscripcion__layout {
+    grid-template-columns: 1fr var(--container-sidebar);
+  }
+}
