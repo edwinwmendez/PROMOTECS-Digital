@@ -58,6 +58,16 @@ describe('a11y AC-9: landmarks en los 5 HTMLs con site-layout', () => {
   });
 });
 
+describe('session UI: header conectado al estado de autenticación', () => {
+  for (const filename of HTMLS_SIN_LOGIN) {
+    it(`${filename} expone #session-ui para renderizar login/logout dinámico`, () => {
+      const html = readHtml(filename);
+      expect(html).toContain('id="session-ui"');
+      expect(html).toContain('aria-live="polite"');
+    });
+  }
+});
+
 describe('a11y AC-5: aria-required en selects obligatorios de inscripcion.html', () => {
   const html = readHtml('inscripcion.html');
 
