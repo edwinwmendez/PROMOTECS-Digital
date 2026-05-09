@@ -28,6 +28,12 @@
 }
 
 /* --- Session-ui en el header --- */
+.session-ui {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
 .session-ui__greeting {
   font-size: var(--text-sm);
   color: var(--color-gray-200);
