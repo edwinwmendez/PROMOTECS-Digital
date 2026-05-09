@@ -23,7 +23,7 @@ Proyecto académico del **Grupo 14** — Ingeniería Web (NRC 36209 / 42298), Un
 
 ### Probar la validación de certificados
 
-Usa el código `PROMO-2026-001` en [validacion.html](https://edwinwmendez.github.io/PROMOTECS-Digital/validacion.html) para ver el flujo de verificación con datos reales.
+Usa el código `PROMOTECS-2026-001` en [validacion.html](https://edwinwmendez.github.io/PROMOTECS-Digital/validacion.html) para ver el flujo de verificación con datos reales.
 
 ---
 
