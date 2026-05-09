@@ -31,9 +31,14 @@ function hideResult() {
 }
 
 // Formatea fecha ISO (YYYY-MM-DD) a formato legible es-PE.
+// Parsea los componentes manualmente para evitar el desfase de zona horaria:
+// new Date('2026-05-09') → UTC midnight → local (UTC-5) = 8 de mayo ❌
 function formatFechaEmision(fechaIso) {
   if (!fechaIso) return '—';
-  const d = new Date(fechaIso);
+  const parts = fechaIso.split('-').map(Number);
+  if (parts.length !== 3) return fechaIso;
+  const [year, month, day] = parts;
+  const d = new Date(year, month - 1, day);
   if (Number.isNaN(d.getTime())) return fechaIso;
   return d.toLocaleDateString('es-PE', {
     year: 'numeric',
