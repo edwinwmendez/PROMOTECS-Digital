@@ -37,7 +37,7 @@
   background: var(--color-white);
   color: var(--color-text);
   width: 100%;
-  transition: border-color 0.2s ease;
+  transition: border-color var(--duration-fast) ease;
 }
 
 /* --- Focus: borde y outline visibles (nunca outline: none sin reemplazo) --- */

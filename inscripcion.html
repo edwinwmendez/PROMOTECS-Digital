@@ -10,426 +10,337 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap"
       rel="stylesheet"
     />
+    <!-- Cascada CSS: base → componentes → layouts → página -->
     <link rel="stylesheet" href="./css/base.css" />
-    <style>
-      :root {
-        --color-navy-900: #061a36;
-        --color-navy-800: #0b2545;
-        --color-navy-700: #13315c;
-        --color-gold-600: #d4a017;
-        --color-gold-500: #e5a823;
-        --color-white: #fff;
-        --color-gray-50: #f8fafc;
-        --color-gray-200: #e2e8f0;
-        --color-gray-600: #475569;
-        --color-success: #16a34a;
-        --font-display: 'Montserrat', sans-serif;
-        --font-body: 'Inter', sans-serif;
-        --shadow-md: 0 4px 6px rgba(11, 37, 69, 0.08);
-        --radius-md: 8px;
-        --radius-lg: 12px;
-        --radius-full: 9999px;
-      }
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-      body {
-        font-family: var(--font-body);
-        color: #1e293b;
-        background: var(--color-gray-50);
-      }
-      .navbar {
-        background: var(--color-navy-800);
-        border-bottom: 3px solid var(--color-gold-600);
-        position: sticky;
-        top: 0;
-        z-index: 100;
-      }
-      .navbar__inner {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 12px 24px;
-      }
-      .navbar__logo img {
-        height: 48px;
-        width: auto;
-      }
-      .navbar__links {
-        display: flex;
-        gap: 4px;
-        list-style: none;
-      }
-      .navbar__links a {
-        color: rgba(255, 255, 255, 0.8);
-        text-decoration: none;
-        font-size: 14px;
-        font-weight: 500;
-        padding: 8px 14px;
-        border-radius: var(--radius-md);
-        transition: background 0.2s;
-      }
-      .navbar__links a:hover,
-      .navbar__links a.active {
-        background: rgba(255, 255, 255, 0.12);
-        color: #fff;
-      }
-      .navbar__cta {
-        background: var(--color-gold-600);
-        color: var(--color-navy-900);
-        font-weight: 700;
-        font-size: 14px;
-        padding: 9px 20px;
-        border-radius: var(--radius-md);
-        text-decoration: none;
-      }
-      .page-hero {
-        background: linear-gradient(135deg, var(--color-navy-900), var(--color-navy-700));
-        padding: 56px 24px;
-        text-align: center;
-      }
-      .page-hero__tag {
-        display: inline-block;
-        background: rgba(212, 160, 23, 0.15);
-        color: var(--color-gold-500);
-        border: 1px solid var(--color-gold-600);
-        padding: 5px 14px;
-        border-radius: 9999px;
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        margin-bottom: 16px;
-      }
-      .page-hero__title {
-        font-family: var(--font-display);
-        font-size: 2rem;
-        font-weight: 900;
-        color: #fff;
-        margin-bottom: 8px;
-      }
-      .page-hero__subtitle {
-        color: rgba(255, 255, 255, 0.65);
-        font-size: 16px;
-      }
-      .main {
-        max-width: 960px;
-        margin: 0 auto;
-        padding: 48px 24px;
-        display: grid;
-        grid-template-columns: 1fr 340px;
-        gap: 32px;
-        align-items: start;
-      }
-      .form-card {
-        background: #fff;
-        border-radius: var(--radius-lg);
-        box-shadow: var(--shadow-md);
-        padding: 40px;
-        border-top: 4px solid var(--color-gold-600);
-      }
-      .form-card__title {
-        font-family: var(--font-display);
-        font-size: 1.25rem;
-        font-weight: 700;
-        color: var(--color-navy-800);
-        margin-bottom: 24px;
-      }
-      .form-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 16px;
-      }
-      .form-group {
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-      }
-      .form-group.full {
-        grid-column: 1/-1;
-      }
-      label {
-        font-size: 13px;
-        font-weight: 600;
-        color: #334155;
-      }
-      input,
-      select,
-      textarea {
-        border: 1px solid var(--color-gray-200);
-        border-radius: var(--radius-md);
-        padding: 10px 12px;
-        font-size: 14px;
-        font-family: var(--font-body);
-        outline: none;
-        transition: border 0.2s;
-        width: 100%;
-      }
-      input:focus,
-      select:focus,
-      textarea:focus {
-        border-color: var(--color-navy-800);
-      }
-      textarea {
-        resize: vertical;
-        min-height: 80px;
-      }
-      .btn-submit {
-        width: 100%;
-        margin-top: 24px;
-        background: var(--color-navy-800);
-        color: #fff;
-        border: none;
-        padding: 14px;
-        border-radius: var(--radius-md);
-        font-size: 16px;
-        font-weight: 700;
-        cursor: pointer;
-        font-family: var(--font-display);
-        transition: background 0.2s;
-      }
-      .btn-submit:hover {
-        background: var(--color-navy-700);
-      }
-      .sidebar-card {
-        background: #fff;
-        border-radius: var(--radius-lg);
-        box-shadow: var(--shadow-md);
-        padding: 24px;
-        border-top: 4px solid var(--color-gold-600);
-      }
-      .sidebar-card__title {
-        font-family: var(--font-display);
-        font-size: 15px;
-        font-weight: 700;
-        color: var(--color-navy-800);
-        margin-bottom: 16px;
-      }
-      .sidebar-step {
-        display: flex;
-        gap: 12px;
-        margin-bottom: 16px;
-        align-items: flex-start;
-      }
-      .step-num {
-        width: 28px;
-        height: 28px;
-        min-width: 28px;
-        background: var(--color-navy-800);
-        color: #fff;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 12px;
-        font-weight: 700;
-      }
-      .step-text {
-        font-size: 13px;
-        color: var(--color-gray-600);
-        line-height: 1.5;
-      }
-      footer {
-        background: var(--color-navy-900);
-        color: rgba(255, 255, 255, 0.6);
-        padding: 48px 24px 24px;
-        margin-top: 80px;
-      }
-      .footer__inner {
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-      .footer__grid {
-        display: grid;
-        grid-template-columns: 2fr 1fr 1fr;
-        gap: 48px;
-        margin-bottom: 48px;
-      }
-      .footer__brand-name {
-        font-family: var(--font-display);
-        font-size: 18px;
-        font-weight: 800;
-        color: #fff;
-        margin-bottom: 8px;
-      }
-      .footer__brand-desc {
-        font-size: 14px;
-        line-height: 1.7;
-      }
-      .footer__col-title {
-        font-size: 13px;
-        font-weight: 700;
-        color: #fff;
-        text-transform: uppercase;
-        letter-spacing: 0.06em;
-        margin-bottom: 16px;
-      }
-      .footer__links {
-        list-style: none;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-      .footer__links a {
-        color: rgba(255, 255, 255, 0.6);
-        text-decoration: none;
-        font-size: 14px;
-      }
-      .footer__links li {
-        font-size: 14px;
-      }
-      .footer__bottom {
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        padding-top: 24px;
-        font-size: 13px;
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 8px;
-      }
-    </style>
+    <link rel="stylesheet" href="./css/components/skip-link.css" />
+    <link rel="stylesheet" href="./css/components/button.css" />
+    <link rel="stylesheet" href="./css/components/page-hero.css" />
+    <link rel="stylesheet" href="./css/components/navbar.css" />
+    <link rel="stylesheet" href="./css/components/form.css" />
+    <link rel="stylesheet" href="./css/components/alert.css" />
+    <link rel="stylesheet" href="./css/layouts/header.css" />
+    <link rel="stylesheet" href="./css/layouts/footer.css" />
+    <link rel="stylesheet" href="./css/pages/inscripcion.css" />
   </head>
   <body>
-    <header>
-      <nav class="navbar" aria-label="Navegación principal">
-        <div class="navbar__inner">
-          <a href="./index.html" class="navbar__logo"
-            ><img src="./assets/images/Logotipo.png" alt="IIC PROMOTECS E.I.R.L."
-          /></a>
-          <ul class="navbar__links">
-            <li><a href="./index.html">Inicio</a></li>
-            <li><a href="./catalogo.html">Programas</a></li>
-            <li><a href="./inscripcion.html" class="active">Inscripción</a></li>
-            <li><a href="./validacion.html">Certificados</a></li>
-            <li><a href="./contacto.html">Contacto</a></li>
+    <!-- Skip link a contenido principal (accesibilidad WCAG 2.4.1) -->
+    <a href="#main-content" class="skip-link">Ir al contenido principal</a>
+
+    <!-- Header institucional unificado -->
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a href="./index.html" class="site-header__logo">
+          <picture>
+            <source srcset="./assets/images/logotipo.webp" type="image/webp" />
+            <img
+              src="./assets/images/logotipo-fallback.png"
+              alt="IIC PROMOTECS E.I.R.L."
+              width="96"
+              height="96"
+            />
+          </picture>
+        </a>
+        <button
+          type="button"
+          class="site-header__toggle"
+          aria-expanded="false"
+          aria-controls="site-header-nav"
+          aria-label="Abrir menú de navegación"
+        >
+          <img
+            src="./assets/icons/menu.svg"
+            alt=""
+            aria-hidden="true"
+            class="icon-menu"
+            width="24"
+            height="24"
+          />
+          <img
+            src="./assets/icons/x.svg"
+            alt=""
+            aria-hidden="true"
+            class="icon-close"
+            width="24"
+            height="24"
+          />
+        </button>
+        <nav id="site-header-nav" class="site-header__nav" aria-label="Navegación principal">
+          <ul class="site-header__nav-list">
+            <li><a href="./index.html" class="site-header__nav-link">Inicio</a></li>
+            <li><a href="./catalogo.html" class="site-header__nav-link">Programas</a></li>
+            <li>
+              <a href="./inscripcion.html" class="site-header__nav-link" aria-current="page"
+                >Inscripción</a
+              >
+            </li>
+            <li><a href="./validacion.html" class="site-header__nav-link">Certificados</a></li>
+            <li><a href="./contacto.html" class="site-header__nav-link">Contacto</a></li>
+            <li><a href="./login.html" class="btn btn--secondary btn--sm">Ingresar</a></li>
           </ul>
-          <a href="./login.html" class="navbar__cta">Ingresar</a>
-        </div>
-      </nav>
-    </header>
-    <section class="page-hero">
-      <div class="page-hero__tag">Proceso simple y rápido</div>
-      <h1 class="page-hero__title">Inscripción en Línea</h1>
-      <p class="page-hero__subtitle">
-        Completa tu registro y reserva tu lugar en el programa de tu elección
-      </p>
-    </section>
-    <main class="main">
-      <div class="form-card">
-        <h2 class="form-card__title">Datos de inscripción</h2>
-        <form novalidate>
-          <div class="form-grid">
-            <div class="form-group">
-              <label for="nombres">Nombres</label
-              ><input type="text" id="nombres" placeholder="Ej: María Elena" required />
-            </div>
-            <div class="form-group">
-              <label for="apellidos">Apellidos</label
-              ><input type="text" id="apellidos" placeholder="Ej: López García" required />
-            </div>
-            <div class="form-group">
-              <label for="dni">DNI</label
-              ><input type="text" id="dni" placeholder="12345678" maxlength="8" required />
-            </div>
-            <div class="form-group">
-              <label for="telefono">Teléfono</label
-              ><input type="tel" id="telefono" placeholder="999 888 777" />
-            </div>
-            <div class="form-group full">
-              <label for="email">Correo electrónico</label
-              ><input type="email" id="email" placeholder="correo@ejemplo.com" required />
-            </div>
-            <div class="form-group full">
-              <label for="programa">Programa de interés</label>
-              <select id="programa" required>
-                <option value="" disabled selected>Selecciona un programa</option>
-                <option>Diplomado en Gestión Pública y Administración del Estado</option>
-                <option>Especialización en Derecho Administrativo</option>
-                <option>Diplomado en Salud Pública y Gestión Hospitalaria</option>
-                <option>Especialización en Psicología Clínica</option>
-                <option>Diplomado en Farmacología Clínica</option>
-                <option>Curso de Contabilidad Gubernamental y SIAF</option>
-              </select>
-            </div>
-            <div class="form-group full">
-              <label for="modalidad">Modalidad preferida</label>
-              <select id="modalidad">
-                <option>Virtual</option>
-                <option>Presencial</option>
-                <option>Semipresencial</option>
-              </select>
-            </div>
-            <div class="form-group full">
-              <label for="mensaje">Consulta adicional (opcional)</label
-              ><textarea
-                id="mensaje"
-                placeholder="¿Tienes alguna consulta sobre el programa?"
-              ></textarea>
-            </div>
-          </div>
-          <button type="submit" class="btn-submit">Enviar solicitud de inscripción</button>
-        </form>
+        </nav>
       </div>
-      <aside class="sidebar-card">
-        <h3 class="sidebar-card__title">¿Cómo funciona?</h3>
-        <div class="sidebar-step">
-          <div class="step-num">1</div>
-          <div class="step-text">
-            Completa el formulario con tus datos personales y el programa de interés.
-          </div>
+    </header>
+
+    <main id="main-content" tabindex="-1">
+      <!-- Hero de la página -->
+      <section class="page-hero">
+        <span class="page-hero__tag">Proceso simple y rápido</span>
+        <h1 class="page-hero__title">Inscripción en Línea</h1>
+        <p class="page-hero__subtitle">
+          Completa tu registro y reserva tu lugar en el programa de tu elección.
+        </p>
+      </section>
+
+      <!-- Layout principal: formulario + sidebar -->
+      <div class="inscripcion__main">
+        <div class="inscripcion__layout">
+          <!-- Formulario de inscripción -->
+          <section class="inscripcion__form-card" aria-labelledby="inscripcion-titulo">
+            <h2 id="inscripcion-titulo" class="inscripcion__form-title">Datos de inscripción</h2>
+
+            <form id="form-inscripcion" class="form" novalidate>
+              <!-- Alertas de error y éxito -->
+              <div
+                class="alert alert--danger"
+                id="inscripcion-alert"
+                role="alert"
+                aria-live="assertive"
+                hidden
+              ></div>
+              <div
+                class="alert alert--success"
+                id="inscripcion-success"
+                role="status"
+                aria-live="polite"
+                hidden
+              ></div>
+
+              <!-- Grid: nombres + apellidos en par; resto full -->
+              <div class="form-grid">
+                <div class="form__group">
+                  <label class="form__label" for="inscripcion-nombres">Nombres</label>
+                  <input
+                    class="form__input"
+                    type="text"
+                    id="inscripcion-nombres"
+                    name="nombres"
+                    autocomplete="given-name"
+                    maxlength="60"
+                    required
+                    aria-required="true"
+                    aria-describedby="inscripcion-nombres-error"
+                  />
+                  <span
+                    class="form__error"
+                    id="inscripcion-nombres-error"
+                    aria-live="polite"
+                  ></span>
+                </div>
+
+                <div class="form__group">
+                  <label class="form__label" for="inscripcion-apellidos">Apellidos</label>
+                  <input
+                    class="form__input"
+                    type="text"
+                    id="inscripcion-apellidos"
+                    name="apellidos"
+                    autocomplete="family-name"
+                    maxlength="60"
+                    required
+                    aria-required="true"
+                    aria-describedby="inscripcion-apellidos-error"
+                  />
+                  <span
+                    class="form__error"
+                    id="inscripcion-apellidos-error"
+                    aria-live="polite"
+                  ></span>
+                </div>
+
+                <div class="form__group">
+                  <label class="form__label" for="inscripcion-dni">DNI</label>
+                  <input
+                    class="form__input"
+                    type="text"
+                    id="inscripcion-dni"
+                    name="dni"
+                    inputmode="numeric"
+                    pattern="\d{8}"
+                    maxlength="8"
+                    autocomplete="off"
+                    required
+                    aria-required="true"
+                    aria-describedby="inscripcion-dni-error"
+                  />
+                  <span class="form__error" id="inscripcion-dni-error" aria-live="polite"></span>
+                </div>
+
+                <div class="form__group">
+                  <label class="form__label" for="inscripcion-telefono">Teléfono</label>
+                  <input
+                    class="form__input"
+                    type="tel"
+                    id="inscripcion-telefono"
+                    name="telefono"
+                    inputmode="numeric"
+                    autocomplete="tel"
+                    maxlength="9"
+                    required
+                    aria-required="true"
+                    aria-describedby="inscripcion-telefono-error"
+                  />
+                  <span
+                    class="form__error"
+                    id="inscripcion-telefono-error"
+                    aria-live="polite"
+                  ></span>
+                </div>
+
+                <div class="form__group form-grid__full">
+                  <label class="form__label" for="inscripcion-email">Correo electrónico</label>
+                  <input
+                    class="form__input"
+                    type="email"
+                    id="inscripcion-email"
+                    name="email"
+                    autocomplete="email"
+                    required
+                    aria-required="true"
+                    aria-describedby="inscripcion-email-error"
+                  />
+                  <span class="form__error" id="inscripcion-email-error" aria-live="polite"></span>
+                </div>
+
+                <div class="form__group form-grid__full">
+                  <label class="form__label" for="inscripcion-programa">Programa de interés</label>
+                  <select
+                    class="form__select"
+                    id="inscripcion-programa"
+                    name="programa_id"
+                    required
+                    aria-required="true"
+                    aria-describedby="inscripcion-programa-error"
+                  >
+                    <option value="" disabled selected>Selecciona un programa</option>
+                  </select>
+                  <span
+                    class="form__error"
+                    id="inscripcion-programa-error"
+                    aria-live="polite"
+                  ></span>
+                </div>
+
+                <div class="form__group form-grid__full">
+                  <label class="form__label" for="inscripcion-modalidad">Modalidad preferida</label>
+                  <select
+                    class="form__select"
+                    id="inscripcion-modalidad"
+                    name="modalidad"
+                    required
+                    aria-required="true"
+                    aria-describedby="inscripcion-modalidad-error"
+                  >
+                    <option value="virtual">Virtual</option>
+                    <option value="presencial">Presencial</option>
+                    <option value="semipresencial">Semipresencial</option>
+                  </select>
+                  <span
+                    class="form__error"
+                    id="inscripcion-modalidad-error"
+                    aria-live="polite"
+                  ></span>
+                </div>
+
+                <div class="form__group form-grid__full">
+                  <label class="form__label" for="inscripcion-mensaje"
+                    >Consulta adicional (opcional)</label
+                  >
+                  <textarea
+                    class="form__textarea"
+                    id="inscripcion-mensaje"
+                    name="mensaje"
+                    maxlength="500"
+                    aria-describedby="inscripcion-mensaje-hint"
+                  ></textarea>
+                  <span class="form__hint" id="inscripcion-mensaje-hint"
+                    >Hasta 500 caracteres.</span
+                  >
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn--primary btn--full">
+                Enviar solicitud de inscripción
+              </button>
+            </form>
+          </section>
+
+          <!-- Sidebar: cómo funciona -->
+          <aside class="inscripcion__sidebar" aria-labelledby="inscripcion-pasos-titulo">
+            <h2 id="inscripcion-pasos-titulo" class="inscripcion__sidebar-title">
+              ¿Cómo funciona?
+            </h2>
+            <ol class="inscripcion__steps">
+              <li class="inscripcion__step">
+                <span class="inscripcion__step-num" aria-hidden="true">1</span>
+                <span class="inscripcion__step-text">Completa el formulario.</span>
+              </li>
+              <li class="inscripcion__step">
+                <span class="inscripcion__step-num" aria-hidden="true">2</span>
+                <span class="inscripcion__step-text"
+                  >Nuestro equipo te contactará en 24 horas.</span
+                >
+              </li>
+              <li class="inscripcion__step">
+                <span class="inscripcion__step-num" aria-hidden="true">3</span>
+                <span class="inscripcion__step-text">Recibirás instrucciones de pago.</span>
+              </li>
+              <li class="inscripcion__step">
+                <span class="inscripcion__step-num" aria-hidden="true">4</span>
+                <span class="inscripcion__step-text"
+                  >Obtienes tu certificado con código único de validación.</span
+                >
+              </li>
+            </ol>
+          </aside>
         </div>
-        <div class="sidebar-step">
-          <div class="step-num">2</div>
-          <div class="step-text">
-            Nuestro equipo validará tu solicitud y te contactará en 24 horas.
-          </div>
-        </div>
-        <div class="sidebar-step">
-          <div class="step-num">3</div>
-          <div class="step-text">Recibirás las instrucciones de pago y acceso a la plataforma.</div>
-        </div>
-        <div class="sidebar-step">
-          <div class="step-num">4</div>
-          <div class="step-text">
-            Al completar el programa, obtienes tu certificado con código único de validación.
-          </div>
-        </div>
-      </aside>
+      </div>
     </main>
-    <footer>
-      <div class="footer__inner">
-        <div class="footer__grid">
-          <div>
-            <div class="footer__brand-name">IIC PROMOTECS E.I.R.L.</div>
-            <p class="footer__brand-desc">
-              Instituto de Investigación y Capacitación. RUC 20608895150.
-            </p>
-          </div>
-          <div>
-            <div class="footer__col-title">Plataforma</div>
-            <ul class="footer__links">
-              <li><a href="./catalogo.html">Catálogo</a></li>
-              <li><a href="./inscripcion.html">Inscripción</a></li>
-              <li><a href="./validacion.html">Certificados</a></li>
-            </ul>
-          </div>
-          <div>
-            <div class="footer__col-title">Contacto</div>
-            <ul class="footer__links">
-              <li>📍 Leoncio Prado 154, Barranca</li>
-              <li>📧 informes@promotecs.edu.pe</li>
-            </ul>
-          </div>
+
+    <!-- Footer institucional unificado -->
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <div>
+          <p class="site-footer__brand-name">IIC PROMOTECS E.I.R.L.</p>
+          <p class="site-footer__brand-desc">
+            Instituto de Investigación y Capacitación para profesionales del sector público y
+            privado. RUC 20608895150.
+          </p>
         </div>
-        <div class="footer__bottom">
-          <span>© 2026 IIC PROMOTECS E.I.R.L.</span><span>Barranca, Lima — Perú</span>
+        <div>
+          <p class="site-footer__col-title">Plataforma</p>
+          <ul class="site-footer__links">
+            <li><a href="./catalogo.html">Catálogo de Programas</a></li>
+            <li><a href="./inscripcion.html">Inscripción en Línea</a></li>
+            <li><a href="./validacion.html">Validar Certificado</a></li>
+            <li><a href="./login.html">Área de Participantes</a></li>
+          </ul>
         </div>
+        <div>
+          <p class="site-footer__col-title">Contacto</p>
+          <ul class="site-footer__links">
+            <li>Leoncio Prado 154, 2do piso, Barranca, Lima</li>
+            <li>informes@promotecs.edu.pe</li>
+          </ul>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        <span>© 2026 IIC PROMOTECS E.I.R.L. Todos los derechos reservados.</span>
+        <span>Barranca, Lima — Perú</span>
       </div>
     </footer>
+
+    <script type="module" src="./js/utils/navbar.js"></script>
     <script type="module" src="./js/modules/session-ui.js"></script>
+    <script type="module" src="./js/modules/inscripcion.js"></script>
   </body>
 </html>

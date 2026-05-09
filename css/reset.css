@@ -57,8 +57,8 @@ a {
   text-decoration: inherit;
 }
 
-/* Accesibilidad: focus visible para navegación por teclado */
+/* Accesibilidad: focus visible para navegación por teclado (yellow-400 para contraste sobre navy) */
 :focus-visible {
-  outline: 2px solid var(--color-primary);
+  outline: 2px solid var(--color-yellow-400);
   outline-offset: 2px;
 }

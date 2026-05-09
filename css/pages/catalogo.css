@@ -1,0 +1,98 @@
+/* ==========================================================================
+   Página: Catálogo (catalogo.html) — PROMOTECS-Digital
+   Solo estilos específicos del catálogo de programas que no cubren los
+   componentes reutilizables (.page-hero, .card-programa, .tag, .btn).
+   Mobile-first. Cero hex hardcoded. Todos los valores desde tokens.
+   ========================================================================== */
+
+/* --- Barra de filtros: fondo blanco con borde inferior sutil --- */
+.catalogo__filters {
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--space-4) var(--space-4);
+}
+
+/* --- Inner con max-width, flex wrap responsivo --- */
+.catalogo__filters-inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+/* --- Etiqueta "Filtrar por:" descriptiva --- */
+.catalogo__filter-label {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  color: var(--color-text-muted);
+}
+
+/* --- Selects del filtro: altura y borde consistentes --- */
+.catalogo__filter-select,
+.catalogo__filter-input {
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-white);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  outline: none;
+  transition: border-color var(--duration-fast) ease;
+}
+
+/* --- Input de búsqueda: crece para ocupar espacio disponible --- */
+.catalogo__filter-input {
+  flex: 1 1 220px;
+  min-width: 0;
+}
+
+/* --- Focus: borde navy consistente con el resto del sitio --- */
+.catalogo__filter-select:focus,
+.catalogo__filter-input:focus {
+  border-color: var(--color-primary);
+}
+
+/* --- Sección contenedora del grid de programas --- */
+.catalogo__section {
+  padding: var(--space-12) var(--space-4);
+  background: var(--color-gray-50);
+}
+
+/* --- Inner con max-width para alinear el grid --- */
+.catalogo__section-inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+/* --- Grid de cards de programas (mobile: 1 columna) --- */
+.catalogo__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+/* --- Tablet (md): 2 columnas, padding lateral mayor --- */
+@media (min-width: 768px) {
+  .catalogo__filters {
+    padding: var(--space-4) var(--space-6);
+  }
+
+  .catalogo__section {
+    padding: var(--space-16) var(--space-6);
+  }
+
+  .catalogo__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* --- Desktop (lg): 3 columnas de cards --- */
+@media (min-width: 1024px) {
+  .catalogo__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

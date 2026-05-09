@@ -91,6 +91,9 @@ coverage/
 .nyc_output/
 playwright-report/
 test-results/
+.playwright-mcp/
+/hamburger-*.png
+/navbar-*.png
 
 # ============================================
 # Archivos personales / scratch
