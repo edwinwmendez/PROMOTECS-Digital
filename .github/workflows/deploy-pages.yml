@@ -1,0 +1,123 @@
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    name: Validate static site
+    runs-on: ubuntu-latest
+    env:
+      CI: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Check format
+        run: npm run format:check
+
+      - name: Unit tests
+        run: npm test
+
+      - name: Create config.js for browser tests
+        run: cp js/config.example.js js/config.js
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: E2E tests
+        run: npm run test:e2e
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: validate
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Prepare static artifact
+        run: |
+          rm -rf _site
+          mkdir -p _site
+          cp index.html catalogo.html inscripcion.html validacion.html contacto.html login.html _site/
+          cp -R assets css js _site/
+          rm -f _site/js/config.example.js
+          touch _site/.nojekyll
+          find _site -name '.DS_Store' -delete
+
+      - name: Generate production config.js
+        env:
+          SUPABASE_URL: ${{ vars.SUPABASE_URL || secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ vars.SUPABASE_ANON_KEY || secrets.SUPABASE_ANON_KEY }}
+          EMAILJS_SERVICE_ID: ${{ vars.EMAILJS_SERVICE_ID || secrets.EMAILJS_SERVICE_ID }}
+          EMAILJS_TEMPLATE_ID: ${{ vars.EMAILJS_TEMPLATE_ID || secrets.EMAILJS_TEMPLATE_ID }}
+          EMAILJS_PUBLIC_KEY: ${{ vars.EMAILJS_PUBLIC_KEY || secrets.EMAILJS_PUBLIC_KEY }}
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+
+          function required(name) {
+            const value = process.env[name];
+            if (!value) {
+              throw new Error(`${name} no está configurado en GitHub Variables/Secrets`);
+            }
+            return value;
+          }
+
+          function optional(name) {
+            return process.env[name] || '';
+          }
+
+          const config = {
+            SUPABASE_URL: required('SUPABASE_URL'),
+            SUPABASE_ANON_KEY: required('SUPABASE_ANON_KEY'),
+            EMAILJS_SERVICE_ID: optional('EMAILJS_SERVICE_ID'),
+            EMAILJS_TEMPLATE_ID: optional('EMAILJS_TEMPLATE_ID'),
+            EMAILJS_PUBLIC_KEY: optional('EMAILJS_PUBLIC_KEY'),
+          };
+
+          const content = `${Object.entries(config)
+            .map(([key, value]) => `export const ${key} = ${JSON.stringify(value)};`)
+            .join('\n')}\n`;
+
+          fs.writeFileSync('_site/js/config.js', content);
+          NODE
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
