@@ -1,8 +1,10 @@
 // Módulo de contacto — PROMOTECS-Digital
 // Maneja el formulario público de contacto usando EmailJS.
 // Patrón heredado de js/modules/login.js (setSubmitLoading, showAlert, blur validation).
+import * as config from '../config.js';
 import { validateEmail, validateRequired } from '../utils/form-validator.js';
-import { EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_PUBLIC_KEY } from '../config.js';
+
+const { EMAILJS_SERVICE_ID = '', EMAILJS_TEMPLATE_ID = '', EMAILJS_PUBLIC_KEY = '' } = config;
 
 // Inicializa EmailJS si el SDK global está disponible (cargado vía CDN en contacto.html).
 if (typeof window.emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY) {

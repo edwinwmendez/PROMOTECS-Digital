@@ -1,103 +1,262 @@
 # PROMOTECS-Digital
 
-Sistema web de gestión de capacitación y certificación profesional para **IIC PROMOTECS E.I.R.L.** — instituto peruano de educación continua ubicado en Barranca, Lima.
+Sistema web público para **IIC PROMOTECS E.I.R.L.** — instituto peruano de educación continua ubicado en Barranca, Lima. Permite consultar programas, registrar participantes, gestionar inscripción en línea y validar certificados por código único.
 
 Proyecto académico del **Grupo 14** — Ingeniería Web 2026-10, Universidad Continental. Docente: Christian Vega.
 
 ## Características
 
-- **Catálogo de programas**: consulta de cursos, diplomados y especializaciones con filtros por área temática y modalidad
-- **Inscripción en línea**: registro de participantes con selección de perfil profesional
-- **Validación de certificados**: verificación pública de autenticidad mediante código único
-- **Contacto**: formulario de consultas vía EmailJS
+- **Catálogo de programas**: cursos, diplomados y especializaciones con filtros por área temática y modalidad.
+- **Inscripción en línea**: formulario protegido para participantes autenticados.
+- **Login y registro**: autenticación con Supabase Auth y creación automática del perfil de participante.
+- **Validación de certificados**: verificación pública mediante código único.
+- **Contacto**: formulario de consultas integrado con EmailJS.
+- **Accesibilidad**: pruebas E2E con axe-core para WCAG AA.
+
+## Stack
+
+| Capa         | Tecnología                                                    |
+| ------------ | ------------------------------------------------------------- |
+| Presentación | HTML5 semántico + CSS3 + JavaScript ES6+ vanilla              |
+| Lógica       | JavaScript ES6+ + Supabase REST API vía `fetch()`/cliente ESM |
+| Datos        | Supabase: PostgreSQL + Row Level Security                     |
+| Hosting      | GitHub Pages                                                  |
+| Email        | EmailJS                                                       |
+
+> **Restricción del curso:** no se permiten frameworks frontend en producción. Nada de React, Vue, Angular, jQuery, Bootstrap, Tailwind ni TypeScript en el bundle final. Vite existe solo como servidor de desarrollo.
 
 ## Requisitos previos
 
-- **Node.js 22+** (ver `.nvmrc`)
-- **Git** con soporte para hooks (Husky)
-- En Windows: [Git for Windows](https://gitforwindows.org/) incluye bash necesario para los hooks
+- **Node.js 22+** — ver `.nvmrc`.
+- **npm** — viene con Node.js.
+- **Git** con soporte para hooks de Husky.
+- En Windows: instalar [Git for Windows](https://gitforwindows.org/) para tener Bash compatible con hooks.
 
-## Instalación
+Verifica tu entorno:
 
 ```bash
-# Clonar el repositorio
+node --version
+npm --version
+git --version
+```
+
+## Clonar el repositorio
+
+Elige una opción según tu configuración local.
+
+### Opción A — HTTPS
+
+Recomendada si todavía no configuraste claves SSH.
+
+```bash
 git clone https://github.com/edwinwmendez/PROMOTECS-Digital.git
 cd PROMOTECS-Digital
+```
 
-# Usar la versión de Node correcta
+### Opción B — SSH
+
+Recomendada si ya tienes tu llave SSH registrada en GitHub.
+
+```bash
+git clone git@github.com:edwinwmendez/PROMOTECS-Digital.git
+cd PROMOTECS-Digital
+```
+
+### Opción C — GitHub CLI
+
+Útil si trabajas con `gh` autenticado.
+
+```bash
+gh repo clone edwinwmendez/PROMOTECS-Digital
+cd PROMOTECS-Digital
+```
+
+## Instalación local
+
+```bash
+# 1. Usar la versión de Node del proyecto
 nvm use
 
-# Instalar dependencias
+# 2. Instalar dependencias
 npm install
 
-# Instalar navegadores para E2E
+# 3. Instalar navegadores para pruebas E2E
 npx playwright install
+
+# 4. Crear configuración local git-ignored
+cp js/config.example.js js/config.js
 ```
+
+Luego edita `js/config.js` con tus credenciales locales.
+
+## Configuración local
+
+`js/config.js` **no se commitea**. Es un archivo local con claves públicas de Supabase y EmailJS.
+
+Debe exportar exactamente estas constantes:
+
+```js
+export const SUPABASE_URL = 'https://TU-PROYECTO.supabase.co';
+export const SUPABASE_ANON_KEY = 'tu-anon-key-aquí';
+
+export const EMAILJS_SERVICE_ID = 'TU-SERVICE-ID';
+export const EMAILJS_TEMPLATE_ID = 'TU-TEMPLATE-ID';
+export const EMAILJS_PUBLIC_KEY = 'tu-public-key-aquí';
+```
+
+Notas importantes:
+
+- `SUPABASE_ANON_KEY` es pública, pero igual se mantiene fuera del repo para evitar mezclar ambientes.
+- No agregues claves service-role de Supabase al frontend. Eso sería una vulnerabilidad grave.
+- Si no configuras EmailJS, el formulario de contacto mostrará un mensaje de servicio no configurado.
+- En CI se copia `js/config.example.js` como `js/config.js` con placeholders para correr pruebas sin secretos.
+
+## Ejecutar en desarrollo
+
+```bash
+npm run dev
+```
+
+Abre:
+
+```text
+http://localhost:5173/
+```
+
+Páginas principales:
+
+- `http://localhost:5173/`
+- `http://localhost:5173/catalogo.html`
+- `http://localhost:5173/inscripcion.html`
+- `http://localhost:5173/validacion.html`
+- `http://localhost:5173/contacto.html`
+- `http://localhost:5173/login.html`
 
 ## Scripts de desarrollo
 
-| Comando                | Descripción                                             |
-| ---------------------- | ------------------------------------------------------- |
-| `npm run dev`          | Inicia servidor de desarrollo (Vite, puerto 5173)       |
-| `npm test`             | Ejecuta tests unitarios (Vitest + happy-dom)            |
-| `npm run test:watch`   | Tests unitarios en modo watch                           |
-| `npm run test:e2e`     | Tests E2E (Playwright × Chromium + Firefox; Edge en CI) |
-| `npm run lint`         | Verifica código con ESLint                              |
-| `npm run lint:fix`     | Corrige errores de ESLint automáticamente               |
-| `npm run format`       | Formatea código con Prettier                            |
-| `npm run format:check` | Verifica formato sin modificar archivos                 |
+| Comando                                | Descripción                                               |
+| -------------------------------------- | --------------------------------------------------------- |
+| `npm run dev`                          | Inicia servidor de desarrollo Vite en puerto 5173.        |
+| `npm test`                             | Ejecuta pruebas unitarias con Vitest + happy-dom.         |
+| `npm run test:watch`                   | Ejecuta pruebas unitarias en modo watch.                  |
+| `npm run test:e2e`                     | Ejecuta pruebas E2E con Playwright en Chromium + Firefox. |
+| `TEST_ALL_BROWSERS=1 npm run test:e2e` | Ejecuta E2E incluyendo Edge si está instalado.            |
+| `npm run lint`                         | Verifica el código con ESLint.                            |
+| `npm run lint:fix`                     | Corrige automáticamente problemas soportados por ESLint.  |
+| `npm run format`                       | Formatea con Prettier.                                    |
+| `npm run format:check`                 | Verifica formato sin modificar archivos.                  |
+
+## Quality gate antes de hacer PR
+
+Antes de abrir o actualizar un PR, ejecuta:
+
+```bash
+npm run lint
+npm run format:check
+npm test
+npm run test:e2e
+```
+
+No ejecutes `vite build`: este proyecto no tiene build de producción.
 
 ## Vite es solo para desarrollo
 
-Este proyecto **NO usa `vite build`**. El código debe funcionar tal cual en el navegador, sin paso de compilación. GitHub Pages sirve los archivos directamente.
+Este proyecto **NO usa `vite build`**. GitHub Pages sirve los archivos HTML/CSS/JS directamente.
 
-**Qué significa esto para el desarrollo**:
+Eso significa:
 
-- No usar `import.meta.env` (ESLint lo bloquea)
-- No importar CSS desde JavaScript (ESLint lo bloquea)
-- No usar features que requieran un bundler (TypeScript, JSX, etc.)
-- Cargar CSS con `<link>` en HTML, no con `import` en JS
+- No usar `import.meta.env`.
+- No importar CSS desde JavaScript.
+- No usar JSX, TypeScript ni features que requieran bundler.
+- Cargar CSS con `<link>` en cada HTML.
+- Mantener JavaScript como módulos ES compatibles con navegador.
 
-Para más detalles, ver [ADR-001](docs/adr/ADR-001-tooling-selection.md).
+Para más detalle, ver [ADR-001: Tooling](docs/adr/ADR-001-tooling-selection.md).
 
-> **Nota sobre Edge**: localmente, `npm run test:e2e` corre Chromium + Firefox. Edge se activa automáticamente en CI (`CI=true`). Para correr los 3 browsers localmente: `TEST_ALL_BROWSERS=1 npm run test:e2e` (requiere `npx playwright install msedge`).
+## Flujo de ramas
 
-## Arquitectura
-
-```
-Capa 1 — Presentación:  HTML5 semántico + CSS3 + JavaScript ES6+ vanilla
-Capa 2 — Lógica:        JavaScript ES6+ + Supabase REST API vía fetch()
-Capa 3 — Datos:         Supabase (PostgreSQL + Row Level Security)
-```
-
-**Restricción del curso**: no se permiten frameworks frontend (React, Vue, Angular, jQuery, Bootstrap, Tailwind) en el código de producción. Ver principio 1 de la [constitución](openspec/specs/foundation/constitution.md).
-
-## Git Flow
-
-```
-main        ← producción (GitHub Pages)
+```text
+main       ← producción / GitHub Pages
   ↑
-develop     ← integración
+develop    ← integración estable
   ↑
-feature/*   ← desarrollo por módulo
+feature/*  ← desarrollo por módulo o change SDD
+fix/*      ← correcciones puntuales
+chore/*    ← tareas de mantenimiento
 ```
 
-- Commits: [Conventional Commits](https://www.conventionalcommits.org/)
-- Hooks: pre-commit (lint-staged) + commit-msg (commitlint)
-- PRs: mínimo 1 revisor, CI debe pasar
+Reglas mínimas:
 
-## Equipo — Grupo 14
+1. No trabajar directo sobre `main` ni `develop`.
+2. Crear ramas desde `develop` actualizado.
+3. Usar Conventional Commits.
+4. Abrir PR hacia `develop`.
+5. Mergear solo con quality gate verde.
 
-| Integrante                      | Rol            |
-| ------------------------------- | -------------- |
-| Mendez Echevarria, Edwin Wilson | Owner del repo |
-| Alvarado Cánez, Hugo Martín     | Desarrollador  |
-| Herrera Sosa, Manuel Lautaro    | Desarrollador  |
-| Miranda Palomino, Edwin Wilson  | Desarrollador  |
+Ejemplo:
 
-## Documentación
+```bash
+git switch develop
+git pull origin develop
+git switch -c feature/nombre-del-cambio
+```
 
-- [Design System](docs/design-system.md) — paleta, tipografía, espaciado, tokens
-- [ADR-001: Tooling](docs/adr/ADR-001-tooling-selection.md) — decisiones de herramientas
-- [Constitución del proyecto](openspec/specs/foundation/constitution.md) — 23 principios no negociables
-- [Glosario](openspec/specs/foundation/glossary.md) — términos del dominio
+## SDD y documentación técnica
+
+El proyecto usa **Spec-Driven Development (SDD)** para cambios relevantes.
+
+Archivos clave:
+
+- [Constitución](openspec/specs/foundation/constitution.md): principios no negociables.
+- [Glosario](openspec/specs/foundation/glossary.md): lenguaje ubicuo del dominio.
+- `openspec/changes/`: artefactos de cambios en curso.
+- `openspec/changes/archive/`: cambios cerrados.
+- `.atl/skill-registry.md`: registro de skills y convenciones para agentes.
+- `.agents/skills/` y `.claude/skills/`: skills locales SDD.
+
+Antes de iniciar un cambio grande, revisa la constitución y el glosario. No inventes términos del dominio.
+
+## Solución de problemas
+
+### `nvm use` no funciona
+
+Instala `nvm` o usa manualmente Node.js 22+.
+
+```bash
+node --version
+```
+
+### Playwright dice que faltan navegadores
+
+```bash
+npx playwright install
+```
+
+En Linux/CI puede requerir dependencias del sistema:
+
+```bash
+npx playwright install --with-deps
+```
+
+### Error: `js/config.js` no existe
+
+Copia el template:
+
+```bash
+cp js/config.example.js js/config.js
+```
+
+### Error: `does not provide an export named EMAILJS_*`
+
+Tu `js/config.js` local está desactualizado. Vuelve a copiar el template o agrega las constantes EmailJS descritas en la sección de configuración.
+
+### Puerto 5173 ocupado
+
+Cierra el proceso anterior o cambia temporalmente el puerto desde Vite. Para desarrollo normal, deja el puerto 5173 porque Playwright lo espera.
+
+## Documentación relacionada
+
+- [Design System](docs/design-system.md)
+- [ADR-001: Tooling](docs/adr/ADR-001-tooling-selection.md)
+- [Constitución del proyecto](openspec/specs/foundation/constitution.md)
+- [Glosario del dominio](openspec/specs/foundation/glossary.md)

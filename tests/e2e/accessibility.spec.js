@@ -5,10 +5,27 @@ import AxeBuilder from '@axe-core/playwright';
 import { PAGINAS } from '../_shared/paginas.js';
 
 const WCAG_TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'];
+const RUTA_INSCRIPCION = '/js/modules/inscripcion.js';
+
+async function desactivarRedirectDeRutaProtegida(page, nombre) {
+  if (nombre !== 'inscripcion') return;
+
+  // inscripcion.html es una ruta protegida: su módulo redirige a login.html
+  // cuando no hay sesión. Para la auditoría de markup+CSS con axe, anulamos
+  // solo ese módulo y dejamos cargar el HTML estático, estilos y scripts globales.
+  await page.route(`**${RUTA_INSCRIPCION}`, (route) =>
+    route.fulfill({
+      status: 200,
+      contentType: 'application/javascript',
+      body: '// noop: ruta protegida desactivada para auditoría axe E2E\n',
+    }),
+  );
+}
 
 test.describe('axe-core — auditoría WCAG 2.1 AA + 2.2 AA', () => {
   for (const { path, nombre } of PAGINAS) {
     test(`${nombre}: 0 violaciones nivel AA`, async ({ page }) => {
+      await desactivarRedirectDeRutaProtegida(page, nombre);
       await page.goto(path);
 
       // domcontentloaded basta: HTML/CSS/JS del sitio estático llegan en una respuesta;
